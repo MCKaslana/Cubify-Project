@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
     private InputSystem_Actions _inputActions;
 
@@ -14,8 +14,9 @@ public class InputManager : MonoBehaviour
 
     #endregion
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         _inputActions = new InputSystem_Actions();
         _inputActions.Enable();
     }

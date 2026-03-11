@@ -6,7 +6,7 @@ public class CubeControl : MonoBehaviour
     private Vector3 _originalPosition;
     [SerializeField] private float _delayBeforeReturn = 4f;
 
-    private void Awake()
+    private void Start()
     {
         _originalPosition = transform.position;
         CombatManager.Instance.OnCombatEnded += HandleCombatEnded;

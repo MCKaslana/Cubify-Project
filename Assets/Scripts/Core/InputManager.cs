@@ -40,7 +40,6 @@ public class InputManager : Singleton<InputManager>
 
         _inputActions.Disable();
     }
-
     
     private void CameraForwardPerformed(InputAction.CallbackContext ctx)
     {

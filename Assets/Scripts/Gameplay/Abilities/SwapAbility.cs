@@ -16,9 +16,6 @@ public class SwapAbility : AbilityCard
     {
         if (target == null) yield break;
 
-        Vector3 userPos = user.transform.position;
-        Vector3 targetPos = target.transform.position;
-
         user.PlaySound(5);
         yield return user.SwapWith(target);
 

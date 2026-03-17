@@ -20,7 +20,7 @@ public class AttackAbility : AbilityCard
 
         user.PlaySound(0);
         Debug.Log("used attack ability");
-        target.TakeDamage(10); // Example damage value
+        target.TakeDamage(DamageCalculator.CalculateDamage(user, target));
 
         yield return new WaitForSeconds(0.5f); // Short delay after attack
         yield return user.ReturnToOriginalPosition();

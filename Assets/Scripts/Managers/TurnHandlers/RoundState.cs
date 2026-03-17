@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RoundState : ITurnState
 {
-    private TurnManager manager;
+    private readonly TurnManager manager;
 
     public RoundState(TurnManager manager)
     {

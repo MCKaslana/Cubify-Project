@@ -135,7 +135,7 @@ public class CombatManager : Singleton<CombatManager>
         yield return new WaitForSeconds(turns * 2f);
 
         if (target != null)
-            target.Modify(1f / scale, Color.white);
+            target.Modify(1f, Color.yellow);
     }
 
     #endregion

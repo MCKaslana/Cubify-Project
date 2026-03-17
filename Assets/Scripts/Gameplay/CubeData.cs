@@ -2,9 +2,9 @@ using UnityEngine;
 
 public enum CubeSize
 {
-    Small,
-    Medium,
-    Large
+    Small = 0,
+    Medium = 1,
+    Large = 2
 }
 
 [CreateAssetMenu(fileName = "CubeData", menuName = "Scriptable Objects/CubeData")]

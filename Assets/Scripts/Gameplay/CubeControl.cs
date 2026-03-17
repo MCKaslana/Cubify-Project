@@ -13,6 +13,8 @@ public class CubeControl : MonoBehaviour
     [SerializeField] private Lane _lane;
 
     [Header("Stats")]
+    [SerializeField] private CubeData _data;
+    public CubeData GetCubeData() => _data;
     [SerializeField] private int _maxHealth = 10;
     private int _currentHealth;
 
@@ -161,12 +163,20 @@ public class CubeControl : MonoBehaviour
 
     #region --- Modifiers ---
 
-    public void Modify(float scaleMultiplier, Color newColor)
+    public void Modify(CubeData newData)
     {
-        transform.localScale *= scaleMultiplier;
+        _data = newData;
+        transform.localScale = Vector3.one * _data.sizeMultiplier;
 
         if (_cubeRenderer != null)
-            _cubeRenderer.material.color = newColor;
+            _cubeRenderer.material.color = _data.color;
+    }
+
+    public void Modify(float sizeMultiplier, Color color)
+    {
+        transform.localScale = Vector3.one * sizeMultiplier;
+        if (_cubeRenderer != null)
+            _cubeRenderer.material.color = color;
     }
 
     #endregion

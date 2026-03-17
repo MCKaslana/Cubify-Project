@@ -100,4 +100,13 @@ public class TurnManager : Singleton<TurnManager>
     }
 
     #endregion
+
+    #region --- Getters ---
+
+    public Team GetAttacker() => Attacker;
+    public Team GetDefender() => Defender;
+    public int GetAttackerActions() => AttackerActions;
+    public int GetDefenderActions() => DefenderActions;
+
+    #endregion
 }

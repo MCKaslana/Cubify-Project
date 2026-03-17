@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Combat/Abilities/Attack")]
 public class AttackAbility : AbilityCard
 {
     public override bool CanExecute(CubeControl user, CubeControl target)

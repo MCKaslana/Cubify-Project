@@ -1,65 +1,140 @@
 using UnityEngine;
 using System.Collections;
-using System;
+using System.Collections.Generic;
 
 public class CombatManager : Singleton<CombatManager>
 {
     protected override bool IsPersistent => false;
 
-    [SerializeField] private Transform[] _combatPositions;
-    private GameObject[] _combatants = new GameObject[2];
-    private int _joinedCombatants = 0;
+    [Header("Stamina")]
+    [SerializeField] private int playerMaxStamina = 10;
+    [SerializeField] private int aiMaxStamina = 10;
 
-    public event Action OnCombatEnded;
+    private int _playerStamina;
+    private int _opponentStamina;
 
-    public void JoinCombat(GameObject combatant)
+    public override void Awake()
     {
-        Debug.Log("Combatant joined combat: " + combatant.name);
-
-        if (_joinedCombatants < 2)
-        {
-            _combatants[_joinedCombatants] = combatant;
-            _joinedCombatants++;
-
-            if (_joinedCombatants == 2)
-            {
-                InitateCombat(_combatants[0], _combatants[1]);
-            }
-        }
+        base.Awake();
+        _playerStamina = playerMaxStamina;
+        _opponentStamina = aiMaxStamina;
     }
 
-    public void LeaveCombat(GameObject combatant)
+    public bool HasEnoughStamina(bool isPlayer, int cost)
     {
-        Debug.Log("Combatant left combat: " + combatant.name);
-        for (int i = 0; i < _combatants.Length; i++)
-        {
-            if (_combatants[i] == combatant)
-            {
-                _combatants[i] = null;
-                _joinedCombatants--;
-                break;
-            }
-        }
+        return isPlayer ? _playerStamina >= cost : _opponentStamina >= cost;
     }
 
-    public void InitateCombat(GameObject attacker, GameObject defender)
+    public void SpendStamina(bool isPlayer, int cost)
     {
-        Debug.Log("Combat initiated between: " + attacker.name + " and " + defender.name);
-        _combatants[0] = attacker;
-        _combatants[1] = defender;
-
-        StartCoroutine(MoveCombatants(attacker.transform, defender.transform.position));
+        if (isPlayer)
+            _playerStamina -= cost;
+        else
+            _opponentStamina -= cost;
     }
 
-    private IEnumerator MoveCombatants(Transform unit, Vector3 target)
+    public void RestoreStamina(int amount)
     {
-        while (Vector3.Distance(unit.position, target) > 0.1f)
+        _playerStamina = Mathf.Min(_playerStamina + amount, playerMaxStamina);
+        _opponentStamina = Mathf.Min(_opponentStamina + amount, aiMaxStamina);
+    }
+
+    public int GetPlayerStamina() => _playerStamina;
+    public int GetAIStamina() => _opponentStamina;
+
+    #region --- Ability Helpers ---
+
+    private bool interruptRequested = false;
+    private bool isResolving = false;
+
+    public void ExecuteAbility(CubeControl user, CubeControl target, AbilityCard ability)
+    {
+        if (!ability.CanExecute(user, target))
         {
-            unit.position = Vector3.MoveTowards(unit.position, target, 5f * Time.deltaTime);
-            yield return null;
+            Debug.Log("Ability cannot be used.");
+            return;
         }
 
-        unit.position = target;
-        OnCombatEnded?.Invoke();
+        StartCoroutine(ResolveAbility(user, target, ability));
     }
+
+    private IEnumerator ResolveAbility(CubeControl user, CubeControl target, AbilityCard ability)
+    {
+        isResolving = true;
+        interruptRequested = false;
+
+        ability.OnExecute(user);
+
+        yield return new WaitForSeconds(0.25f);
+
+        if (interruptRequested)
+        {
+            Debug.Log("Ability Interrupted!");
+            isResolving = false;
+            yield break;
+        }
+
+        if (target != null && redirectMap.ContainsKey(target))
+        {
+            target = redirectMap[target];
+            Debug.Log("Target Redirected!");
+        }
+
+        yield return ability.Execute(user, target);
+
+        isResolving = false;
+    }
+
+    public bool IsResolving() => isResolving;
+
+    #endregion
+
+    #region --- Redirect System ---
+
+    private Dictionary<CubeControl, CubeControl> redirectMap = new();
+
+    public void SetRedirect(CubeControl originalTarget, CubeControl newTarget)
+    {
+        if (originalTarget == null || newTarget == null) return;
+
+        redirectMap[originalTarget] = newTarget;
+    }
+
+    public void ClearRedirects()
+    {
+        redirectMap.Clear();
+    }
+
+    #endregion
+
+    #region --- Interrupt System ---
+
+    public void RequestInterrupt()
+    {
+        if (!isResolving) return;
+
+        interruptRequested = true;
+    }
+
+    #endregion
+
+    #region --- Temporary Effects ---
+
+    public void ApplyTemporaryScale(CubeControl target, float scale, int turns)
+    {
+        if (target == null) return;
+
+        target.Modify(scale, Color.yellow);
+        StartCoroutine(RemoveScaleAfterTurns(target, scale, turns));
+    }
+
+    private IEnumerator RemoveScaleAfterTurns(CubeControl target, float scale, int turns)
+    {
+        yield return new WaitForSeconds(turns * 2f);
+
+        if (target != null)
+            target.Modify(1f / scale, Color.white);
+    }
+
+    #endregion
 }

@@ -498,7 +498,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291b198c8a212ed4aa54d8e50a6a3047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
-  sounds: []
+  sounds:
+  - {fileID: 11400000, guid: 437d719d3562e924da687d2c5436c398, type: 2}
+  - {fileID: 11400000, guid: dc681f36beeba514db63b64bde71b503, type: 2}
+  - {fileID: 11400000, guid: 8664d605ef9810444baa9c7aeec18a23, type: 2}
+  - {fileID: 11400000, guid: 25498a99058612f44b4bc4b3beca687c, type: 2}
+  - {fileID: 11400000, guid: 0e10c54371f08f947b9aa865e80191c0, type: 2}
+  - {fileID: 11400000, guid: 942d0ab0f1f759445bc44c1efb3ac403, type: 2}
+  - {fileID: 11400000, guid: 89af0436184ad8a43b0b6d2db419f3d5, type: 2}
 --- !u!82 &103971881
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2703,7 +2710,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291b198c8a212ed4aa54d8e50a6a3047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
-  sounds: []
+  sounds:
+  - {fileID: 11400000, guid: 437d719d3562e924da687d2c5436c398, type: 2}
+  - {fileID: 11400000, guid: dc681f36beeba514db63b64bde71b503, type: 2}
+  - {fileID: 11400000, guid: 8664d605ef9810444baa9c7aeec18a23, type: 2}
+  - {fileID: 11400000, guid: 25498a99058612f44b4bc4b3beca687c, type: 2}
+  - {fileID: 11400000, guid: 0e10c54371f08f947b9aa865e80191c0, type: 2}
+  - {fileID: 11400000, guid: 942d0ab0f1f759445bc44c1efb3ac403, type: 2}
+  - {fileID: 11400000, guid: 89af0436184ad8a43b0b6d2db419f3d5, type: 2}
 --- !u!82 &1196435227
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3672,7 +3686,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291b198c8a212ed4aa54d8e50a6a3047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
-  sounds: []
+  sounds:
+  - {fileID: 11400000, guid: 437d719d3562e924da687d2c5436c398, type: 2}
+  - {fileID: 11400000, guid: dc681f36beeba514db63b64bde71b503, type: 2}
+  - {fileID: 11400000, guid: 8664d605ef9810444baa9c7aeec18a23, type: 2}
+  - {fileID: 11400000, guid: 25498a99058612f44b4bc4b3beca687c, type: 2}
+  - {fileID: 11400000, guid: 0e10c54371f08f947b9aa865e80191c0, type: 2}
+  - {fileID: 11400000, guid: 942d0ab0f1f759445bc44c1efb3ac403, type: 2}
+  - {fileID: 11400000, guid: 89af0436184ad8a43b0b6d2db419f3d5, type: 2}
 --- !u!82 &1385605264
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4532,7 +4553,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291b198c8a212ed4aa54d8e50a6a3047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
-  sounds: []
+  sounds:
+  - {fileID: 11400000, guid: 437d719d3562e924da687d2c5436c398, type: 2}
+  - {fileID: 11400000, guid: dc681f36beeba514db63b64bde71b503, type: 2}
+  - {fileID: 11400000, guid: 8664d605ef9810444baa9c7aeec18a23, type: 2}
+  - {fileID: 11400000, guid: 25498a99058612f44b4bc4b3beca687c, type: 2}
+  - {fileID: 11400000, guid: 0e10c54371f08f947b9aa865e80191c0, type: 2}
+  - {fileID: 11400000, guid: 942d0ab0f1f759445bc44c1efb3ac403, type: 2}
+  - {fileID: 11400000, guid: 89af0436184ad8a43b0b6d2db419f3d5, type: 2}
 --- !u!82 &1727289490
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5199,7 +5227,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291b198c8a212ed4aa54d8e50a6a3047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
-  sounds: []
+  sounds:
+  - {fileID: 11400000, guid: 437d719d3562e924da687d2c5436c398, type: 2}
+  - {fileID: 11400000, guid: dc681f36beeba514db63b64bde71b503, type: 2}
+  - {fileID: 11400000, guid: 8664d605ef9810444baa9c7aeec18a23, type: 2}
+  - {fileID: 11400000, guid: 25498a99058612f44b4bc4b3beca687c, type: 2}
+  - {fileID: 11400000, guid: 0e10c54371f08f947b9aa865e80191c0, type: 2}
+  - {fileID: 11400000, guid: 942d0ab0f1f759445bc44c1efb3ac403, type: 2}
+  - {fileID: 11400000, guid: 89af0436184ad8a43b0b6d2db419f3d5, type: 2}
 --- !u!82 &1920477999
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5407,7 +5442,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291b198c8a212ed4aa54d8e50a6a3047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundPlayer
-  sounds: []
+  sounds:
+  - {fileID: 11400000, guid: 437d719d3562e924da687d2c5436c398, type: 2}
+  - {fileID: 11400000, guid: dc681f36beeba514db63b64bde71b503, type: 2}
+  - {fileID: 11400000, guid: 8664d605ef9810444baa9c7aeec18a23, type: 2}
+  - {fileID: 11400000, guid: 25498a99058612f44b4bc4b3beca687c, type: 2}
+  - {fileID: 11400000, guid: 0e10c54371f08f947b9aa865e80191c0, type: 2}
+  - {fileID: 11400000, guid: 942d0ab0f1f759445bc44c1efb3ac403, type: 2}
+  - {fileID: 11400000, guid: 89af0436184ad8a43b0b6d2db419f3d5, type: 2}
 --- !u!82 &1958898651
 AudioSource:
   m_ObjectHideFlags: 0

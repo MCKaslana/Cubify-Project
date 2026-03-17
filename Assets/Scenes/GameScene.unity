@@ -3005,7 +3005,7 @@ MonoBehaviour:
   masterVolume: 1
   sfxVolume: 1
   musicVolume: 1
-  backgroundMusic: {fileID: 0}
+  backgroundMusic: {fileID: 11400000, guid: f06cdd3206161a445a00a05d8954aaeb, type: 2}
 --- !u!114 &1201643055
 MonoBehaviour:
   m_ObjectHideFlags: 0

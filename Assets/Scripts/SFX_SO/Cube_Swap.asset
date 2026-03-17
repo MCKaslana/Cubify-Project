@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0055b375a49b89a4abf9c41b9e9ce2ee, type: 3}
-  m_Name: WasHitSOund
+  m_Name: Cube_Swap
   m_EditorClassIdentifier: Assembly-CSharp::SoundData
-  clip: {fileID: 8300000, guid: 51b7a8626fe9bc9409b9fbeab0cbb73c, type: 3}
+  clip: {fileID: 8300000, guid: 81a4894ddb2b80a4db472a64eca40ee3, type: 3}
   volume: 1
   pitch: 1
   loop: 0

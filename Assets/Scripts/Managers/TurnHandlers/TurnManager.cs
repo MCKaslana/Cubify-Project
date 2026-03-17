@@ -15,6 +15,7 @@ public class TurnManager : Singleton<TurnManager>
     public int DefenderActions { get; private set; }
 
     private const int MAX_ACTIONS = 3;
+
     private void Start()
     {
         ChangeState(new SetupState(this));

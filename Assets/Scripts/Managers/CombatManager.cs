@@ -20,14 +20,16 @@ public class CombatManager : Singleton<CombatManager>
         _opponentStamina = aiMaxStamina;
     }
 
-    public bool HasEnoughStamina(bool isPlayer, int cost)
+    public bool HasEnoughStamina(Team team, int cost)
     {
-        return isPlayer ? _playerStamina >= cost : _opponentStamina >= cost;
+        return team == Team.Player
+        ? _playerStamina >= cost
+        : _opponentStamina >= cost;
     }
 
-    public void SpendStamina(bool isPlayer, int cost)
+    public void SpendStamina(Team team, int cost)
     {
-        if (isPlayer)
+        if (team == Team.Player)
             _playerStamina -= cost;
         else
             _opponentStamina -= cost;

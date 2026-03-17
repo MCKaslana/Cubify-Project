@@ -8,12 +8,12 @@ public abstract class AbilityCard : ScriptableObject
 
     public virtual bool CanExecute(CubeControl user, CubeControl target)
     {
-        return CombatManager.Instance.HasEnoughStamina(user.IsPlayerUnit(), staminaCost);
+        return CombatManager.Instance.HasEnoughStamina(user.GetTeam(), staminaCost);
     }
 
     public virtual void OnExecute(CubeControl user)
     {
-        CombatManager.Instance.SpendStamina(user.IsPlayerUnit(), staminaCost);
+        CombatManager.Instance.SpendStamina(user.GetTeam(), staminaCost);
     }
 
     public abstract IEnumerator Execute(CubeControl user, CubeControl target);

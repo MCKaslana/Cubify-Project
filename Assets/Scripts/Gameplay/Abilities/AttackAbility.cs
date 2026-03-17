@@ -18,6 +18,7 @@ public class AttackAbility : AbilityCard
 
         yield return user.MoveTo(target.transform.position);
 
+        user.PlaySound(0);
         Debug.Log("used attack ability");
         target.TakeDamage(10); // Example damage value
 

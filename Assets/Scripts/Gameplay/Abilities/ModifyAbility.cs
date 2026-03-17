@@ -20,6 +20,8 @@ public class ModifyAbility : AbilityCard
 
         yield return cubeToModify.MoveTo(cubeToModify.transform.position + Vector3.forward * 0.5f);
 
+        user.PlaySound(3);
+
         cubeToModify.Modify(scaleAmount, colorChange);
 
         yield return new WaitForSeconds(0.5f);

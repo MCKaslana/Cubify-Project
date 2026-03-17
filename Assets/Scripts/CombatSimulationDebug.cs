@@ -4,7 +4,7 @@ public class CombatSimulationDebug : MonoBehaviour
 {
     public CubeControl selectedCube;
     public CubeControl targetCube;
-    public AttackAbility attackAbility;
+    public AbilityCard attackAbility;
 
     public void OnAttackButtonPressed()
     {

@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatSimulationDebug
   selectedCube: {fileID: 1385605262}
-  targetCube: {fileID: 1920477997}
-  attackAbility: {fileID: 11400000, guid: 4f21fbaaaac269f42905f3cbf6799c2c, type: 2}
+  targetCube: {fileID: 1196435225}
+  attackAbility: {fileID: 11400000, guid: 1810f21b92790a048a2f08cae169a470, type: 2}
 --- !u!4 &30148946
 Transform:
   m_ObjectHideFlags: 0

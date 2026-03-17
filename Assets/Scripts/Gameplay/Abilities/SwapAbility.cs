@@ -9,24 +9,15 @@ public class SwapAbility : AbilityCard
         if (!base.CanExecute(user, target)) return false;
         if (target == null) return false;
 
-        return user.IsPlayerUnit() == target.IsPlayerUnit() || user.GetLane() == target.GetLane();
+        return true;
     }
 
     public override IEnumerator Execute(CubeControl user, CubeControl target)
     {
         if (target == null) yield break;
 
-        Vector3 userPos = user.transform.position;
-        Vector3 targetPos = target.transform.position;
-
-        yield return user.MoveTo(targetPos);
-        yield return target.MoveTo(userPos);
-
-        user.SetLane(target.GetLane());
-        target.SetLane(user.GetLane());
-
-        //check if cube has swapped with an enemy cube
-        //if so change team 
+        user.PlaySound(5);
+        yield return user.SwapWith(target);
 
         Debug.Log($"{user.name} swapped with {target.name}");
     }

@@ -442,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7173244957046243725, guid: 8d32636f5846b0c49a9e27ed7b42e27b, type: 3}
       propertyPath: m_Name
-      value: PlayerCubed (4)
+      value: EnemyCube2
       objectReference: {fileID: 0}
     - target: {fileID: 7221385778610805641, guid: 8d32636f5846b0c49a9e27ed7b42e27b, type: 3}
       propertyPath: m_IsActive
@@ -479,8 +479,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b7c90e2e8cea64886d4a5570040584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CubeControl
-  _isPlayerUnit: 0
+  _team: 0
   _lane: 1
+  _data: {fileID: 0}
   _maxHealth: 10
   _cubeRenderer: {fileID: 0}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1267,6 +1268,7 @@ Transform:
   - {fileID: 934747676}
   - {fileID: 1647128398}
   - {fileID: 1897523121}
+  - {fileID: 949520746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
@@ -2158,7 +2160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949520745}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2169,7 +2171,7 @@ Transform:
   - {fileID: 2054707015}
   - {fileID: 2004756474}
   - {fileID: 1221155019}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 375569017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994773944
 GameObject:
@@ -2691,8 +2693,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b7c90e2e8cea64886d4a5570040584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CubeControl
-  _isPlayerUnit: 1
+  _team: 0
   _lane: 1
+  _data: {fileID: 0}
   _maxHealth: 10
   _cubeRenderer: {fileID: 0}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3667,8 +3670,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b7c90e2e8cea64886d4a5570040584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CubeControl
-  _isPlayerUnit: 1
+  _team: 0
   _lane: 0
+  _data: {fileID: 0}
   _maxHealth: 10
   _cubeRenderer: {fileID: 0}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -4501,7 +4505,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7173244957046243725, guid: 8d32636f5846b0c49a9e27ed7b42e27b, type: 3}
       propertyPath: m_Name
-      value: PlayerCubed (3)
+      value: EnemyCube1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4534,8 +4538,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b7c90e2e8cea64886d4a5570040584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CubeControl
-  _isPlayerUnit: 0
+  _team: 0
   _lane: 2
+  _data: {fileID: 0}
   _maxHealth: 10
   _cubeRenderer: {fileID: 0}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5171,7 +5176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7173244957046243725, guid: 8d32636f5846b0c49a9e27ed7b42e27b, type: 3}
       propertyPath: m_Name
-      value: PlayerCubed (5)
+      value: EnemyCube3
       objectReference: {fileID: 0}
     - target: {fileID: 7221385778610805641, guid: 8d32636f5846b0c49a9e27ed7b42e27b, type: 3}
       propertyPath: m_IsActive
@@ -5208,8 +5213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b7c90e2e8cea64886d4a5570040584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CubeControl
-  _isPlayerUnit: 0
+  _team: 0
   _lane: 0
+  _data: {fileID: 0}
   _maxHealth: 10
   _cubeRenderer: {fileID: 0}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5423,8 +5429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b7c90e2e8cea64886d4a5570040584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CubeControl
-  _isPlayerUnit: 1
+  _team: 0
   _lane: 2
+  _data: {fileID: 0}
   _maxHealth: 10
   _cubeRenderer: {fileID: 0}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -6099,7 +6106,6 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 1201643051}
-  - {fileID: 949520746}
   - {fileID: 375569017}
   - {fileID: 1385605260}
   - {fileID: 1196435223}

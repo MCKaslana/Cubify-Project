@@ -17,6 +17,7 @@ public class AttackAbility : AbilityCard
 
         yield return user.MoveTo(target.transform.position);
 
+        Debug.Log("used attack ability");
         target.TakeDamage(10); // Example damage value
 
         yield return new WaitForSeconds(0.5f); // Short delay after attack

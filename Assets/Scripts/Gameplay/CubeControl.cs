@@ -15,10 +15,11 @@ public class CubeControl : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private CubeData _data;
     public CubeData GetCubeData() => _data;
-    [SerializeField] private int _maxHealth = 10;
+    [SerializeField] private int _maxHealth = 5;
     private int _currentHealth;
 
     [Header("Visuals")]
+    private HealthBar _healthBar;
     [SerializeField] private Renderer _cubeRenderer;
     [SerializeField] private Color _normalColor = Color.white;
     [SerializeField] private Color _damagedColor = Color.red;
@@ -38,6 +39,7 @@ public class CubeControl : MonoBehaviour
         _currentHealth = _maxHealth;
 
         _soundPlayer = GetComponent<SoundPlayer>();
+        _healthBar = GetComponentInChildren<HealthBar>();
 
         if (_cubeRenderer != null)
             _cubeRenderer.material.color = _normalColor;
@@ -60,6 +62,8 @@ public class CubeControl : MonoBehaviour
     {
         _currentHealth -= amount;
 
+        UpdateCubeHealth();
+
         Debug.Log($"{name} took {amount} damage. HP: {_currentHealth}");
 
         StartCoroutine(DamageFeedback());
@@ -72,7 +76,11 @@ public class CubeControl : MonoBehaviour
     {
         _currentHealth += amount;
         _currentHealth = Mathf.Min(_currentHealth, _maxHealth);
+
+        UpdateCubeHealth();
     }
+
+    private void UpdateCubeHealth() => _healthBar.UpdateHealthValue(_currentHealth);
 
     private void Die()
     {

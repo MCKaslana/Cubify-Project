@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.Splines.ExtrusionShapes;
 
 public class CubePlacement : Singleton<CubePlacement>
 {

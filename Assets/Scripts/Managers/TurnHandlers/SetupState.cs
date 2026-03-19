@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SetupState : ITurnState
 {
-    private TurnManager manager;
+    private readonly TurnManager manager;
 
     public SetupState(TurnManager manager)
     {
@@ -13,6 +13,8 @@ public class SetupState : ITurnState
     public void Enter()
     {
         Debug.Log("Setup State");
+
+        manager.RollDiceAndAssignRoles();
 
         // TODO:
         // Spawn cubes (small, medium, big)

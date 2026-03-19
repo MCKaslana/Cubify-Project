@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackerState : ITurnState
 {
-    private TurnManager manager;
+    private readonly TurnManager manager;
 
     public AttackerState(TurnManager manager)
     {

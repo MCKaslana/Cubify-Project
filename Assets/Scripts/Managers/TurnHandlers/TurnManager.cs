@@ -16,6 +16,8 @@ public class TurnManager : Singleton<TurnManager>
 
     private const int MAX_ACTIONS = 3;
 
+    private bool _hasRolledForRoles = false;
+
     private void Start()
     {
         ChangeState(new SetupState(this));
@@ -37,6 +39,9 @@ public class TurnManager : Singleton<TurnManager>
 
     public void RollDiceAndAssignRoles()
     {
+        if (_hasRolledForRoles)
+            return;
+
         int playerRoll = Random.Range(1, 7);
         int aiRoll = Random.Range(1, 7);
 
@@ -50,6 +55,8 @@ public class TurnManager : Singleton<TurnManager>
             Attacker = Team.AI;
             Defender = Team.Player;
         }
+
+        _hasRolledForRoles = true;
 
         Debug.Log($"Attacker: {Attacker} | Defender: {Defender}");
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EndState : ITurnState
 {
-    private TurnManager manager;
+    private readonly TurnManager manager;
 
     public EndState(TurnManager manager)
     {

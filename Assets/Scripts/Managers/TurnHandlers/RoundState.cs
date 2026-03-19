@@ -13,7 +13,6 @@ public class RoundState : ITurnState
     {
         Debug.Log("Round Start");
 
-        manager.RollDiceAndAssignRoles();
         manager.ResetActions();
 
         CombatManager.Instance.RestoreStamina(5);

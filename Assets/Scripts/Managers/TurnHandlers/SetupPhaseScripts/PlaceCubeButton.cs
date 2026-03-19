@@ -18,6 +18,12 @@ public class PlaceCubeButton : MonoBehaviour
 
     private void OnClicked()
     {
+        if (CubePlacement.Instance == null)
+        {
+            Debug.LogError("CubePlacement instance not found!");
+            return;
+        }
+
         if (_isOccupied)
         {
             Debug.Log("Slot already occupied");

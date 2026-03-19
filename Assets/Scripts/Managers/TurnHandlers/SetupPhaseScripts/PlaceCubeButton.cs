@@ -1,19 +1,26 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlaceCubeButton : MonoBehaviour
 {
-    [SerializeField] private int slotIndex;
-    [SerializeField] private Button button;
+    [SerializeField] private int _slotIndex;
+    [SerializeField] private Button _button;
+    private TextMeshProUGUI _buttonText;
+    private Image _buttonImage;
 
-    private bool _isOccupied = false;
+    private bool _hasConfirmed = false;
 
     private void Awake()
     {
-        if (button == null)
-            button = GetComponent<Button>();
+        if (_button == null)
+        {
+            _button = GetComponent<Button>();
+            _buttonText = _button.GetComponentInChildren<TextMeshProUGUI>();
+            _buttonImage = _button.GetComponent<Image>();
+        }
 
-        button.onClick.AddListener(OnClicked);
+        _button.onClick.AddListener(OnClicked);
     }
 
     private void OnClicked()
@@ -24,15 +31,15 @@ public class PlaceCubeButton : MonoBehaviour
             return;
         }
 
-        if (_isOccupied)
+        if (_hasConfirmed)
         {
-            Debug.Log("Slot already occupied");
-            return;
+            CubePlacement.Instance.PlaceCurrentCube(_slotIndex);
+            _button.interactable = false;
         }
 
-        CubePlacement.Instance.PlaceCurrentCube(slotIndex);
+        _buttonText.text = "Confirm Placement?";
+        _buttonImage.color = Color.red;
 
-        _isOccupied = true;
-        button.interactable = false;
+        _hasConfirmed = true;
     }
 }

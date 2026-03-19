@@ -10,6 +10,9 @@ public class CubePlacement : Singleton<CubePlacement>
 
     public event Action OnCubesPlaced;
 
+    [SerializeField] private GameObject _previewHighlight;
+    private List<GameObject> _previewList = new();
+
     [SerializeField] private GameBoard _board;
 
     private bool _isPlacing = false;
@@ -43,6 +46,8 @@ public class CubePlacement : Singleton<CubePlacement>
         _remainingSizes.RemoveAt(0);
 
         _currentCube = CubeSpawner.Instance.SpawnPlayerCubePreview(size);
+        GameObject highlight = Instantiate(_previewHighlight, _currentCube.transform.position, Quaternion.identity, _currentCube.transform);
+        _previewList.Add(highlight);
     }
 
     public void PlaceCurrentCube(int slotIndex)
@@ -65,5 +70,15 @@ public class CubePlacement : Singleton<CubePlacement>
         {
             SpawnNextCube();
         }
+    }
+
+    public void ClearAllHighlights()
+    {
+        foreach (var highlight in _previewList)
+        {
+            if (highlight != null)
+                Destroy(highlight);
+        }
+        _previewList.Clear();
     }
 }

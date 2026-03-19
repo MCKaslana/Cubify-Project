@@ -24,6 +24,7 @@ public class SetupState : ITurnState
     public void HandlePlacementComplete()
     {
         Debug.Log("Player completed cube placement");
+        CubePlacement.Instance.ClearAllHighlights();
         CubePlacement.Instance.OnCubesPlaced -= HandlePlacementComplete;
 
         manager.RollDiceAndAssignRoles();

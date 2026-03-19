@@ -2,7 +2,6 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using static CubeControl;
-using UnityEngine.Splines.ExtrusionShapes;
 
 public class CubeSpawner : Singleton<CubeSpawner>
 {
@@ -10,6 +9,8 @@ public class CubeSpawner : Singleton<CubeSpawner>
 
     [SerializeField] private GameObject _cubePrefab;
     [SerializeField] private GameBoard _board;
+
+    [SerializeField] private CubeData _defaultData;
 
     public void SpawnAICubes()
     {
@@ -29,6 +30,8 @@ public class CubeSpawner : Singleton<CubeSpawner>
             GameObject cubeObj = Instantiate(_cubePrefab, slot.position, Quaternion.identity);
             CubeControl cube = cubeObj.GetComponent<CubeControl>();
 
+            cube.Modify(_defaultData);
+
             cube.SetTeam(Team.Enemy);
             cube.SetCubeSize(size);
             cube.SetLane((Lane)System.Array.IndexOf(_board.aiSlots, slot));
@@ -39,6 +42,8 @@ public class CubeSpawner : Singleton<CubeSpawner>
     {
         GameObject cubeObj = Instantiate(_cubePrefab);
         CubeControl cube = cubeObj.GetComponent<CubeControl>();
+
+        cube.Modify(_defaultData);
 
         cube.SetTeam(Team.Player);
         cube.SetCubeSize(size);

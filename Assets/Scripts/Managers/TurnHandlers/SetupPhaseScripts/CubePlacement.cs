@@ -12,6 +12,8 @@ public class CubePlacement : Singleton<CubePlacement>
 
     [SerializeField] private GameBoard _board;
 
+    private bool _isPlacing = false;
+
     private List<CubeSize> _remainingSizes = new()
     {
         CubeSize.Small,
@@ -23,37 +25,24 @@ public class CubePlacement : Singleton<CubePlacement>
 
     public void StartPlacement()
     {
+        if (_isPlacing) return;
+
+        _isPlacing = true;
+
         Debug.Log("Player placement started");
         SpawnNextCube();
     }
     
     private void SpawnNextCube()
     {
+        if (_currentCube != null) Destroy(_currentCube);
+
         if (_remainingSizes.Count == 0) return;
 
         var size = _remainingSizes[0];
         _remainingSizes.RemoveAt(0);
 
         _currentCube = CubeSpawner.Instance.SpawnPlayerCubePreview(size);
-    }
-
-    public void PlaceCube(GameObject cube, int slotIndex)
-    {
-        Transform slot = _board.playerSlots[slotIndex];
-
-        CubeSpawner.Instance.PlacePlayerCube(cube, slot, slotIndex);
-
-        _placedCount++;
-
-        if (_placedCount >= 3)
-        {
-            Debug.Log("Player finished placement");
-            OnCubesPlaced?.Invoke();
-        }
-        else
-        {
-            SpawnNextCube();
-        }
     }
 
     public void PlaceCurrentCube(int slotIndex)

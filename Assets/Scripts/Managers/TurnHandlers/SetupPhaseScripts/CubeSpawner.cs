@@ -40,6 +40,8 @@ public class CubeSpawner : Singleton<CubeSpawner>
 
     public GameObject SpawnPlayerCubePreview(CubeSize size)
     {
+        Debug.Log("Spawned player cube preview");
+
         GameObject cubeObj = Instantiate(_cubePrefab);
         CubeControl cube = cubeObj.GetComponent<CubeControl>();
 
@@ -53,6 +55,7 @@ public class CubeSpawner : Singleton<CubeSpawner>
 
     public void PlacePlayerCube(GameObject cubeObj, Transform slot, int lane)
     {
+        Debug.Log("Placed player cube in slot " + lane);
         cubeObj.transform.position = slot.position;
 
         CubeControl cube = cubeObj.GetComponent<CubeControl>();

@@ -18,7 +18,6 @@ public class SetupState : ITurnState
         CubePlacement.Instance.OnCubesPlaced += HandlePlacementComplete;
         CubePlacement.Instance.StartPlacement();
 
-        manager.ChangeState(new RoundState(manager));
         CubePlacement.Instance.StartPlacement();
     }
 

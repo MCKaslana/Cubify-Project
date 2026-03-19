@@ -14,6 +14,7 @@ public class CubeControl : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private CubeData _data;
+    [SerializeField] private CubeSize _size;
     public CubeData GetCubeData() => _data;
     [SerializeField] private int _maxHealth = 5;
     private int _currentHealth;
@@ -53,6 +54,8 @@ public class CubeControl : MonoBehaviour
     {
         _lane = newLane;
     }
+
+    public void SetCubeSize(CubeSize size) => _size = size;
 
     #endregion
 

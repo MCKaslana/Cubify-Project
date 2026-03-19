@@ -1,4 +1,3 @@
-using NUnit.Framework.Interfaces;
 using UnityEngine;
 
 public class SetupState : ITurnState
@@ -14,10 +13,21 @@ public class SetupState : ITurnState
     {
         Debug.Log("Setup State");
 
-        manager.RollDiceAndAssignRoles();
+        CubeSpawner.Instance.SpawnAICubes();
 
-        // TODO:
-        // Spawn cubes (small, medium, big)
+        CubePlacement.Instance.OnCubesPlaced += HandlePlacementComplete;
+        CubePlacement.Instance.StartPlacement();
+
+        manager.ChangeState(new RoundState(manager));
+        CubePlacement.Instance.StartPlacement();
+    }
+
+    public void HandlePlacementComplete()
+    {
+        Debug.Log("Player completed cube placement");
+        CubePlacement.Instance.OnCubesPlaced -= HandlePlacementComplete;
+
+        manager.RollDiceAndAssignRoles();
 
         manager.ChangeState(new RoundState(manager));
     }

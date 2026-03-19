@@ -30,7 +30,7 @@ public class CubeSpawner : Singleton<CubeSpawner>
             CubeControl cube = cubeObj.GetComponent<CubeControl>();
 
             cube.SetTeam(Team.Enemy);
-            //cube.SetCubeSize(size);
+            cube.SetCubeSize(size);
             cube.SetLane((Lane)System.Array.IndexOf(_board.aiSlots, slot));
         }
     }
@@ -41,7 +41,7 @@ public class CubeSpawner : Singleton<CubeSpawner>
         CubeControl cube = cubeObj.GetComponent<CubeControl>();
 
         cube.SetTeam(Team.Player);
-        //cube.SetCubeSize(size);
+        cube.SetCubeSize(size);
 
         return cubeObj;
     }

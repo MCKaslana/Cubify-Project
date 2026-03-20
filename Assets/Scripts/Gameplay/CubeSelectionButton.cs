@@ -16,8 +16,7 @@ public class CubeSelectionButton : MonoBehaviour
 
     private void OnClicked()
     {
-        if (!cube.IsSelectable) return;
-
+        Debug.Log("Selected Cube");
         SelectionManager.Instance.SelectCube(cube);
     }
 }

@@ -1,54 +1,36 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SelectionManager : Singleton<SelectionManager>
 {
-    [SerializeField] private GameObject SelectCubeMenu;
-    [SerializeField] private GameObject SelectTargetMenu;
+    public CubeControl CurrentUser { get; private set; }
+    public CubeControl CurrentTarget { get; private set; }
 
-    public CubeControl SelectedCube { get; private set; }
-    public CubeControl TargetCube { get; private set; }
+    public event Action OnSelectionChanged;
 
-    public event Action<CubeControl> OnSelectedCubeChanged;
-    public event Action<CubeControl> OnTargetCubeChanged;
-
-    public override void Awake()
-    {
-        base.Awake();
-        SelectCubeMenu.SetActive(false);
-        SelectTargetMenu.SetActive(false);
-    }
-
-    public void ToggleSelectCubeMenu(bool isActive)
-    {
-        SelectCubeMenu.SetActive(isActive);
-    }
-
-    public void ToggleSelectTargetMenu(bool isActive)
-    {
-        SelectTargetMenu.SetActive(isActive);
-    }
+    private bool _hasSelectedUser = false;
 
     public void SelectCube(CubeControl cube)
     {
-        if (cube == null) return;
-        if (SelectedCube == cube)
-            return;
+        cube = CurrentUser == cube ? null : cube;
 
-        SelectedCube = cube;
-        OnSelectedCubeChanged?.Invoke(cube);
+        if (_hasSelectedUser)
+        {
+            cube = CurrentTarget == cube ? null : cube;
+        }
 
-        ToggleSelectCubeMenu(false);
-        ToggleSelectTargetMenu(true);
+        _hasSelectedUser = true;
+
+        OnSelectionChanged?.Invoke();
     }
 
-    public void SelectTarget(CubeControl cube)
+    public void ResetSelection()
     {
-        if (TargetCube == cube)
-            return;
-        TargetCube = cube;
-        OnTargetCubeChanged?.Invoke(cube);
+        CurrentUser = null;
+        CurrentTarget = null;
+        OnSelectionChanged?.Invoke();
 
-        ToggleSelectTargetMenu(false);
+        _hasSelectedUser = false;
     }
 }

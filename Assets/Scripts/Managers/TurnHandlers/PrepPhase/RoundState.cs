@@ -23,7 +23,6 @@ public class RoundState : ITurnState
     private void StartPrepPhase()
     {
         UIManager.Instance.ShowPrepUI(true);
-        SelectionManager.Instance.ToggleSelectCubeMenu(true);
         PrepPhaseUIManager.Instance.OnPlayerFinished += HandlePlayerFinished;
     }
 

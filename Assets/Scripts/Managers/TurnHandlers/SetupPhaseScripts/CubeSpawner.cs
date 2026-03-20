@@ -61,6 +61,8 @@ public class CubeSpawner : Singleton<CubeSpawner>
 
         CubeControl cube = cubeObj.GetComponent<CubeControl>();
         cube.SetLane((Lane)lane);
+
+        cube.SetOriginalPosition(slot.position);
     }
 
     private CubeData GetDataForSize(CubeSize size)

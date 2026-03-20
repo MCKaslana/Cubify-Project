@@ -39,14 +39,11 @@ public class CubeControl : MonoBehaviour
 
     private void Awake()
     {
-        OriginalPosition = transform.position;
         _currentHealth = _maxHealth;
 
         _soundPlayer = GetComponent<SoundPlayer>();
+        _cubeRenderer = GetComponentInChildren<Renderer>();
         _healthBar = GetComponentInChildren<HealthBar>();
-
-        if (_cubeRenderer != null)
-            _cubeRenderer.material.color = _normalColor;
     }
 
     #region --- Core ---
@@ -56,16 +53,20 @@ public class CubeControl : MonoBehaviour
 
         _currentSize = data.cubeSize;
         _currentMultiplier = data.sizeMultiplier;
+        _normalColor = data.color;
 
         UpdateVisuals();
     }
 
     public void UpdateVisuals()
     {
-        transform.localScale = Vector3.one * _baseData.sizeMultiplier;
+        transform.localScale = Vector3.one * _currentMultiplier;
         if (_cubeRenderer != null)
-            _cubeRenderer.material.color = _baseData.color;
+            _cubeRenderer.material.color = _normalColor;
     }
+
+    public void SetOriginalPosition(Vector3 position)
+        => OriginalPosition = position;
 
     public bool IsBusy() => _isBusy;
     public Lane GetLane() => _lane;

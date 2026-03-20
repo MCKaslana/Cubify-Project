@@ -3448,6 +3448,9 @@ MonoBehaviour:
   _cubePrefab: {fileID: 5781751756243954904, guid: e752731c27213cd47bca7067fac6d647, type: 3}
   _board: {fileID: 1201643058}
   _defaultData: {fileID: 11400000, guid: 805cc3d21b3a1864ebccc59943090866, type: 2}
+  _smallData: {fileID: 11400000, guid: b730be99bd1e33e4ba530e40bdc69d20, type: 2}
+  _mediumData: {fileID: 11400000, guid: 805cc3d21b3a1864ebccc59943090866, type: 2}
+  _largeData: {fileID: 11400000, guid: 1d4b7024b07e27042a43645b2c96736b, type: 2}
 --- !u!114 &1201643057
 MonoBehaviour:
   m_ObjectHideFlags: 0

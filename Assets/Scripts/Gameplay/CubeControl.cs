@@ -198,6 +198,8 @@ public class CubeControl : MonoBehaviour
 
     public void IncreaseSize()
     {
+        if (_currentSize == CubeSize.Large) return;
+
         _currentSize = (CubeSize)Mathf.Clamp((int)_currentSize + 1, 0, 2);
         _currentMultiplier += 0.5f;
 
@@ -206,6 +208,8 @@ public class CubeControl : MonoBehaviour
 
     public void DecreaseSize()
     {
+        if (_currentSize == CubeSize.Small) return;
+
         _currentSize = (CubeSize)Mathf.Clamp((int)_currentSize - 1, 0, 2);
         _currentMultiplier -= 0.5f;
 

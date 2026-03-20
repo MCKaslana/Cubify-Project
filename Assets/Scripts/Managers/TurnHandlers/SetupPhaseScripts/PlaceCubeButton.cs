@@ -37,6 +37,7 @@ public class PlaceCubeButton : MonoBehaviour
             _button.interactable = false;
         }
 
+        CubePlacement.Instance.ChangeCubePreviewPosition(_slotIndex);
         _buttonText.text = "Confirm Placement?";
         _buttonImage.color = Color.red;
 

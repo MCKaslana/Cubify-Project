@@ -13,9 +13,12 @@ public class CubeControl : MonoBehaviour
     [SerializeField] private Lane _lane;
 
     [Header("Stats")]
-    [SerializeField] private CubeData _data;
-    [SerializeField] private CubeSize _size;
-    public CubeData GetCubeData() => _data;
+    [SerializeField] private CubeData _baseData;
+    public CubeData GetCubeData() => _baseData;
+
+    private CubeSize _currentSize;
+    private float _currentMultiplier = 1f;
+
     [SerializeField] private int _maxHealth = 5;
     private int _currentHealth;
 
@@ -46,16 +49,34 @@ public class CubeControl : MonoBehaviour
             _cubeRenderer.material.color = _normalColor;
     }
 
-    #region --- Core State ---
+    #region --- Core ---
+    public void InitializeCube(CubeData data)
+    {
+        _baseData = data;
+
+        _currentSize = data.cubeSize;
+        _currentMultiplier = data.sizeMultiplier;
+
+        UpdateVisuals();
+    }
+
+    public void UpdateVisuals()
+    {
+        transform.localScale = Vector3.one * _baseData.sizeMultiplier;
+        if (_cubeRenderer != null)
+            _cubeRenderer.material.color = _baseData.color;
+    }
+
     public bool IsBusy() => _isBusy;
     public Lane GetLane() => _lane;
+    public CubeSize GetCubeSize() => _currentSize;
 
     public void SetLane(Lane newLane)
     {
         _lane = newLane;
     }
 
-    public void SetCubeSize(CubeSize size) => _size = size;
+    public void SetCubeSize(CubeSize size) => _currentSize = size;
 
     #endregion
 
@@ -174,20 +195,20 @@ public class CubeControl : MonoBehaviour
 
     #region --- Modifiers ---
 
-    public void Modify(CubeData newData)
+    public void IncreaseSize()
     {
-        _data = newData;
-        transform.localScale = Vector3.one * _data.sizeMultiplier;
+        _currentSize = (CubeSize)Mathf.Clamp((int)_currentSize + 1, 0, 2);
+        _currentMultiplier += 0.5f;
 
-        if (_cubeRenderer != null)
-            _cubeRenderer.material.color = _data.color;
+        UpdateVisuals();
     }
 
-    public void Modify(float sizeMultiplier, Color color)
+    public void DecreaseSize()
     {
-        transform.localScale = Vector3.one * sizeMultiplier;
-        if (_cubeRenderer != null)
-            _cubeRenderer.material.color = color;
+        _currentSize = (CubeSize)Mathf.Clamp((int)_currentSize - 1, 0, 2);
+        _currentMultiplier -= 0.5f;
+
+        UpdateVisuals();
     }
 
     #endregion

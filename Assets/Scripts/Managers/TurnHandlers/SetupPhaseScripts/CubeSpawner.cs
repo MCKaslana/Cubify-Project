@@ -11,6 +11,9 @@ public class CubeSpawner : Singleton<CubeSpawner>
     [SerializeField] private GameBoard _board;
 
     [SerializeField] private CubeData _defaultData;
+    [SerializeField] private CubeData _smallData;
+    [SerializeField] private CubeData _mediumData;
+    [SerializeField] private CubeData _largeData;
 
     public void SpawnAICubes()
     {
@@ -25,15 +28,14 @@ public class CubeSpawner : Singleton<CubeSpawner>
 
         foreach (var size in sizes)
         {
+            CubeData data = GetDataForSize(size);
             Transform slot = _board.GetRandomAISlot(ref availableSlots);
 
             GameObject cubeObj = Instantiate(_cubePrefab, slot.position, Quaternion.identity);
             CubeControl cube = cubeObj.GetComponent<CubeControl>();
 
-            cube.Modify(_defaultData);
-
             cube.SetTeam(Team.Enemy);
-            cube.SetCubeSize(size);
+            cube.InitializeCube(data);
             cube.SetLane((Lane)System.Array.IndexOf(_board.aiSlots, slot));
         }
     }
@@ -41,14 +43,13 @@ public class CubeSpawner : Singleton<CubeSpawner>
     public GameObject SpawnPlayerCubePreview(CubeSize size)
     {
         Debug.Log("Spawned player cube preview");
+        CubeData data = GetDataForSize(size);
 
         GameObject cubeObj = Instantiate(_cubePrefab);
         CubeControl cube = cubeObj.GetComponent<CubeControl>();
 
-        cube.Modify(_defaultData);
-
         cube.SetTeam(Team.Player);
-        cube.SetCubeSize(size);
+        cube.InitializeCube(data);
 
         return cubeObj;
     }
@@ -60,5 +61,16 @@ public class CubeSpawner : Singleton<CubeSpawner>
 
         CubeControl cube = cubeObj.GetComponent<CubeControl>();
         cube.SetLane((Lane)lane);
+    }
+
+    private CubeData GetDataForSize(CubeSize size)
+    {
+        return size switch
+        {
+            CubeSize.Small => _smallData,
+            CubeSize.Medium => _mediumData,
+            CubeSize.Large => _largeData,
+            _ => _defaultData
+        };
     }
 }

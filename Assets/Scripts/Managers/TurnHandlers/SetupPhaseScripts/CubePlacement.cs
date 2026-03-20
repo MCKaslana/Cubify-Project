@@ -72,6 +72,13 @@ public class CubePlacement : Singleton<CubePlacement>
         }
     }
 
+    public void ChangeCubePreviewPosition(int newSlot)
+    {
+        if (_currentCube == null) return;
+
+        _currentCube.transform.position = _board.playerSlots[newSlot].position;
+    }
+
     public void ClearAllHighlights()
     {
         foreach (var highlight in _previewList)

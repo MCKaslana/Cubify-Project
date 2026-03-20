@@ -126,7 +126,7 @@ public class CombatManager : Singleton<CombatManager>
     {
         if (target == null) return;
 
-        target.Modify(scale, Color.yellow);
+        target.IncreaseSize();
         StartCoroutine(RemoveScaleAfterTurns(target, scale, turns));
     }
 
@@ -135,7 +135,7 @@ public class CombatManager : Singleton<CombatManager>
         yield return new WaitForSeconds(turns * 2f);
 
         if (target != null)
-            target.Modify(1f, Color.yellow);
+            target.DecreaseSize();
     }
 
     #endregion

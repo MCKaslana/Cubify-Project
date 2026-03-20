@@ -4,9 +4,6 @@ using System.Collections;
 [CreateAssetMenu(menuName = "Combat/Abilities/Modify")]
 public class ModifyAbility : AbilityCard
 {
-    public float scaleAmount = 1.5f;
-    public Color colorChange = Color.green;
-
     public override bool CanExecute(CubeControl user, CubeControl target)
     {
         return true;
@@ -22,7 +19,7 @@ public class ModifyAbility : AbilityCard
 
         user.PlaySound(3);
 
-        cubeToModify.Modify(scaleAmount, colorChange);
+        cubeToModify.IncreaseSize();
 
         yield return new WaitForSeconds(0.5f);
         yield return cubeToModify.ReturnToOriginalPosition();

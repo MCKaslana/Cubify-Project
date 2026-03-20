@@ -13,14 +13,31 @@ public class SelectionManager : Singleton<SelectionManager>
 
     public void SelectCube(CubeControl cube)
     {
-        cube = CurrentUser == cube ? null : cube;
+        if (cube == null) return;
 
-        if (_hasSelectedUser)
+        if (!_hasSelectedUser)
         {
-            cube = CurrentTarget == cube ? null : cube;
-        }
+            Debug.Log("Select user");
 
-        _hasSelectedUser = true;
+            // Toggle selection
+            if (CurrentUser == cube)
+                CurrentUser = null;
+            else
+                CurrentUser = cube;
+
+            // If user was cleared, stay in user selection phase
+            _hasSelectedUser = CurrentUser != null;
+        }
+        else
+        {
+            Debug.Log("Select target");
+
+            // Toggle selection
+            if (CurrentTarget == cube)
+                CurrentTarget = null;
+            else
+                CurrentTarget = cube;
+        }
 
         OnSelectionChanged?.Invoke();
     }

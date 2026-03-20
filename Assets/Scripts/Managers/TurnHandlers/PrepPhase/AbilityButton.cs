@@ -19,6 +19,8 @@ public class AbilityButton : MonoBehaviour
         var user = SelectionManager.Instance.CurrentUser;
         var target = SelectionManager.Instance.CurrentTarget;
 
+        Debug.Log($"Attempting to use {ability.name} from {user?.name ?? "null"} to {target?.name ?? "null"}");
+
         if (user == null || target == null)
         {
             Debug.Log("Select both a user and a target cube.");

@@ -3,15 +3,16 @@ using UnityEngine.UI;
 
 public class AbilityButton : MonoBehaviour
 {
-    [SerializeField] private AbilityCard ability;
-    [SerializeField] private Button button;
+    [SerializeField] private AbilityCard _ability;
+    [SerializeField] private Button _button;
 
     private CubeControl _selectedCube;
     private CubeControl _targetCube;
 
     private void Awake()
     {
-        button.onClick.AddListener(OnClicked);
+        _button.GetComponent<Button>();
+        _button.onClick.AddListener(OnClicked);
     }
 
     private void OnEnable()
@@ -38,19 +39,19 @@ public class AbilityButton : MonoBehaviour
 
     private void OnClicked()
     {
-        if (_selectedCube == null)
+        if (_selectedCube == null || _targetCube == null)
         {
-            Debug.Log("No cube selected");
+            Debug.Log("Select both a user and a target cube");
             return;
         }
 
-        if (!ability.CanExecute(_selectedCube, _targetCube))
+        if (!_ability.CanExecute(_selectedCube, _targetCube))
         {
             Debug.Log("Cannot use ability");
             return;
         }
 
-        StartCoroutine(ability.Execute(_selectedCube, _targetCube));
+        StartCoroutine(_ability.Execute(_selectedCube, _targetCube));
 
         PrepPhaseUIManager.Instance.NotifyAbilityUsed();
     }

@@ -19,20 +19,17 @@ public class SelectionManager : Singleton<SelectionManager>
         {
             Debug.Log("Select user");
 
-            // Toggle selection
             if (CurrentUser == cube)
                 CurrentUser = null;
             else
                 CurrentUser = cube;
 
-            // If user was cleared, stay in user selection phase
             _hasSelectedUser = CurrentUser != null;
         }
         else
         {
             Debug.Log("Select target");
 
-            // Toggle selection
             if (CurrentTarget == cube)
                 CurrentTarget = null;
             else

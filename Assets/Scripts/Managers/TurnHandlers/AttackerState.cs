@@ -12,12 +12,15 @@ public class AttackerState : ITurnState
     public void Enter()
     {
         Debug.Log("Attacker Phase");
+
+        UIManager.Instance.ShowAttackUI(true);
     }
 
     public void Execute()
     {
         if (!manager.AttackerHasActions())
         {
+            UIManager.Instance.ShowAttackUI(false);
             manager.ChangeState(new EndState(manager));
             return;
         }

@@ -5753,6 +5753,7 @@ GameObject:
   - component: {fileID: 1830492573}
   - component: {fileID: 1830492572}
   - component: {fileID: 1830492571}
+  - component: {fileID: 1830492574}
   m_Layer: 5
   m_Name: Shrink_Card
   m_TagString: Untagged
@@ -5862,6 +5863,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830492569}
   m_CullTransparentMesh: 1
+--- !u!114 &1830492574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830492569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be50bdf7649d454f9e9d6e6a26c268d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
+  _ability: {fileID: 11400000, guid: de04b8a6581a0bc4ab5acd2505405c1d, type: 2}
 --- !u!1 &1884131869
 GameObject:
   m_ObjectHideFlags: 0
@@ -6534,6 +6548,7 @@ GameObject:
   - component: {fileID: 2076500384}
   - component: {fileID: 2076500383}
   - component: {fileID: 2076500382}
+  - component: {fileID: 2076500385}
   m_Layer: 5
   m_Name: Swap_Card
   m_TagString: Untagged
@@ -6643,6 +6658,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076500380}
   m_CullTransparentMesh: 1
+--- !u!114 &2076500385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076500380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be50bdf7649d454f9e9d6e6a26c268d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
+  _ability: {fileID: 11400000, guid: 3743f0512698c7642bf8730dee06425a, type: 2}
 --- !u!1 &2092518128
 GameObject:
   m_ObjectHideFlags: 0

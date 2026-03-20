@@ -22,14 +22,14 @@ public class RoundState : ITurnState
 
     private void StartPrepPhase()
     {
-        PrepPhaseUIManager.Instance.EnablePrepPhaseUI(true);
+        UIManager.Instance.ShowPrepUI(true);
         PrepPhaseUIManager.Instance.OnPlayerFinished += HandlePlayerFinished;
     }
 
     private void HandlePlayerFinished()
     {
         PrepPhaseUIManager.Instance.OnPlayerFinished -= HandlePlayerFinished;
-        PrepPhaseUIManager.Instance.EnablePrepPhaseUI(false);
+        UIManager.Instance.ShowPrepUI(false);
 
         _isPlayerFinished = true;
 

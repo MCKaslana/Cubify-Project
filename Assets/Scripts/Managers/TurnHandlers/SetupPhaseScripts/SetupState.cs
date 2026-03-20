@@ -13,6 +13,7 @@ public class SetupState : ITurnState
     {
         Debug.Log("Setup State");
 
+        UIManager.Instance.ShowSetupUI(true);
         CubeSpawner.Instance.SpawnAICubes();
 
         CubePlacement.Instance.OnCubesPlaced += HandlePlacementComplete;
@@ -26,7 +27,8 @@ public class SetupState : ITurnState
         Debug.Log("Player completed cube placement");
         CubePlacement.Instance.ClearAllHighlights();
         CubePlacement.Instance.OnCubesPlaced -= HandlePlacementComplete;
-
+        
+        UIManager.Instance.ShowSetupUI(false);
         manager.RollDiceAndAssignRoles();
 
         manager.ChangeState(new RoundState(manager));

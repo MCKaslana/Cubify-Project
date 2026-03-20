@@ -7,9 +7,7 @@ public class PrepPhaseUIManager : Singleton<PrepPhaseUIManager>
 
     public void EnablePrepPhaseUI(bool enable)
     {
-        gameObject.SetActive(enable);
-
-        //reset anything if needed
+        UIManager.Instance.ShowPrepUI(enable);
     }
 
     public void NotifyAbilityUsed()

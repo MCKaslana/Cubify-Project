@@ -7,8 +7,9 @@ public class CombatManager : Singleton<CombatManager>
     protected override bool IsPersistent => false;
 
     [Header("Stamina")]
-    [SerializeField] private int playerMaxStamina = 10;
-    [SerializeField] private int aiMaxStamina = 10;
+    [SerializeField] private int playerMaxStamina = 5;
+    [SerializeField] private int aiMaxStamina = 5;
+    [SerializeField] private StaminaBar _staminaBar;
 
     private int _playerStamina;
     private int _opponentStamina;
@@ -33,12 +34,23 @@ public class CombatManager : Singleton<CombatManager>
             _playerStamina -= cost;
         else
             _opponentStamina -= cost;
+
+        UpdateStaminaBar();
     }
 
     public void RestoreStamina(int amount)
     {
         _playerStamina = Mathf.Min(_playerStamina + amount, playerMaxStamina);
         _opponentStamina = Mathf.Min(_opponentStamina + amount, aiMaxStamina);
+
+        UpdateStaminaBar();
+    }
+
+    private void UpdateStaminaBar()
+    {
+        if (_staminaBar == null) return;
+
+        _staminaBar.SetStamina(_playerStamina * 20);
     }
 
     public int GetPlayerStamina() => _playerStamina;

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModifyAbility
   abilityName: Modify
   staminaCost: 0
-  scaleAmount: 1.5
-  colorChange: {r: 0, g: 1, b: 0, a: 1}
+  targetType: 0
+  targetingShape: 3

@@ -4,55 +4,58 @@ using UnityEngine.UI;
 public class AbilityButton : MonoBehaviour
 {
     [SerializeField] private AbilityCard _ability;
-    [SerializeField] private Button _button;
-
-    private CubeControl _selectedCube;
-    private CubeControl _targetCube;
+    
+    private Button _button;
 
     private void Awake()
     {
-        _button.GetComponent<Button>();
+        _button = GetComponent<Button>();
         _button.onClick.AddListener(OnClicked);
     }
 
     private void OnEnable()
     {
-        SelectionManager.Instance.OnSelectedCubeChanged += SetUser;
-        SelectionManager.Instance.OnTargetCubeChanged += SetTarget;
+        SelectionManager.Instance.OnSelectedCubeChanged += OnSelectedCubeChanged;
+        SelectionManager.Instance.OnTargetCubeChanged += OnTargetCubeChanged;
     }
 
     private void OnDisable()
     {
-        SelectionManager.Instance.OnSelectedCubeChanged -= SetUser;
-        SelectionManager.Instance.OnTargetCubeChanged -= SetTarget;
+        SelectionManager.Instance.OnSelectedCubeChanged -= OnSelectedCubeChanged;
+        SelectionManager.Instance.OnTargetCubeChanged -= OnTargetCubeChanged;
     }
 
-    public void SetUser(CubeControl cube)
+    private void OnSelectedCubeChanged(CubeControl cube)
     {
-        _selectedCube = cube;
+        // Called automatically by SelectionManager
+        // Could add UI feedback here if needed
     }
 
-    public void SetTarget(CubeControl target)
+    private void OnTargetCubeChanged(CubeControl cube)
     {
-        _targetCube = target;
+        // Called automatically by SelectionManager
+        // Could add UI feedback here if needed
     }
 
     private void OnClicked()
     {
-        if (_selectedCube == null || _targetCube == null)
+        var user = SelectionManager.Instance.SelectedCube;
+        var target = SelectionManager.Instance.TargetCube;
+
+        if (user == null || target == null)
         {
-            Debug.Log("Select both a user and a target cube");
+            Debug.Log("Select both a user and a target cube before using this ability.");
             return;
         }
 
-        if (!_ability.CanExecute(_selectedCube, _targetCube))
+        if (!_ability.CanExecute(user, target))
         {
-            Debug.Log("Cannot use ability");
+            Debug.Log("Cannot use ability on this target.");
             return;
         }
 
-        StartCoroutine(_ability.Execute(_selectedCube, _targetCube));
+        StartCoroutine(_ability.Execute(user, target));
 
-        PrepPhaseUIManager.Instance.NotifyAbilityUsed();
+        PrepPhaseUIManager.Instance?.NotifyAbilityUsed();
     }
 }

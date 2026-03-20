@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwapAbility
   abilityName: UniversalSwap
   staminaCost: 0
-  _canSwapWithEnemy: 1
+  targetType: 3
+  targetingShape: 3

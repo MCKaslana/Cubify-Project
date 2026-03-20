@@ -4,11 +4,6 @@ using System.Collections;
 [CreateAssetMenu(menuName = "Combat/Abilities/Modify")]
 public class ModifyAbility : AbilityCard
 {
-    public override bool CanExecute(CubeControl user, CubeControl target)
-    {
-        return true;
-    }
-
     public override IEnumerator Execute(CubeControl user, CubeControl target)
     {
         CubeControl cubeToModify = user;

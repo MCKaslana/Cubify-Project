@@ -31,6 +31,7 @@ public class SelectionManager : Singleton<SelectionManager>
 
     public void SelectCube(CubeControl cube)
     {
+        if (cube == null) return;
         if (SelectedCube == cube)
             return;
 

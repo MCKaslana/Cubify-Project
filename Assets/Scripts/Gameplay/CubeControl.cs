@@ -28,6 +28,8 @@ public class CubeControl : MonoBehaviour
     [SerializeField] private Color _normalColor = Color.white;
     [SerializeField] private Color _damagedColor = Color.red;
 
+    public bool IsSelectable { get; set; } = true;
+
     [Header("Audio Feedback")]
     private SoundPlayer _soundPlayer;
 

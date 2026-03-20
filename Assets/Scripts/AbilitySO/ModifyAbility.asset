@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ModifyAbility
   m_EditorClassIdentifier: Assembly-CSharp::ModifyAbility
   abilityName: Modify
-  staminaCost: 0
+  staminaCost: 1
   targetType: 0
   targetingShape: 3

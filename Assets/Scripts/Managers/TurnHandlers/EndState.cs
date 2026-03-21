@@ -13,8 +13,8 @@ public class EndState : ITurnState
     {
         Debug.Log("End Phase");
 
+        CombatManager.Instance.RestoreStamina(1);
         CombatManager.Instance.ClearRedirects();
-
         
         manager.SwapRoles();
 

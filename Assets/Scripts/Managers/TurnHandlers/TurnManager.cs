@@ -18,6 +18,11 @@ public class TurnManager : Singleton<TurnManager>
 
     private bool _hasRolledForRoles = false;
 
+    public bool IsAttackPhase()
+    {
+        return currentState is AttackerState;
+    }
+
     private void Start()
     {
         ChangeState(new SetupState(this));

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class AbilityButton : MonoBehaviour
 {
     [SerializeField] private AbilityCard _ability;
-    
+
     private Button _button;
 
     private void Awake()
@@ -31,9 +31,18 @@ public class AbilityButton : MonoBehaviour
             return;
         }
 
-        CombatManager.Instance.ExecuteAbility(user, target, ability);
+        bool isAttackingPhase = TurnManager.Instance.IsAttackPhase();
 
-        PrepPhaseUIManager.Instance?.NotifyAbilityUsed();
+        if (isAttackingPhase)
+        {
+            CombatManager.Instance.QueueAbility(user, target, ability);
+            TurnManager.Instance.UseAttackerAction();
+        }
+        else
+        {
+            CombatManager.Instance.ExecuteAbility(user, target, ability);
+            PrepPhaseUIManager.Instance.NotifyAbilityUsed();
+        }
 
         SelectionManager.Instance.ResetSelection();
     }

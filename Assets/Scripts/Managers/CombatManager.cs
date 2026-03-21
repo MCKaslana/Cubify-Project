@@ -14,6 +14,11 @@ public class CombatManager : Singleton<CombatManager>
     private int _playerStamina;
     private int _opponentStamina;
 
+    private Queue<QueuedAction> _actionQueue = new();
+    private bool _isProcessingQueue = false;
+
+    public bool IsProcessingQueue => _isProcessingQueue;
+
     public override void Awake()
     {
         base.Awake();
@@ -170,6 +175,40 @@ public class CombatManager : Singleton<CombatManager>
 
         if (target != null)
             target.DecreaseSize();
+    }
+
+    #endregion
+
+    #region --- Action Queue ---
+
+    public void QueueAbility(CubeControl user, CubeControl target, AbilityCard ability)
+    {
+        if (!ability.CanExecute(user, target))
+        {
+            Debug.Log("Ability cannot be used.");
+            return;
+        }
+
+        _actionQueue.Enqueue(new QueuedAction(user, target, ability));
+
+        if (!_isProcessingQueue)
+            StartCoroutine(ProcessQueue());
+    }
+
+    private IEnumerator ProcessQueue()
+    {
+        _isProcessingQueue = true;
+
+        while (_actionQueue.Count > 0)
+        {
+            var action = _actionQueue.Dequeue();
+
+            yield return StartCoroutine(
+                ResolveAbility(action.User, action.Target, action.Ability)
+            );
+        }
+
+        _isProcessingQueue = false;
     }
 
     #endregion

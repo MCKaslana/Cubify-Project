@@ -18,6 +18,9 @@ public class AttackerState : ITurnState
 
     public void Execute()
     {
+        if (CombatManager.Instance.IsResolving() || CombatManager.Instance.IsProcessingQueue)
+            return;
+
         if (!manager.AttackerHasActions())
         {
             UIManager.Instance.ShowAttackUI(false);

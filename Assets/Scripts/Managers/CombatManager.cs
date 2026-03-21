@@ -46,6 +46,11 @@ public class CombatManager : Singleton<CombatManager>
         UpdateStaminaBar();
     }
 
+    public void RestorePlayerStamina(int amount) 
+        => _playerStamina = Mathf.Min(_playerStamina + amount, playerMaxStamina);
+    public void RestoreEnemyStamina(int amount)
+        => _opponentStamina = Mathf.Min(_opponentStamina + amount, aiMaxStamina);
+
     private void UpdateStaminaBar()
     {
         if (_staminaBar == null) return;
@@ -79,7 +84,7 @@ public class CombatManager : Singleton<CombatManager>
 
         ability.OnExecute(user);
 
-        yield return new WaitForSeconds(0.25f);
+        yield return StartCoroutine(WaitForReactions(user, target));
 
         if (interruptRequested)
         {
@@ -96,7 +101,24 @@ public class CombatManager : Singleton<CombatManager>
 
         yield return ability.Execute(user, target);
 
+        ClearRedirects();
+
         isResolving = false;
+    }
+
+    private IEnumerator WaitForReactions(CubeControl user, CubeControl target)
+    {
+        float timer = 1.5f;
+
+        Debug.Log("Waiting for reactions...");
+
+        while (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log("Reaction window ended");
     }
 
     public bool IsResolving() => isResolving;

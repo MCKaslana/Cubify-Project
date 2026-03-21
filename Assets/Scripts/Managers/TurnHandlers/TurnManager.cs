@@ -81,19 +81,10 @@ public class TurnManager : Singleton<TurnManager>
         DefenderActions--;
     }
 
-    public bool CanDefenderReact(Team team)
+    public void SkipAction()
     {
-        return team == Defender && DefenderActions > 0;
-    }
-
-    public void SkipAction(Team team)
-    {
-        CombatManager.Instance.RestoreStamina(1);
-
-        if (team == Attacker)
-            AttackerActions--;
-        else
-            DefenderActions--;
+        AttackerActions--;
+        CombatManager.Instance.RestorePlayerStamina(1);
     }
 
     #endregion

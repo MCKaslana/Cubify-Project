@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackAbility
   abilityName: Attack
   staminaCost: 0
+  targetType: 2
+  targetingShape: 2

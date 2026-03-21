@@ -13,7 +13,18 @@ public class AttackerState : ITurnState
     {
         Debug.Log("Attacker Phase");
 
+        manager.SwapRoles();
+
         UIManager.Instance.ShowAttackUI(true);
+
+        if (manager.Attacker == TurnManager.Team.Player)
+        {
+            Debug.Log("Player is Attacking");
+        }
+        else
+        {
+            Debug.Log("Enemy is Attacking");
+        }
     }
 
     public void Execute()
@@ -42,7 +53,7 @@ public class AttackerState : ITurnState
     {
         // TODO: AI LOGIC HERE
 
-        Debug.Log("AI takes action");
+        Debug.Log("AI Does their turn here");
 
         manager.UseAttackerAction();
     }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ShrinkAbility
   m_EditorClassIdentifier: Assembly-CSharp::ModifyAbility
   abilityName: Shrink
-  staminaCost: 0
-  targetType: 2
+  staminaCost: 3
+  targetType: 0
   targetingShape: 3

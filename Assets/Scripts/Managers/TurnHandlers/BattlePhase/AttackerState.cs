@@ -13,8 +13,6 @@ public class AttackerState : ITurnState
     {
         Debug.Log("Attacker Phase");
 
-        manager.SwapRoles();
-
         UIManager.Instance.ShowAttackUI(true);
 
         if (manager.Attacker == TurnManager.Team.Player)

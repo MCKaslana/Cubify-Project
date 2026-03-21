@@ -15,6 +15,9 @@ public class CubeSpawner : Singleton<CubeSpawner>
     [SerializeField] private CubeData _mediumData;
     [SerializeField] private CubeData _largeData;
 
+    private List<CubeControl> _playerCubes = new();
+    private List<CubeControl> _aiCubes = new();
+
     public void SpawnAICubes()
     {
         List<CubeSize> sizes = new()
@@ -37,6 +40,8 @@ public class CubeSpawner : Singleton<CubeSpawner>
             cube.SetTeam(Team.Enemy);
             cube.InitializeCube(data);
             cube.SetLane((Lane)System.Array.IndexOf(_board.aiSlots, slot));
+
+            _aiCubes.Add(cube);
         }
     }
 
@@ -61,7 +66,12 @@ public class CubeSpawner : Singleton<CubeSpawner>
         cube.SetLane((Lane)lane);
 
         cube.SetOriginalPosition(slot.position);
+
+        _playerCubes.Add(cube);
     }
+
+    public List<CubeControl> ReturnPlayerCubes() => _playerCubes;
+    public List<CubeControl> ReturnAICubes() => _aiCubes;
 
     private CubeData GetDataForSize(CubeSize size)
     {

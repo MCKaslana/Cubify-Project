@@ -212,4 +212,14 @@ public class CombatManager : Singleton<CombatManager>
     }
 
     #endregion
+
+    public List<CubeControl> GetCubes(Team team)
+    {
+        var cubes = new List<CubeControl>();
+        var allCubes = FindObjectsOfType<CubeControl>();
+        foreach (var cube in allCubes)
+        {
+        }
+        return cubes;
+    }
 }

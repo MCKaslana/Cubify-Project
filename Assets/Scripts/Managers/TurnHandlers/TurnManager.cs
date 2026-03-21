@@ -100,7 +100,9 @@ public class TurnManager : Singleton<TurnManager>
 
     public void SwapRoles()
     {
-        (Attacker, Defender) = (Defender, Attacker);
+        Team temp = Attacker;
+        Attacker = Defender;
+        Defender = temp;
     }
 
     #endregion

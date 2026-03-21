@@ -16,6 +16,8 @@ public class EndState : ITurnState
         CombatManager.Instance.RestoreStamina(1);
         CombatManager.Instance.ClearRedirects();
 
+        manager.SwapRoles();
+
         manager.ChangeState(new RoundState(manager));
     }
 

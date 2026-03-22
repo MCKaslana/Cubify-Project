@@ -12,6 +12,8 @@ public class RedirectAIAbility : IAIAttackAction
 
     public bool CanExecute()
     {
+        if (CombatManager.Instance.IsInReactionWindow)
+            return false;
         return CombatManager.Instance.GetAIStamina() >= _redirectAbility.staminaCost;
     }
 

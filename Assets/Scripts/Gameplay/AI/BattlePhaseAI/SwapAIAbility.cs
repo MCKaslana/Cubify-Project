@@ -13,6 +13,8 @@ public class SwapAIAbility : IAIAttackAction
 
     public bool CanExecute()
     {
+        if (CombatManager.Instance.IsInReactionWindow)
+            return false;
         return CombatManager.Instance.GetAIStamina() >= _swapAbility.staminaCost;
     }
 

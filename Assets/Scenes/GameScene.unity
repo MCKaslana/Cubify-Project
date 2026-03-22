@@ -5392,7 +5392,7 @@ MonoBehaviour:
   _skipActionIndicator: {fileID: 483332592}
   _prepAI: {fileID: 1201643062}
   _attackAI: {fileID: 1201643063}
-  _roundDelay: 6
+  _stateEnterDelay: 5
 --- !u!114 &1201643056
 MonoBehaviour:
   m_ObjectHideFlags: 0

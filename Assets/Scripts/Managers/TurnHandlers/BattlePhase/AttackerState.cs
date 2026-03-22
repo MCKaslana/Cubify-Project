@@ -45,8 +45,15 @@ public class AttackerState : ITurnState
         }
         else
         {
-            RunAI();
+            manager.StartCoroutine(BeginAIAfterDelay());
         }
+    }
+
+    private IEnumerator BeginAIAfterDelay()
+    {
+        yield return new WaitForSeconds(4f);
+
+        RunAI();
     }
 
     private void RunAI()

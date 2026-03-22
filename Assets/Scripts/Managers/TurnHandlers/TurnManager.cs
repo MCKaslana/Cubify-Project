@@ -17,8 +17,7 @@ public class TurnManager : Singleton<TurnManager>
     public AttackAIController AttackAIController { get; private set; }
     [SerializeField] private AttackAIController _attackAI;
 
-    private bool _isInitializing = true;
-    [SerializeField] private float _roundDelay = 1f;
+    private bool _isProcessingStateChange = false;
     [SerializeField] private float _stateEnterDelay = 0.5f;
 
     #region --- Manager Values ---
@@ -57,7 +56,7 @@ public class TurnManager : Singleton<TurnManager>
 
     private void Update()
     {
-        if (_isInitializing)
+        if (_isProcessingStateChange)
             return;
 
         currentState?.Execute();
@@ -70,7 +69,7 @@ public class TurnManager : Singleton<TurnManager>
 
     private IEnumerator ChangeStateRoutine(ITurnState newState)
     {
-        _isInitializing = true;
+        _isProcessingStateChange = true;
 
         currentState?.Exit();
         currentState = newState;
@@ -81,9 +80,7 @@ public class TurnManager : Singleton<TurnManager>
 
         currentState.Enter();
 
-        yield return new WaitForSeconds(_roundDelay);
-
-        _isInitializing = false;
+        _isProcessingStateChange = false;
     }
 
     #region --- Round Setup ---

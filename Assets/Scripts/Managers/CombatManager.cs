@@ -22,6 +22,10 @@ public class CombatManager : Singleton<CombatManager>
     [SerializeField] private StaminaBar _staminaBar;
     [SerializeField] private StaminaBar _enemyStaminaBar;
 
+    [Header("Visuals")]
+    [SerializeField] private GameObject _preventionIndicator;
+    [SerializeField] private GameObject _redirectIndicator;
+
     private int _playerStamina;
     private int _opponentStamina;
 
@@ -127,6 +131,9 @@ public class CombatManager : Singleton<CombatManager>
             if (interruptRequested)
             {
                 Debug.Log("Ability Interrupted!");
+
+                StartCoroutine(ShowInterruption());
+
                 isResolving = false;
                 yield break;
             }
@@ -134,6 +141,7 @@ public class CombatManager : Singleton<CombatManager>
             if (target != null && redirectMap.ContainsKey(target))
             {
                 target = redirectMap[target];
+                StartCoroutine(ShowRedirect());
                 Debug.Log("Target Redirected!");
             }
         }
@@ -160,6 +168,16 @@ public class CombatManager : Singleton<CombatManager>
         redirectMap[originalTarget] = newTarget;
     }
 
+    private IEnumerator ShowRedirect()
+    {
+        if (_redirectIndicator != null)
+        {
+            _redirectIndicator.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            _redirectIndicator.SetActive(false);
+        }
+    }
+
     public void ResetReactionState()
     {
         interruptRequested = false;
@@ -182,9 +200,19 @@ public class CombatManager : Singleton<CombatManager>
         interruptRequested = true;
     }
 
+    private IEnumerator ShowInterruption()
+    {
+        if (_preventionIndicator != null)
+        {
+            _preventionIndicator.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            _preventionIndicator.SetActive(false);
+        }
+    }
+
     #endregion
 
-    #region --- Temporary Effects ---
+        #region --- Temporary Effects ---
 
     public void ApplyTemporaryScale(CubeControl target, float scale, int turns)
     {

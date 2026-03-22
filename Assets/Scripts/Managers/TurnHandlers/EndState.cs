@@ -12,8 +12,6 @@ public class EndState : ITurnState
 
     public void Enter()
     {
-        UIManager.Instance.ShowCurrentPhaseScreenIndicator(Phase);
-
         CombatManager.Instance.RestoreStamina(1);
         CombatManager.Instance.ClearRedirects();
 

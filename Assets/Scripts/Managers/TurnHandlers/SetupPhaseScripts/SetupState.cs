@@ -12,7 +12,6 @@ public class SetupState : ITurnState
 
     public void Enter()
     {
-        UIManager.Instance.ShowCurrentPhaseScreenIndicator(Phase);
         UIManager.Instance.ShowSetupUI(true);
         CubeSpawner.Instance.SpawnAICubes();
 

@@ -19,6 +19,7 @@ public class TurnManager : Singleton<TurnManager>
 
     private bool _isInitializing = true;
     [SerializeField] private float _roundDelay = 1f;
+    [SerializeField] private float _stateEnterDelay = 0.5f;
 
     #region --- Manager Values ---
     public enum Team { Player, AI }
@@ -64,18 +65,21 @@ public class TurnManager : Singleton<TurnManager>
 
     public void ChangeState(ITurnState newState)
     {
+        StartCoroutine(ChangeStateRoutine(newState));
+    }
+
+    private IEnumerator ChangeStateRoutine(ITurnState newState)
+    {
         _isInitializing = true;
 
         currentState?.Exit();
         currentState = newState;
+
+        UIManager.Instance.ShowCurrentPhaseScreenIndicator(currentState.Phase);
+
+        yield return new WaitForSeconds(_stateEnterDelay);
+
         currentState.Enter();
-
-        StartCoroutine(RoundSetupDelay());
-    }
-
-    private IEnumerator RoundSetupDelay()
-    {
-        _isInitializing = true;
 
         yield return new WaitForSeconds(_roundDelay);
 
@@ -131,7 +135,7 @@ public class TurnManager : Singleton<TurnManager>
     private IEnumerator ShowSkipActionIndicator()
     {
         _skipActionIndicator.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         _skipActionIndicator.SetActive(false);
     }
 

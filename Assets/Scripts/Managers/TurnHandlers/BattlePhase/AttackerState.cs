@@ -15,7 +15,6 @@ public class AttackerState : ITurnState
 
     public void Enter()
     {
-        UIManager.Instance.ShowCurrentPhaseScreenIndicator(Phase);
         UIManager.Instance.ShowAttackUI(true);
 
         if (manager.Attacker == TurnManager.Team.Player)

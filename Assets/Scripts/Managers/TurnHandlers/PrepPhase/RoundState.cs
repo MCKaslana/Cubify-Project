@@ -16,8 +16,6 @@ public class RoundState : ITurnState
 
     public void Enter()
     {
-        UIManager.Instance.ShowCurrentPhaseScreenIndicator(Phase);
-
         manager.ResetActions();
         StartPrepPhase();
     }

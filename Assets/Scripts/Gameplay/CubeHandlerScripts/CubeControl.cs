@@ -27,6 +27,7 @@ public class CubeControl : MonoBehaviour
     [SerializeField] private Renderer _cubeRenderer;
     [SerializeField] private Color _normalColor = Color.white;
     [SerializeField] private Color _damagedColor = Color.red;
+    [SerializeField] private GameObject _attackedHighlight;
 
     public bool IsSelectable { get; set; } = true;
 
@@ -235,6 +236,22 @@ public class CubeControl : MonoBehaviour
     public void PlaySound(int index)
     {
         _soundPlayer?.Play(index);
+    }
+
+    public void Highlight()
+    {
+        StartCoroutine(ShowHighlightTemporarily());
+    }
+
+    private IEnumerator ShowHighlightTemporarily()
+    {
+        if (_attackedHighlight != null)
+            _attackedHighlight.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (_attackedHighlight != null)
+            _attackedHighlight.SetActive(false);
     }
 
     #endregion

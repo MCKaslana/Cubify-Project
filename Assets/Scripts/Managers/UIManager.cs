@@ -5,6 +5,35 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _setupUI;
     [SerializeField] private GameObject _prepUI;
     [SerializeField] private GameObject _attackUI;
+    [SerializeField] private GameObject _endUI;
+
+    private void OnEnable()
+    {
+        CombatManager.Instance.OnReactionWindowStart += ShowReactionUI;
+        CombatManager.Instance.OnReactionWindowEnd += HideReactionUI;
+    }
+
+    private void OnDisable()
+    {
+        CombatManager.Instance.OnReactionWindowStart -= ShowReactionUI;
+        CombatManager.Instance.OnReactionWindowEnd -= HideReactionUI;
+    }
+
+    private void ShowReactionUI(CubeControl target)
+    {
+        Debug.Log("REACTION WINDOW OPEN");
+
+        target.Highlight();
+
+
+    }
+
+    private void HideReactionUI()
+    {
+        Debug.Log("REACTION WINDOW CLOSED");
+
+
+    }
 
     public void ShowSetupUI(bool enable)
     {

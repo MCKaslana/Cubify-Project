@@ -32,6 +32,7 @@ public class RedirectAIAbility : IAIAttackAction
         while (to == from);
 
         CombatManager.Instance.SetRedirect(from, to);
+        CombatManager.Instance.SpendStamina(Team.Enemy, _redirectAbility.staminaCost);
 
         Debug.Log($"AI redirects {from.name} -> {to.name}");
 

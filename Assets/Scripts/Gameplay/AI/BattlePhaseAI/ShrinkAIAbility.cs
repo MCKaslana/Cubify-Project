@@ -27,6 +27,7 @@ public class ShrinkAIAbility : IAIAttackAction
         var target = enemies[Random.Range(0, enemies.Count)];
 
         CombatManager.Instance.QueueAbility(user, target, _shrinkAbility);
+        CombatManager.Instance.SpendStamina(Team.Enemy, _shrinkAbility.staminaCost);
 
         yield return new WaitForSeconds(0.2f);
     }

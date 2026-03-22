@@ -39,6 +39,7 @@ public class SwapAIAbility : IAIAttackAction
         while (target == user);
 
         CombatManager.Instance.QueueAbility(user, target, _swapAbility);
+        CombatManager.Instance.SpendStamina(Team.Enemy, _swapAbility.staminaCost);
 
         yield return new WaitForSeconds(0.2f);
     }

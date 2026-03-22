@@ -17,8 +17,8 @@ public class AttackAction : IAIAttackAction
 
     public IEnumerator Execute()
     {
-        var enemies = CubeSpawner.Instance.ReturnAICubes();
-        var myCubes = CubeSpawner.Instance.ReturnPlayerCubes();
+        var enemies = CubeSpawner.Instance.ReturnPlayerCubes();
+        var myCubes = CubeSpawner.Instance.ReturnAICubes();
 
         if (myCubes.Count == 0 || enemies.Count == 0)
             yield break;

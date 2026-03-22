@@ -45,11 +45,11 @@ public class AttackAIController : MonoBehaviour
             if (!action.CanExecute())
                 continue;
 
-            CombatManager.Instance.StartCoroutine(action.Execute());
+            yield return action.Execute();
 
             actionsUsed++;
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(4f);
         }
     }
 }

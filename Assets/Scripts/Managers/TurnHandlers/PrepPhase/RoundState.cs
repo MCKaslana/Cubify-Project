@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class RoundState : ITurnState
 {
@@ -38,7 +39,16 @@ public class RoundState : ITurnState
 
     private void HandleAITurn()
     {
-        Debug.Log("Ai doing turn");
+        manager.StartCoroutine(AITurnRoutine());
+    }
+
+    private IEnumerator AITurnRoutine()
+    {
+        Debug.Log("AI Prep Turn Start");
+
+        yield return manager.StartCoroutine(manager.PrepAIController.ExecuteAITurn());
+
+        Debug.Log("AI Prep Turn End");
 
         _isAIFinished = true;
 

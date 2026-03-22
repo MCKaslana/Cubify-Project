@@ -3860,6 +3860,7 @@ GameObject:
   - component: {fileID: 1201643056}
   - component: {fileID: 1201643060}
   - component: {fileID: 1201643061}
+  - component: {fileID: 1201643062}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -3953,6 +3954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e8e09cf36ab3c419341020fe64b1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
+  _prepAI: {fileID: 1201643062}
 --- !u!114 &1201643056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4029,6 +4031,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8bd25771775ca42aef7979e2db1360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectionManager
+--- !u!114 &1201643062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201643049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78542b3c25425fd41b6bf407c0671796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PrepAIController
+  _swapAbility: {fileID: 11400000, guid: 1810f21b92790a048a2f08cae169a470, type: 2}
+  _modifyAbility: {fileID: 11400000, guid: e886f871f1ce8bb409b48c59a3ac915b, type: 2}
 --- !u!1 &1214928884
 GameObject:
   m_ObjectHideFlags: 0

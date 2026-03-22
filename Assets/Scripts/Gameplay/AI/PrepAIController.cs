@@ -1,9 +1,18 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class PrepAIController : MonoBehaviour
 {
+    [SerializeField] private AbilityCard _swapAbility;
+    [SerializeField] private AbilityCard _modifyAbility;
+
     private List<IAIPrepAction> _actions = new();
+
+    private void Awake()
+    {
+        Initialize(_swapAbility, _modifyAbility);
+    }
 
     public void Initialize(AbilityCard swap, AbilityCard modify)
     {
@@ -13,9 +22,9 @@ public class PrepAIController : MonoBehaviour
         _actions.Add(new AISwap(swap));
     }
 
-    public void ExecuteTurn()
+    public IEnumerator ExecuteAITurn()
     {
-        int attempts = 2;
+        int attempts = 3;
 
         while (attempts > 0)
         {
@@ -23,10 +32,11 @@ public class PrepAIController : MonoBehaviour
 
             var action = _actions[Random.Range(0, _actions.Count)];
 
-            bool success = action.TryExecute();
-
-            if (!success)
-                continue;
+            if (action.TryExecute())
+            {
+                Debug.Log("AI executed an action successfully.");
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }

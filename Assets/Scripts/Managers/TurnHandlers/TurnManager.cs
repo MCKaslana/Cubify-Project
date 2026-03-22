@@ -4,6 +4,9 @@ public class TurnManager : Singleton<TurnManager>
 {
     protected override bool IsPersistent => false;
 
+    public PrepAIController PrepAIController { get; private set; }
+    [SerializeField] private PrepAIController _prepAI;
+
     public enum Team { Player, AI }
 
     private ITurnState currentState;
@@ -21,6 +24,12 @@ public class TurnManager : Singleton<TurnManager>
     public bool IsAttackPhase()
     {
         return currentState is AttackerState;
+    }
+
+    public override void Awake()
+    {
+        base.Awake();
+        PrepAIController = _prepAI;
     }
 
     private void Start()

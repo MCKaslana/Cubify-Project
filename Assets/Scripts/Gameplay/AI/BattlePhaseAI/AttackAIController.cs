@@ -28,7 +28,10 @@ public class AttackAIController : MonoBehaviour
         _actions.Clear();
 
         _actions.Add(new AttackAction(attack));
-
+        _actions.Add(new SwapAIAbility(swap));
+        _actions.Add(new RedirectAIAbility(redirect));
+        _actions.Add(new InterruptAIAbility(interrupt));
+        _actions.Add(new ShrinkAIAbility(shrink));
     }
 
     public IEnumerator ExecuteTurn(int maxActions)

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ShrinkAIAbility : MonoBehaviour
+public class ShrinkAIAbility : IAIAttackAction
 {
     private AbilityCard _shrinkAbility;
 

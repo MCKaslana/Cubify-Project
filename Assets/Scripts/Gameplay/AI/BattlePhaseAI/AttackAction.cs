@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AttackAction : IAIAttackAction
 {
@@ -14,20 +15,30 @@ public class AttackAction : IAIAttackAction
     {
         if (CombatManager.Instance.IsInReactionWindow)
             return false;
-        return true; // refine later
+        return true;
     }
 
     public IEnumerator Execute()
     {
-        var enemies = CubeSpawner.Instance.ReturnPlayerCubes();
-        var myCubes = CubeSpawner.Instance.ReturnAICubes();
+        var allCubes = CubeSpawner.Instance.GetAllCubes();
 
-        if (myCubes.Count == 0 || enemies.Count == 0)
+        List<CubeControl> playerCubes = new();
+        List<CubeControl> aiCubes = new();
+
+        if (allCubes.Count == 0)
             yield break;
 
-        var user = myCubes[Random.Range(0, myCubes.Count)];
+        foreach (var cube in allCubes)
+        {
+            if (cube.GetTeam() == Team.Player)
+                playerCubes.Add(cube);
+            if (cube.GetTeam() == Team.Enemy)
+                aiCubes.Add(cube);
+        }
 
-        var validTargets = enemies.FindAll(c => c.GetLane() == user.GetLane());
+        var user = aiCubes[Random.Range(0, playerCubes.Count)];
+
+        var validTargets = playerCubes.FindAll(c => c.GetLane() == user.GetLane());
 
         if (validTargets.Count == 0)
             yield break;

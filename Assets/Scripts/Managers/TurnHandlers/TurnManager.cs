@@ -64,11 +64,13 @@ public class TurnManager : Singleton<TurnManager>
 
     public void ChangeState(ITurnState newState)
     {
-        StartCoroutine(RoundSetupDelay());
+        _isInitializing = true;
 
         currentState?.Exit();
         currentState = newState;
         currentState.Enter();
+
+        StartCoroutine(RoundSetupDelay());
     }
 
     private IEnumerator RoundSetupDelay()
@@ -102,8 +104,6 @@ public class TurnManager : Singleton<TurnManager>
         }
 
         _hasRolledForRoles = true;
-
-        Debug.Log($"Attacker: {Attacker} | Defender: {Defender}");
     }
 
     public void ResetActions()
@@ -119,11 +119,6 @@ public class TurnManager : Singleton<TurnManager>
     public void UseAttackerAction()
     {
         AttackerActions--;
-    }
-
-    public void UseDefenderAction()
-    {
-        DefenderActions--;
     }
 
     public void SkipAction()
@@ -174,7 +169,6 @@ public class TurnManager : Singleton<TurnManager>
     public Team GetAttacker() => Attacker;
     public Team GetDefender() => Defender;
     public int GetAttackerActions() => AttackerActions;
-    public int GetDefenderActions() => DefenderActions;
 
     #endregion
 }

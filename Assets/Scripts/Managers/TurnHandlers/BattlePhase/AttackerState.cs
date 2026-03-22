@@ -4,6 +4,7 @@ using UnityEngine;
 public class AttackerState : ITurnState
 {
     private readonly TurnManager manager;
+    public TurnPhase Phase => TurnPhase.Battle;
 
     private bool _isAIRunning = false;
 
@@ -14,8 +15,7 @@ public class AttackerState : ITurnState
 
     public void Enter()
     {
-        Debug.Log("Attacker Phase");
-
+        UIManager.Instance.ShowCurrentPhaseScreenIndicator(Phase);
         UIManager.Instance.ShowAttackUI(true);
 
         if (manager.Attacker == TurnManager.Team.Player)
@@ -57,8 +57,6 @@ public class AttackerState : ITurnState
 
         _isAIRunning = true;
         manager.StartCoroutine(AITurnRoutine());
-
-        Debug.Log("AI Does their turn here");
 
         manager.UseAttackerAction();
     }

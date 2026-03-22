@@ -1,11 +1,18 @@
 using UnityEngine;
+using System.Collections;
 
 public class UIManager : Singleton<UIManager>
 {
+    [Header("Phase UIs")]
     [SerializeField] private GameObject _setupUI;
     [SerializeField] private GameObject _prepUI;
     [SerializeField] private GameObject _attackUI;
-    [SerializeField] private GameObject _endUI;
+
+    [Header("Phase transition indicatiors")]
+    [SerializeField] private GameObject _setupIndicator;
+    [SerializeField] private GameObject _prepIndicator;
+    [SerializeField] private GameObject _battleIndicator;
+    [SerializeField] private GameObject _endIndicator;
 
     [Header("Reaction Window")]
     [SerializeField] private GameObject _reactionUI;
@@ -74,15 +81,35 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void ShowEndUI(bool enable)
+    public void ShowCurrentPhaseScreenIndicator(TurnPhase phase)
     {
-        if (_endUI != null)
+        GameObject indicatorToShow = null;
+        switch (phase)
         {
-            _endUI.SetActive(enable);
+            case TurnPhase.Setup:
+                indicatorToShow = _setupIndicator;
+                break;
+            case TurnPhase.Preparation:
+                indicatorToShow = _prepIndicator;
+                break;
+            case TurnPhase.Battle:
+                indicatorToShow = _battleIndicator;
+                break;
+            case TurnPhase.End:
+                indicatorToShow = _endIndicator;
+                break;
         }
-        else
+
+        if (indicatorToShow != null)
         {
-            Debug.LogWarning("End UI GameObject is not assigned in the inspector.");
+            indicatorToShow.SetActive(true);
+            StartCoroutine(HideIndicatorAfterDelay(indicatorToShow, 1.5f));
         }
+    }
+
+    private IEnumerator HideIndicatorAfterDelay(GameObject indicator, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        indicator.SetActive(false);
     }
 }

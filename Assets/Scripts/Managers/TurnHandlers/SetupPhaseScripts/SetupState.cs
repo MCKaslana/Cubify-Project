@@ -3,6 +3,7 @@ using UnityEngine;
 public class SetupState : ITurnState
 {
     private readonly TurnManager manager;
+    public TurnPhase Phase => TurnPhase.Setup;
 
     public SetupState(TurnManager manager)
     {
@@ -11,6 +12,7 @@ public class SetupState : ITurnState
 
     public void Enter()
     {
+        UIManager.Instance.ShowCurrentPhaseScreenIndicator(Phase);
         UIManager.Instance.ShowSetupUI(true);
         CubeSpawner.Instance.SpawnAICubes();
 

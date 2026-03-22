@@ -123,8 +123,6 @@ public class CubeControl : MonoBehaviour
 
     public IEnumerator MoveTo(Vector3 targetPosition)
     {
-        Debug.Log($"{name} moving FROM {transform.position} TO {targetPosition}");
-
         while (Vector3.Distance(transform.position, targetPosition) > 0.05f)
         {
             transform.position = Vector3.MoveTowards(
@@ -141,7 +139,6 @@ public class CubeControl : MonoBehaviour
 
     public IEnumerator ReturnToOriginalPosition()
     {
-        Debug.Log($"{name} returning to ORIGINAL {OriginalPosition}");
         yield return MoveTo(OriginalPosition);
     }
 

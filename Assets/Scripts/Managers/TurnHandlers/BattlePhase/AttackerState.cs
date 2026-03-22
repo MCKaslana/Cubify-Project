@@ -20,11 +20,11 @@ public class AttackerState : ITurnState
 
         if (manager.Attacker == TurnManager.Team.Player)
         {
-            Debug.Log("Player is Attacking");
+            manager.StartCoroutine(manager.ShowRoleScreenIndicator(TurnManager.Team.Player));
         }
         else
         {
-            Debug.Log("Enemy is Attacking");
+            manager.StartCoroutine(manager.ShowRoleScreenIndicator(TurnManager.Team.AI));
         }
     }
 

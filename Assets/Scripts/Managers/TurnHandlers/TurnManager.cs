@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TurnManager : Singleton<TurnManager>
@@ -5,8 +6,8 @@ public class TurnManager : Singleton<TurnManager>
     protected override bool IsPersistent => false;
 
     [Header("Phase UI Screens")]
-    [SerializeField] private GameObject _isAttackingScreen;
-    [SerializeField] private GameObject _isDefendingScreen;
+    [SerializeField] public GameObject AttackingScreen;
+    [SerializeField] public GameObject DefendingScreen;
 
     [Header("Audio Refs")]
     private AudioSource _source;
@@ -131,9 +132,25 @@ public class TurnManager : Singleton<TurnManager>
         (Defender, Attacker) = (Attacker, Defender);
     }
 
+    public IEnumerator ShowRoleScreenIndicator(Team team)
+    {
+        if (team == Team.Player)
+        {
+            AttackingScreen.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            AttackingScreen.SetActive(false);
+        }
+        else
+        {
+            DefendingScreen.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            DefendingScreen.SetActive(false);
+        }
+    }
+
     #endregion
 
-    #region --- Getters ---
+        #region --- Getters ---
 
     public Team GetAttacker() => Attacker;
     public Team GetDefender() => Defender;

@@ -55,10 +55,16 @@ public class CombatManager : Singleton<CombatManager>
         UpdateStaminaBar();
     }
 
-    public void RestorePlayerStamina(int amount) 
-        => _playerStamina = Mathf.Min(_playerStamina + amount, playerMaxStamina);
+    public void RestorePlayerStamina(int amount)
+    {
+        _playerStamina = Mathf.Min(_playerStamina + amount, playerMaxStamina);
+        UpdateStaminaBar();
+    }
     public void RestoreEnemyStamina(int amount)
-        => _opponentStamina = Mathf.Min(_opponentStamina + amount, aiMaxStamina);
+    {
+        _opponentStamina = Mathf.Min(_opponentStamina + amount, aiMaxStamina);
+        UpdateStaminaBar();
+    }
 
     private void UpdateStaminaBar()
     {

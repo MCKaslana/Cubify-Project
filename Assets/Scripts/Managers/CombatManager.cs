@@ -13,6 +13,7 @@ public class CombatManager : Singleton<CombatManager>
     [SerializeField] private int playerMaxStamina = 5;
     [SerializeField] private int aiMaxStamina = 5;
     [SerializeField] private StaminaBar _staminaBar;
+    [SerializeField] private StaminaBar _enemyStaminaBar;
 
     private int _playerStamina;
     private int _opponentStamina;
@@ -64,6 +65,7 @@ public class CombatManager : Singleton<CombatManager>
         if (_staminaBar == null) return;
 
         _staminaBar.SetStamina(_playerStamina * 20);
+        _enemyStaminaBar.SetStamina(_opponentStamina * 20);
     }
 
     public int GetPlayerStamina() => _playerStamina;

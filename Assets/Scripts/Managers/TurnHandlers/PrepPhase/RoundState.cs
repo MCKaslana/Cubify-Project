@@ -44,11 +44,7 @@ public class RoundState : ITurnState
 
     private IEnumerator AITurnRoutine()
     {
-        Debug.Log("AI Prep Turn Start");
-
         yield return manager.StartCoroutine(manager.PrepAIController.ExecuteAITurn());
-
-        Debug.Log("AI Prep Turn End");
 
         _isAIFinished = true;
 

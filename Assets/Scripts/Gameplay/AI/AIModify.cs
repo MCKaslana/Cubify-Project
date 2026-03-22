@@ -22,6 +22,7 @@ public class AIModify : IAIPrepAction
             return false;
 
         CombatManager.Instance.ExecuteAbility(user, target, _ability);
+        CombatManager.Instance.SpendStamina(Team.Enemy, _ability.staminaCost);
 
         Debug.Log($"AI used Modify on {user.name}");
 

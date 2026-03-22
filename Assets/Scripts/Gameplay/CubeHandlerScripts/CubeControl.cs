@@ -121,8 +121,6 @@ public class CubeControl : MonoBehaviour
 
     public IEnumerator MoveTo(Vector3 targetPosition)
     {
-        _isBusy = true;
-
         Debug.Log($"{name} moving FROM {transform.position} TO {targetPosition}");
 
         while (Vector3.Distance(transform.position, targetPosition) > 0.05f)
@@ -137,8 +135,6 @@ public class CubeControl : MonoBehaviour
         }
 
         transform.position = targetPosition;
-
-        _isBusy = false;
     }
 
     public IEnumerator ReturnToOriginalPosition()

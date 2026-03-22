@@ -38,6 +38,7 @@ public class CubeSpawner : Singleton<CubeSpawner>
             CubeControl cube = cubeObj.GetComponent<CubeControl>();
 
             cube.SetTeam(Team.Enemy);
+            cube.SetOriginalPosition(slot.position);
             cube.InitializeCube(data);
             cube.SetLane((Lane)System.Array.IndexOf(_board.aiSlots, slot));
 

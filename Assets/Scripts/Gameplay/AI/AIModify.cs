@@ -16,7 +16,7 @@ public class AIModify : IAIPrepAction
         if (cubes.Count == 0) return false;
 
         var user = cubes[Random.Range(0, cubes.Count)];
-        var target = user; // modify self
+        var target = user;
 
         if (!_ability.CanExecute(user, target))
             return false;

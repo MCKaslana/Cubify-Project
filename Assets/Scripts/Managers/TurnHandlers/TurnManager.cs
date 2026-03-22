@@ -45,6 +45,7 @@ public class TurnManager : Singleton<TurnManager>
     {
         base.Awake();
         PrepAIController = _prepAI;
+        AttackAIController = _attackAI;
 
         _source = GetComponent<AudioSource>();
     }

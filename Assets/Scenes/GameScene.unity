@@ -4351,6 +4351,7 @@ GameObject:
   - component: {fileID: 1201643060}
   - component: {fileID: 1201643061}
   - component: {fileID: 1201643062}
+  - component: {fileID: 1201643063}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -4430,7 +4431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb584b75557f62f4887e5edb7eab4ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  masterVolume: 0
+  masterVolume: 0.37
   sfxVolume: 1
   musicVolume: 1
   backgroundMusic: {fileID: 11400000, guid: f06cdd3206161a445a00a05d8954aaeb, type: 2}
@@ -4446,8 +4447,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e8e09cf36ab3c419341020fe64b1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
+  _isAttackingScreen: {fileID: 0}
+  _isDefendingScreen: {fileID: 0}
   _skipActionSFX: {fileID: 11400000, guid: 942d0ab0f1f759445bc44c1efb3ac403, type: 2}
   _prepAI: {fileID: 1201643062}
+  _attackAI: {fileID: 1201643063}
 --- !u!114 &1201643056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4538,6 +4542,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrepAIController
   _swapAbility: {fileID: 11400000, guid: 1810f21b92790a048a2f08cae169a470, type: 2}
   _modifyAbility: {fileID: 11400000, guid: e886f871f1ce8bb409b48c59a3ac915b, type: 2}
+--- !u!114 &1201643063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201643049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e461a995028ffbf4eb823ffaa5cd3125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackAIController
+  _attackAbility: {fileID: 11400000, guid: 4f21fbaaaac269f42905f3cbf6799c2c, type: 2}
+  _swapAbility: {fileID: 11400000, guid: 3743f0512698c7642bf8730dee06425a, type: 2}
+  _redirectAbility: {fileID: 11400000, guid: 401ba1a9a5a979d4dad63db9ffd5cc5d, type: 2}
+  _interruptAbility: {fileID: 11400000, guid: 5d689cc7a914a4c40a4cc35e364af0db, type: 2}
+  _shrinkAbility: {fileID: 11400000, guid: de04b8a6581a0bc4ab5acd2505405c1d, type: 2}
 --- !u!1 &1214928884
 GameObject:
   m_ObjectHideFlags: 0

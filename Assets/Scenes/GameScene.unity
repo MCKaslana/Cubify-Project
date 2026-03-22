@@ -5326,6 +5326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatManager
   _actionDelay: 2
+  _reactionWindowDuration: 10
   playerMaxStamina: 5
   aiMaxStamina: 5
   _staminaBar: {fileID: 701611080}

@@ -19,6 +19,26 @@ public class AbilityButton : MonoBehaviour
         var user = SelectionManager.Instance.CurrentUser;
         var target = SelectionManager.Instance.CurrentTarget;
 
+        if (ability is InterruptAbility)
+        {
+            var playerCubes = CubeSpawner.Instance.GetAllCubes();
+
+            if (playerCubes.Count == 0) return;
+
+            user = playerCubes[0];
+
+            if (!ability.CanExecute(user, null))
+            {
+                Debug.Log("Cannot use Interrupt");
+                return;
+            }
+
+            StartCoroutine(ability.Execute(user, null));
+
+            SelectionManager.Instance.ResetSelection();
+            return;
+        }
+
         if (user == null || target == null)
         {
             Debug.Log("Select both a user and a target cube.");

@@ -15,6 +15,7 @@ public class AttackerState : ITurnState
 
     public void Enter()
     {
+        CombatManager.Instance.RestoreEnemyStamina(5);
         CombatManager.Instance.AllowReactions = true;
 
         UIManager.Instance.ShowAttackUI(true);

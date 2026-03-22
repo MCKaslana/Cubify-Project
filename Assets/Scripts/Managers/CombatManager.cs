@@ -14,6 +14,7 @@ public class CombatManager : Singleton<CombatManager>
 
     [Header("Combat Settings")]
     [SerializeField] private float _actionDelay = 2f;
+    [SerializeField] private float _reactionWindowDuration = 1.5f;
 
     [Header("Stamina")]
     [SerializeField] private int playerMaxStamina = 5;
@@ -113,9 +114,8 @@ public class CombatManager : Singleton<CombatManager>
             OnReactionWindowStart?.Invoke(target);
 
             float timer = 0f;
-            float reactionWindowDuration = 5f;
 
-            while (timer < reactionWindowDuration)
+            while (timer < _reactionWindowDuration)
             {
                 timer += Time.deltaTime;
                 yield return null;

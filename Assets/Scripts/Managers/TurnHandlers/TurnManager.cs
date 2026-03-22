@@ -4,6 +4,10 @@ public class TurnManager : Singleton<TurnManager>
 {
     protected override bool IsPersistent => false;
 
+    [Header("Audio Refs")]
+    private AudioSource _source;
+    [SerializeField] private SoundData _skipActionSFX;
+
     public PrepAIController PrepAIController { get; private set; }
     [SerializeField] private PrepAIController _prepAI;
 
@@ -30,6 +34,8 @@ public class TurnManager : Singleton<TurnManager>
     {
         base.Awake();
         PrepAIController = _prepAI;
+
+        _source = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -99,6 +105,7 @@ public class TurnManager : Singleton<TurnManager>
     {
         AttackerActions--;
         CombatManager.Instance.RestorePlayerStamina(1);
+        AudioManager.Instance.PlaySFX(_skipActionSFX, _source);
     }
 
     #endregion

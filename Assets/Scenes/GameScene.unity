@@ -4446,6 +4446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e8e09cf36ab3c419341020fe64b1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
+  _skipActionSFX: {fileID: 11400000, guid: 942d0ab0f1f759445bc44c1efb3ac403, type: 2}
   _prepAI: {fileID: 1201643062}
 --- !u!114 &1201643056
 MonoBehaviour:

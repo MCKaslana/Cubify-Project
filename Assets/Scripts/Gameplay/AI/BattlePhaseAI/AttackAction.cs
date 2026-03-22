@@ -12,6 +12,8 @@ public class AttackAction : IAIAttackAction
 
     public bool CanExecute()
     {
+        if (CombatManager.Instance.IsInReactionWindow)
+            return false;
         return true; // refine later
     }
 

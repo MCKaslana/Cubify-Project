@@ -12,6 +12,8 @@ public class EndState : ITurnState
 
     public void Enter()
     {
+        CombatManager.Instance.AllowReactions = false;
+
         CombatManager.Instance.RestoreStamina(1);
         CombatManager.Instance.ClearRedirects();
 

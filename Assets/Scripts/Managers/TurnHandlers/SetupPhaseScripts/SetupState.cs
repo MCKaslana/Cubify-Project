@@ -12,6 +12,8 @@ public class SetupState : ITurnState
 
     public void Enter()
     {
+        CombatManager.Instance.AllowReactions = false;
+
         UIManager.Instance.ShowSetupUI(true);
         CubeSpawner.Instance.SpawnAICubes();
 

@@ -16,6 +16,8 @@ public class RoundState : ITurnState
 
     public void Enter()
     {
+        CombatManager.Instance.AllowReactions = false;
+
         manager.ResetActions();
         StartPrepPhase();
     }

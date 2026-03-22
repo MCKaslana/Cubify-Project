@@ -15,6 +15,8 @@ public class AttackerState : ITurnState
 
     public void Enter()
     {
+        CombatManager.Instance.AllowReactions = true;
+
         UIManager.Instance.ShowAttackUI(true);
 
         if (manager.Attacker == TurnManager.Team.Player)

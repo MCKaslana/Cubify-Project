@@ -28,6 +28,7 @@ public class CombatManager : Singleton<CombatManager>
     private bool _isProcessingQueue = false;
 
     public bool IsProcessingQueue => _isProcessingQueue;
+    public bool AllowReactions { get; set; } = false;
 
     public override void Awake()
     {
@@ -106,32 +107,35 @@ public class CombatManager : Singleton<CombatManager>
 
         ability.OnExecute(user);
 
-        IsInReactionWindow = true;
-        OnReactionWindowStart?.Invoke(target);
-
-        float timer = 0f;
-        float reactionWindowDuration = 5f;
-
-        while (timer < reactionWindowDuration)
+        if (AllowReactions)
         {
-            timer += Time.deltaTime;
-            yield return null;
-        }
+            IsInReactionWindow = true;
+            OnReactionWindowStart?.Invoke(target);
 
-        IsInReactionWindow = false;
-        OnReactionWindowEnd?.Invoke();
+            float timer = 0f;
+            float reactionWindowDuration = 5f;
 
-        if (interruptRequested)
-        {
-            Debug.Log("Ability Interrupted!");
-            isResolving = false;
-            yield break;
-        }
+            while (timer < reactionWindowDuration)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
 
-        if (target != null && redirectMap.ContainsKey(target))
-        {
-            target = redirectMap[target];
-            Debug.Log("Target Redirected!");
+            IsInReactionWindow = false;
+            OnReactionWindowEnd?.Invoke();
+
+            if (interruptRequested)
+            {
+                Debug.Log("Ability Interrupted!");
+                isResolving = false;
+                yield break;
+            }
+
+            if (target != null && redirectMap.ContainsKey(target))
+            {
+                target = redirectMap[target];
+                Debug.Log("Target Redirected!");
+            }
         }
 
         yield return ability.Execute(user, target);
@@ -154,6 +158,12 @@ public class CombatManager : Singleton<CombatManager>
         if (originalTarget == null || newTarget == null) return;
 
         redirectMap[originalTarget] = newTarget;
+    }
+
+    public void ResetReactionState()
+    {
+        interruptRequested = false;
+        IsInReactionWindow = false;
     }
 
     public void ClearRedirects()

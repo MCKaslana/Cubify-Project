@@ -40,6 +40,9 @@ public class AttackAIController : MonoBehaviour
 
         while (actionsUsed < maxActions)
         {
+            while (CombatManager.Instance.IsInReactionWindow)
+                yield return null;
+
             var action = _actions[Random.Range(0, _actions.Count)];
 
             if (!action.CanExecute())

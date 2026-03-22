@@ -78,6 +78,7 @@ public class TurnManager : Singleton<TurnManager>
 
         yield return new WaitForSeconds(_stateEnterDelay);
 
+        CombatManager.Instance.ResetReactionState();
         currentState.Enter();
 
         _isProcessingStateChange = false;

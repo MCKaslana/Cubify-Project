@@ -8,10 +8,7 @@ public class TurnManager : Singleton<TurnManager>
     [Header("Phase UI Screens")]
     [SerializeField] public GameObject AttackingScreen;
     [SerializeField] public GameObject DefendingScreen;
-
-    [Header("Audio Refs")]
-    private AudioSource _source;
-    [SerializeField] private SoundData _skipActionSFX;
+    [SerializeField] private GameObject _skipActionIndicator;
 
     [Header("AI Refs")]
     public PrepAIController PrepAIController { get; private set; }
@@ -19,6 +16,8 @@ public class TurnManager : Singleton<TurnManager>
 
     public AttackAIController AttackAIController { get; private set; }
     [SerializeField] private AttackAIController _attackAI;
+
+    private bool _isInitialized = true;
 
     #region --- Manager Values ---
     public enum Team { Player, AI }
@@ -47,8 +46,6 @@ public class TurnManager : Singleton<TurnManager>
         base.Awake();
         PrepAIController = _prepAI;
         AttackAIController = _attackAI;
-
-        _source = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -58,6 +55,9 @@ public class TurnManager : Singleton<TurnManager>
 
     private void Update()
     {
+        if (!_isInitialized)
+            return;
+
         currentState?.Execute();
     }
 
@@ -118,7 +118,14 @@ public class TurnManager : Singleton<TurnManager>
     {
         AttackerActions--;
         CombatManager.Instance.RestorePlayerStamina(1);
-        AudioManager.Instance.PlaySFX(_skipActionSFX, _source);
+        StartCoroutine(ShowSkipActionIndicator());
+    }
+
+    private IEnumerator ShowSkipActionIndicator()
+    {
+        _skipActionIndicator.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        _skipActionIndicator.SetActive(false);
     }
 
     #endregion
@@ -134,6 +141,8 @@ public class TurnManager : Singleton<TurnManager>
 
     public IEnumerator ShowRoleScreenIndicator(Team team)
     {
+        _isInitialized = false;
+
         if (team == Team.Player)
         {
             AttackingScreen.SetActive(true);
@@ -146,11 +155,13 @@ public class TurnManager : Singleton<TurnManager>
             yield return new WaitForSeconds(2f);
             DefendingScreen.SetActive(false);
         }
+
+        _isInitialized = true;
     }
 
     #endregion
 
-        #region --- Getters ---
+    #region --- Getters ---
 
     public Team GetAttacker() => Attacker;
     public Team GetDefender() => Defender;

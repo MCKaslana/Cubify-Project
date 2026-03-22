@@ -15,6 +15,7 @@ public class InterruptAbility : AbilityCard
     {
         Debug.Log("Interrupt triggered!");
 
+        user.PlaySound(1);
         CombatManager.Instance.RequestInterrupt();
 
         yield return null;

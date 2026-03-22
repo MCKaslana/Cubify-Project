@@ -11,6 +11,7 @@ public class RedirectAbility : AbilityCard
         if (originalTarget == null || target == null)
             yield break;
 
+        user.PlaySound(2);
         CombatManager.Instance.SetRedirect(originalTarget, target);
 
         Debug.Log($"{originalTarget.name} redirected to {target.name}");

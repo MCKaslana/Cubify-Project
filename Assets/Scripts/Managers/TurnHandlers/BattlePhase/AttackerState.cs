@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class AttackerState : ITurnState
@@ -49,11 +50,17 @@ public class AttackerState : ITurnState
 
     private void RunAI()
     {
-        // TODO: AI LOGIC HERE
+        manager.StartCoroutine(AITurnRoutine());
 
         Debug.Log("AI Does their turn here");
 
         manager.UseAttackerAction();
+    }
+
+    private IEnumerator AITurnRoutine()
+    {
+        yield return manager.StartCoroutine(
+            manager.AttackAIController.ExecuteTurn(3));
     }
 
     public void Exit() { }

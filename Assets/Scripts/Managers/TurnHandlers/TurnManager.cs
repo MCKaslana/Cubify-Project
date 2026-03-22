@@ -8,8 +8,12 @@ public class TurnManager : Singleton<TurnManager>
     private AudioSource _source;
     [SerializeField] private SoundData _skipActionSFX;
 
+    [Header("AI Refs")]
     public PrepAIController PrepAIController { get; private set; }
     [SerializeField] private PrepAIController _prepAI;
+
+    public AttackAIController AttackAIController { get; private set; }
+    [SerializeField] private AttackAIController _attackAI;
 
     public enum Team { Player, AI }
 

@@ -4687,7 +4687,7 @@ Transform:
   m_GameObject: {fileID: 1201643049}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1070.6462, y: 515.2514, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4754,6 +4754,7 @@ MonoBehaviour:
   _skipActionIndicator: {fileID: 483332592}
   _prepAI: {fileID: 1201643062}
   _attackAI: {fileID: 1201643063}
+  _roundDelay: 3
 --- !u!114 &1201643056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5638,6 +5639,7 @@ MonoBehaviour:
   _prepUI: {fileID: 1816000115}
   _attackUI: {fileID: 385862752}
   _endUI: {fileID: 1404395362}
+  _reactionUI: {fileID: 1404395362}
 --- !u!1 &1359822304
 GameObject:
   m_ObjectHideFlags: 0
@@ -5816,7 +5818,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -245}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 500, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1404395364
 MonoBehaviour:

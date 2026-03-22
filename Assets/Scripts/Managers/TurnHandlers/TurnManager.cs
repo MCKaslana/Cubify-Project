@@ -17,7 +17,8 @@ public class TurnManager : Singleton<TurnManager>
     public AttackAIController AttackAIController { get; private set; }
     [SerializeField] private AttackAIController _attackAI;
 
-    private bool _isInitialized = true;
+    private bool _isInitializing = true;
+    [SerializeField] private float _roundDelay = 1f;
 
     #region --- Manager Values ---
     public enum Team { Player, AI }
@@ -55,7 +56,7 @@ public class TurnManager : Singleton<TurnManager>
 
     private void Update()
     {
-        if (!_isInitialized)
+        if (_isInitializing)
             return;
 
         currentState?.Execute();
@@ -63,9 +64,20 @@ public class TurnManager : Singleton<TurnManager>
 
     public void ChangeState(ITurnState newState)
     {
+        StartCoroutine(RoundSetupDelay());
+
         currentState?.Exit();
         currentState = newState;
         currentState.Enter();
+    }
+
+    private IEnumerator RoundSetupDelay()
+    {
+        _isInitializing = true;
+
+        yield return new WaitForSeconds(_roundDelay);
+
+        _isInitializing = false;
     }
 
     #region --- Round Setup ---
@@ -141,8 +153,6 @@ public class TurnManager : Singleton<TurnManager>
 
     public IEnumerator ShowRoleScreenIndicator(Team team)
     {
-        _isInitialized = false;
-
         if (team == Team.Player)
         {
             AttackingScreen.SetActive(true);
@@ -155,8 +165,6 @@ public class TurnManager : Singleton<TurnManager>
             yield return new WaitForSeconds(2f);
             DefendingScreen.SetActive(false);
         }
-
-        _isInitialized = true;
     }
 
     #endregion

@@ -6,16 +6,18 @@ public class InterruptAbility : AbilityCard
 {
     public override bool CanExecute(CubeControl user, CubeControl target)
     {
-        if (!base.CanExecute(user, target)) return false;
-
-        return CombatManager.Instance.IsResolving();
+        return CombatManager.Instance.IsInReactionWindow &&
+               CombatManager.Instance.HasEnoughStamina(user.GetTeam(), staminaCost);
     }
 
     public override IEnumerator Execute(CubeControl user, CubeControl target)
     {
         Debug.Log("Interrupt triggered!");
 
+        CombatManager.Instance.SpendStamina(user.GetTeam(), staminaCost);
+        
         user.PlaySound(1);
+
         CombatManager.Instance.RequestInterrupt();
 
         yield return null;

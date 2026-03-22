@@ -1,10 +1,16 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 public class CombatManager : Singleton<CombatManager>
 {
     protected override bool IsPersistent => false;
+
+    public bool IsInReactionWindow { get; private set; }
+
+    public Action<CubeControl> OnReactionWindowStart;
+    public Action OnReactionWindowEnd;
 
     [Header("Combat Settings")]
     [SerializeField] private float _actionDelay = 2f;
@@ -100,7 +106,20 @@ public class CombatManager : Singleton<CombatManager>
 
         ability.OnExecute(user);
 
-        yield return StartCoroutine(WaitForReactions(user, target));
+        IsInReactionWindow = true;
+        OnReactionWindowStart?.Invoke(target);
+
+        float timer = 0f;
+        float reactionWindowDuration = 5f;
+
+        while (timer < reactionWindowDuration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        IsInReactionWindow = false;
+        OnReactionWindowEnd?.Invoke();
 
         if (interruptRequested)
         {
@@ -120,21 +139,6 @@ public class CombatManager : Singleton<CombatManager>
         ClearRedirects();
 
         isResolving = false;
-    }
-
-    private IEnumerator WaitForReactions(CubeControl user, CubeControl target)
-    {
-        float timer = 1.5f;
-
-        Debug.Log("Waiting for reactions...");
-
-        while (timer > 0f)
-        {
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-
-        Debug.Log("Reaction window ended");
     }
 
     public bool IsResolving() => isResolving;

@@ -4,6 +4,10 @@ public class TurnManager : Singleton<TurnManager>
 {
     protected override bool IsPersistent => false;
 
+    [Header("Phase UI Screens")]
+    [SerializeField] private GameObject _isAttackingScreen;
+    [SerializeField] private GameObject _isDefendingScreen;
+
     [Header("Audio Refs")]
     private AudioSource _source;
     [SerializeField] private SoundData _skipActionSFX;
@@ -15,6 +19,7 @@ public class TurnManager : Singleton<TurnManager>
     public AttackAIController AttackAIController { get; private set; }
     [SerializeField] private AttackAIController _attackAI;
 
+    #region --- Manager Values ---
     public enum Team { Player, AI }
 
     private ITurnState currentState;
@@ -28,6 +33,8 @@ public class TurnManager : Singleton<TurnManager>
     private const int MAX_ACTIONS = 3;
 
     private bool _hasRolledForRoles = false;
+
+    #endregion
 
     public bool IsAttackPhase()
     {

@@ -5,6 +5,8 @@ public class AttackerState : ITurnState
 {
     private readonly TurnManager manager;
 
+    private bool _isAIRunning = false;
+
     public AttackerState(TurnManager manager)
     {
         this.manager = manager;
@@ -50,6 +52,10 @@ public class AttackerState : ITurnState
 
     private void RunAI()
     {
+        if (_isAIRunning)
+            return;
+
+        _isAIRunning = true;
         manager.StartCoroutine(AITurnRoutine());
 
         Debug.Log("AI Does their turn here");

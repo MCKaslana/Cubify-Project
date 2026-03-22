@@ -6,6 +6,9 @@ public class CombatManager : Singleton<CombatManager>
 {
     protected override bool IsPersistent => false;
 
+    [Header("Combat Settings")]
+    [SerializeField] private float _actionDelay = 2f;
+
     [Header("Stamina")]
     [SerializeField] private int playerMaxStamina = 5;
     [SerializeField] private int aiMaxStamina = 5;
@@ -183,6 +186,8 @@ public class CombatManager : Singleton<CombatManager>
 
     public void QueueAbility(CubeControl user, CubeControl target, AbilityCard ability)
     {
+        if (IsProcessingQueue) return;
+
         if (!ability.CanExecute(user, target))
         {
             Debug.Log("Ability cannot be used.");
@@ -206,6 +211,8 @@ public class CombatManager : Singleton<CombatManager>
             yield return StartCoroutine(
                 ResolveAbility(action.User, action.Target, action.Ability)
             );
+
+            yield return new WaitForSeconds(_actionDelay);
         }
 
         _isProcessingQueue = false;

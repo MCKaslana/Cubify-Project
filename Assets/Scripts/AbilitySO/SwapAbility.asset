@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SwapAbility
   m_EditorClassIdentifier: Assembly-CSharp::SwapAbility
   abilityName: Swap
-  staminaCost: 2
+  staminaCost: 1
   targetType: 1
   targetingShape: 1

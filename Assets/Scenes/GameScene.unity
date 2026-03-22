@@ -1084,6 +1084,7 @@ GameObject:
   - component: {fileID: 155082960}
   - component: {fileID: 155082959}
   - component: {fileID: 155082958}
+  - component: {fileID: 155082961}
   m_Layer: 5
   m_Name: Redirect_Card
   m_TagString: Untagged
@@ -1193,6 +1194,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155082956}
   m_CullTransparentMesh: 1
+--- !u!114 &155082961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155082956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be50bdf7649d454f9e9d6e6a26c268d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
+  _ability: {fileID: 11400000, guid: 401ba1a9a5a979d4dad63db9ffd5cc5d, type: 2}
 --- !u!1 &166973877
 GameObject:
   m_ObjectHideFlags: 0
@@ -4374,7 +4388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be50bdf7649d454f9e9d6e6a26c268d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
-  _ability: {fileID: 0}
+  _ability: {fileID: 11400000, guid: 5d689cc7a914a4c40a4cc35e364af0db, type: 2}
 --- !u!1 &1036171813
 GameObject:
   m_ObjectHideFlags: 0

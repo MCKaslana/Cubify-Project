@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RedirectAIAbility : IAIAttackAction
 {
@@ -12,32 +13,33 @@ public class RedirectAIAbility : IAIAttackAction
 
     public bool CanExecute()
     {
-        if (CombatManager.Instance.IsInReactionWindow)
-            return false;
-        return CombatManager.Instance.GetAIStamina() >= _redirectAbility.staminaCost;
+        return CombatManager.Instance.IsInReactionWindow &&
+               CombatManager.Instance.CurrentIncomingTarget != null &&
+               Random.value < 0.5f;
     }
 
     public IEnumerator Execute()
     {
-        var myCubes = CubeSpawner.Instance.ReturnAICubes();
+        Debug.Log("EXECUTING AI REDIRECT");
 
-        if (myCubes.Count < 2)
+        var allCubes = CubeSpawner.Instance.GetAllCubes();
+        List<CubeControl> myCubes = new();
+
+        if (allCubes.Count < 2)
             yield break;
 
-        var from = myCubes[Random.Range(0, myCubes.Count)];
-        CubeControl to;
-
-        do
+        foreach (var cube in allCubes)
         {
-            to = myCubes[Random.Range(0, myCubes.Count)];
+            if (cube.GetTeam() == Team.Enemy)
+                myCubes.Add(cube);
         }
-        while (to == from);
 
-        CombatManager.Instance.SetRedirect(from, to);
+        var target = myCubes[Random.Range(0, myCubes.Count)];
+
+        var user = myCubes[0];
+
         CombatManager.Instance.SpendStamina(Team.Enemy, _redirectAbility.staminaCost);
 
-        Debug.Log($"AI redirects {from.name} -> {to.name}");
-
-        yield return new WaitForSeconds(0.2f);
+        yield return _redirectAbility.Execute(user, target);
     }
 }

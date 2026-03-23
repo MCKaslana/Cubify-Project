@@ -5578,6 +5578,7 @@ GameObject:
   - component: {fileID: 1201643061}
   - component: {fileID: 1201643062}
   - component: {fileID: 1201643063}
+  - component: {fileID: 1201643064}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5789,6 +5790,18 @@ MonoBehaviour:
   _redirectAbility: {fileID: 11400000, guid: 401ba1a9a5a979d4dad63db9ffd5cc5d, type: 2}
   _interruptAbility: {fileID: 11400000, guid: 5d689cc7a914a4c40a4cc35e364af0db, type: 2}
   _shrinkAbility: {fileID: 11400000, guid: de04b8a6581a0bc4ab5acd2505405c1d, type: 2}
+--- !u!114 &1201643064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201643049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115e483538ef3a04284a66f9f5c9b150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityManager
 --- !u!1 &1214928884
 GameObject:
   m_ObjectHideFlags: 0

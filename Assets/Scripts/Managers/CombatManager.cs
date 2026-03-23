@@ -14,12 +14,17 @@ public class CombatManager : Singleton<CombatManager>
 
     [Header("Combat Settings")]
     [SerializeField] private float _actionDelay = 2f;
+    [SerializeField] private float _reactionWindowDuration = 1.5f;
 
     [Header("Stamina")]
     [SerializeField] private int playerMaxStamina = 5;
     [SerializeField] private int aiMaxStamina = 5;
     [SerializeField] private StaminaBar _staminaBar;
     [SerializeField] private StaminaBar _enemyStaminaBar;
+
+    [Header("Visuals")]
+    [SerializeField] private GameObject _preventionIndicator;
+    [SerializeField] private GameObject _redirectIndicator;
 
     private int _playerStamina;
     private int _opponentStamina;
@@ -28,6 +33,10 @@ public class CombatManager : Singleton<CombatManager>
     private bool _isProcessingQueue = false;
 
     public bool IsProcessingQueue => _isProcessingQueue;
+    public bool AllowReactions { get; set; } = false;
+
+    //Needed for redirect system
+    public CubeControl CurrentIncomingTarget { get; private set; }
 
     public override void Awake()
     {
@@ -104,39 +113,49 @@ public class CombatManager : Singleton<CombatManager>
         isResolving = true;
         interruptRequested = false;
 
+        CurrentIncomingTarget = target;
+
         ability.OnExecute(user);
 
-        IsInReactionWindow = true;
-        OnReactionWindowStart?.Invoke(target);
-
-        float timer = 0f;
-        float reactionWindowDuration = 5f;
-
-        while (timer < reactionWindowDuration)
+        if (AllowReactions)
         {
-            timer += Time.deltaTime;
-            yield return null;
-        }
+            IsInReactionWindow = true;
+            OnReactionWindowStart?.Invoke(target);
 
-        IsInReactionWindow = false;
-        OnReactionWindowEnd?.Invoke();
+            float timer = 0f;
 
-        if (interruptRequested)
-        {
-            Debug.Log("Ability Interrupted!");
-            isResolving = false;
-            yield break;
-        }
+            while (timer < _reactionWindowDuration)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
 
-        if (target != null && redirectMap.ContainsKey(target))
-        {
-            target = redirectMap[target];
-            Debug.Log("Target Redirected!");
+            IsInReactionWindow = false;
+            OnReactionWindowEnd?.Invoke();
+
+            if (interruptRequested)
+            {
+                Debug.Log("Ability Interrupted!");
+
+                StartCoroutine(ShowInterruption());
+
+                isResolving = false;
+                yield break;
+            }
+
+            if (target != null && redirectMap.ContainsKey(target))
+            {
+                target = redirectMap[target];
+                StartCoroutine(ShowRedirect());
+                Debug.Log("Target Redirected!");
+            }
         }
 
         yield return ability.Execute(user, target);
 
         ClearRedirects();
+
+        CurrentIncomingTarget = null;
 
         isResolving = false;
     }
@@ -156,6 +175,22 @@ public class CombatManager : Singleton<CombatManager>
         redirectMap[originalTarget] = newTarget;
     }
 
+    private IEnumerator ShowRedirect()
+    {
+        if (_redirectIndicator != null)
+        {
+            _redirectIndicator.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            _redirectIndicator.SetActive(false);
+        }
+    }
+
+    public void ResetReactionState()
+    {
+        interruptRequested = false;
+        IsInReactionWindow = false;
+    }
+
     public void ClearRedirects()
     {
         redirectMap.Clear();
@@ -172,9 +207,19 @@ public class CombatManager : Singleton<CombatManager>
         interruptRequested = true;
     }
 
+    private IEnumerator ShowInterruption()
+    {
+        if (_preventionIndicator != null)
+        {
+            _preventionIndicator.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            _preventionIndicator.SetActive(false);
+        }
+    }
+
     #endregion
 
-    #region --- Temporary Effects ---
+        #region --- Temporary Effects ---
 
     public void ApplyTemporaryScale(CubeControl target, float scale, int turns)
     {

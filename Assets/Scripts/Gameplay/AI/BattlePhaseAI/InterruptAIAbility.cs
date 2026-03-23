@@ -14,6 +14,8 @@ public class InterruptAIAbility : IAIAttackAction
     {
         if (CombatManager.Instance.GetAIStamina() < _interruptAbility.staminaCost)
             return false;
+        if (CombatManager.Instance.IsInReactionWindow)
+            return false;
         return CombatManager.Instance.IsResolving();
     }
 

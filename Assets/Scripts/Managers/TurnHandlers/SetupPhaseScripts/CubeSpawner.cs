@@ -73,6 +73,13 @@ public class CubeSpawner : Singleton<CubeSpawner>
 
     public List<CubeControl> ReturnPlayerCubes() => _playerCubes;
     public List<CubeControl> ReturnAICubes() => _aiCubes;
+    public List<CubeControl> GetAllCubes()
+    {
+        List<CubeControl> allCubes = new();
+        allCubes.AddRange(_playerCubes);
+        allCubes.AddRange(_aiCubes);
+        return allCubes;
+    }
 
     private CubeData GetDataForSize(CubeSize size)
     {

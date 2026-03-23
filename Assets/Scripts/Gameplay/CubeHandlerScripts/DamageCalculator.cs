@@ -4,8 +4,8 @@ public static class DamageCalculator
 {
     public static int CalculateDamage(CubeControl attacker, CubeControl defender)
     {
-        int sizeDiff = (int)attacker.GetCubeData().cubeSize -
-                   (int)defender.GetCubeData().cubeSize;
+        int sizeDiff = (int)attacker.GetCubeSize() -
+                   (int)defender.GetCubeSize();
 
         if (sizeDiff > 0)
             return 2; // bigger

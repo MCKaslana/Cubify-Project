@@ -17,7 +17,8 @@ public class TurnManager : Singleton<TurnManager>
     public AttackAIController AttackAIController { get; private set; }
     [SerializeField] private AttackAIController _attackAI;
 
-    private bool _isInitialized = true;
+    private bool _isProcessingStateChange = false;
+    [SerializeField] private float _stateEnterDelay = 0.5f;
 
     #region --- Manager Values ---
     public enum Team { Player, AI }
@@ -55,7 +56,7 @@ public class TurnManager : Singleton<TurnManager>
 
     private void Update()
     {
-        if (!_isInitialized)
+        if (_isProcessingStateChange)
             return;
 
         currentState?.Execute();
@@ -63,9 +64,24 @@ public class TurnManager : Singleton<TurnManager>
 
     public void ChangeState(ITurnState newState)
     {
+        StartCoroutine(ChangeStateRoutine(newState));
+    }
+
+    private IEnumerator ChangeStateRoutine(ITurnState newState)
+    {
+        _isProcessingStateChange = true;
+
         currentState?.Exit();
         currentState = newState;
+
+        UIManager.Instance.ShowCurrentPhaseScreenIndicator(currentState.Phase);
+
+        yield return new WaitForSeconds(_stateEnterDelay);
+
+        CombatManager.Instance.ResetReactionState();
         currentState.Enter();
+
+        _isProcessingStateChange = false;
     }
 
     #region --- Round Setup ---
@@ -90,8 +106,6 @@ public class TurnManager : Singleton<TurnManager>
         }
 
         _hasRolledForRoles = true;
-
-        Debug.Log($"Attacker: {Attacker} | Defender: {Defender}");
     }
 
     public void ResetActions()
@@ -109,11 +123,6 @@ public class TurnManager : Singleton<TurnManager>
         AttackerActions--;
     }
 
-    public void UseDefenderAction()
-    {
-        DefenderActions--;
-    }
-
     public void SkipAction()
     {
         AttackerActions--;
@@ -124,7 +133,7 @@ public class TurnManager : Singleton<TurnManager>
     private IEnumerator ShowSkipActionIndicator()
     {
         _skipActionIndicator.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         _skipActionIndicator.SetActive(false);
     }
 
@@ -141,8 +150,6 @@ public class TurnManager : Singleton<TurnManager>
 
     public IEnumerator ShowRoleScreenIndicator(Team team)
     {
-        _isInitialized = false;
-
         if (team == Team.Player)
         {
             AttackingScreen.SetActive(true);
@@ -155,8 +162,6 @@ public class TurnManager : Singleton<TurnManager>
             yield return new WaitForSeconds(2f);
             DefendingScreen.SetActive(false);
         }
-
-        _isInitialized = true;
     }
 
     #endregion
@@ -166,7 +171,6 @@ public class TurnManager : Singleton<TurnManager>
     public Team GetAttacker() => Attacker;
     public Team GetDefender() => Defender;
     public int GetAttackerActions() => AttackerActions;
-    public int GetDefenderActions() => DefenderActions;
 
     #endregion
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 public class EndState : ITurnState
 {
     private readonly TurnManager manager;
+    public TurnPhase Phase => TurnPhase.End;
 
     public EndState(TurnManager manager)
     {
@@ -11,7 +12,7 @@ public class EndState : ITurnState
 
     public void Enter()
     {
-        Debug.Log("End Phase");
+        CombatManager.Instance.AllowReactions = false;
 
         CombatManager.Instance.RestoreStamina(1);
         CombatManager.Instance.ClearRedirects();

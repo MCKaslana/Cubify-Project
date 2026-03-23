@@ -192,6 +192,7 @@ MonoBehaviour:
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _damagedColor: {r: 1, g: 0, b: 0, a: 1}
   _attackedHighlight: {fileID: 3097737128458037617}
+  _highlightDuration: 2
   _moveSpeed: 6
 --- !u!82 &6661589571786491649
 AudioSource:

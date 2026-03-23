@@ -4,6 +4,7 @@ using System.Collections;
 public class RoundState : ITurnState
 {
     private readonly TurnManager manager;
+    public TurnPhase Phase => TurnPhase.Preparation;
 
     private bool _isPlayerFinished = false;
     private bool _isAIFinished = false;
@@ -15,7 +16,7 @@ public class RoundState : ITurnState
 
     public void Enter()
     {
-        Debug.Log("Round Start");
+        CombatManager.Instance.AllowReactions = false;
 
         manager.ResetActions();
         StartPrepPhase();

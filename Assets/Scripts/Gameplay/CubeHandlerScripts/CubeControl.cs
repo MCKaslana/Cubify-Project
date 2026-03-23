@@ -28,6 +28,7 @@ public class CubeControl : MonoBehaviour
     [SerializeField] private Color _normalColor = Color.white;
     [SerializeField] private Color _damagedColor = Color.red;
     [SerializeField] private GameObject _attackedHighlight;
+    [SerializeField] private float _highlightDuration = 0.5f;
 
     public bool IsSelectable { get; set; } = true;
 
@@ -122,8 +123,6 @@ public class CubeControl : MonoBehaviour
 
     public IEnumerator MoveTo(Vector3 targetPosition)
     {
-        Debug.Log($"{name} moving FROM {transform.position} TO {targetPosition}");
-
         while (Vector3.Distance(transform.position, targetPosition) > 0.05f)
         {
             transform.position = Vector3.MoveTowards(
@@ -140,7 +139,6 @@ public class CubeControl : MonoBehaviour
 
     public IEnumerator ReturnToOriginalPosition()
     {
-        Debug.Log($"{name} returning to ORIGINAL {OriginalPosition}");
         yield return MoveTo(OriginalPosition);
     }
 
@@ -248,7 +246,7 @@ public class CubeControl : MonoBehaviour
         if (_attackedHighlight != null)
             _attackedHighlight.SetActive(true);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(_highlightDuration);
 
         if (_attackedHighlight != null)
             _attackedHighlight.SetActive(false);

@@ -34,7 +34,6 @@ public class PrepAIController : MonoBehaviour
 
             if (action.TryExecute())
             {
-                Debug.Log("AI executed an action successfully.");
                 yield return new WaitForSeconds(1f);
             }
         }

@@ -26,8 +26,6 @@ public class AISwap : IAIPrepAction
         CombatManager.Instance.ExecuteAbility(cubeA, cubeB, _ability);
         CombatManager.Instance.SpendStamina(Team.Enemy, _ability.staminaCost);
 
-        Debug.Log($"AI swapped {cubeA.name} with {cubeB.name}");
-
         return true;
     }
 }

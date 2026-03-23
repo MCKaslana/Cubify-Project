@@ -10,7 +10,5 @@ public class SwapAbility : AbilityCard
 
         user.PlaySound(5);
         yield return user.SwapWith(target);
-
-        Debug.Log($"{user.name} swapped with {target.name}");
     }
 }

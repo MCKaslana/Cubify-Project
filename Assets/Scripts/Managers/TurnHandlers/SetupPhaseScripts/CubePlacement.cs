@@ -32,7 +32,6 @@ public class CubePlacement : Singleton<CubePlacement>
 
         _isPlacing = true;
 
-        Debug.Log("Player placement started");
         SpawnNextCube();
     }
     
@@ -63,7 +62,6 @@ public class CubePlacement : Singleton<CubePlacement>
 
         if (_placedCount >= 3)
         {
-            Debug.Log("Player finished placement");
             OnCubesPlaced?.Invoke();
         }
         else

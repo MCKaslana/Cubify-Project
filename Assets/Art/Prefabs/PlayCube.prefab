@@ -188,7 +188,7 @@ MonoBehaviour:
   _lane: 0
   _baseData: {fileID: 0}
   _maxHealth: 5
-  _cubeRenderer: {fileID: 0}
+  _cubeRenderer: {fileID: 7384761825773430715}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _damagedColor: {r: 1, g: 0, b: 0, a: 1}
   _attackedHighlight: {fileID: 3097737128458037617}

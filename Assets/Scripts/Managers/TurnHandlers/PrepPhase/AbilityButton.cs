@@ -39,6 +39,11 @@ public class AbilityButton : MonoBehaviour
             return;
         }
 
+        if (ability is RedirectAbility)
+        {
+            AbilityManager.Instance.StartRedirectAbility(ability);
+        }
+
         if (user == null || target == null)
         {
             Debug.Log("Select both a user and a target cube.");

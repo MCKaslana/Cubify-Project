@@ -123,10 +123,18 @@ public class CombatManager : Singleton<CombatManager>
             OnReactionWindowStart?.Invoke(target);
 
             float timer = 0f;
+            bool aiHasReacted = false;
 
             while (timer < _reactionWindowDuration)
             {
                 timer += Time.deltaTime;
+
+                if (!aiHasReacted)
+                {
+                    TryAiReaction(target);
+                    aiHasReacted = true;
+                }
+
                 yield return null;
             }
 
@@ -158,6 +166,46 @@ public class CombatManager : Singleton<CombatManager>
         CurrentIncomingTarget = null;
 
         isResolving = false;
+    }
+
+    public void TryAiReaction(CubeControl target)
+    {
+        if (target == null || target.GetTeam() != Team.Enemy)
+            return;
+
+        var aiCubes = CubeSpawner.Instance.GetAllSpawnedCubes(Team.Enemy);
+
+        if (aiCubes.Count == 0)
+            return;
+
+        var user = aiCubes[UnityEngine.Random.Range(0, aiCubes.Count)];
+
+        float roll = UnityEngine.Random.value;
+
+        if (roll < 0.3f)
+        {
+            Debug.Log("AI attempts to interrupt!");
+
+            RequestInterrupt();
+            user.PlaySound(2);
+            return;
+        }
+
+        if (roll < 0.7f && aiCubes.Count > 1)
+        {
+            CubeControl newTarget;
+
+            do
+            {
+                newTarget = aiCubes[UnityEngine.Random.Range(0, aiCubes.Count)];
+            }
+            while (newTarget == target);
+
+            Debug.Log("AI attempts to redirect!");
+
+            SetRedirect(target, newTarget);
+            user.PlaySound(3);
+        }
     }
 
     public bool IsResolving() => isResolving;
@@ -219,7 +267,7 @@ public class CombatManager : Singleton<CombatManager>
 
     #endregion
 
-        #region --- Temporary Effects ---
+    #region --- Temporary Effects ---
 
     public void ApplyTemporaryScale(CubeControl target, float scale, int turns)
     {

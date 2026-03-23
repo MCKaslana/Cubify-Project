@@ -20,6 +20,8 @@ public class RedirectAIAbility : IAIAttackAction
 
     public IEnumerator Execute()
     {
+        Debug.Log("EXECUTING AI REDIRECT");
+
         var allCubes = CubeSpawner.Instance.GetAllCubes();
         List<CubeControl> myCubes = new();
 

@@ -20,6 +20,8 @@ public class InterruptAIAbility : IAIAttackAction
 
     public IEnumerator Execute()
     {
+        Debug.Log("EXECUTING AI INTERRUPT");
+
         var cubes = CubeSpawner.Instance.GetAllCubes();
         List<CubeControl> enemyCubes = new();
 

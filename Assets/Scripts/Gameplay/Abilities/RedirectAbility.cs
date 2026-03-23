@@ -6,9 +6,12 @@ public class RedirectAbility : AbilityCard
 {
     public override bool CanExecute(CubeControl user, CubeControl target)
     {
+        var original = CombatManager.Instance.CurrentIncomingTarget;
+
         return CombatManager.Instance.IsInReactionWindow &&
-               CombatManager.Instance.CurrentIncomingTarget != null &&
+               original != null &&
                target != null &&
+               target != original &&
                CombatManager.Instance.HasEnoughStamina(user.GetTeam(), staminaCost);
     }
 
@@ -21,7 +24,7 @@ public class RedirectAbility : AbilityCard
         CombatManager.Instance.SpendStamina(user.GetTeam(), staminaCost);
 
         user.PlaySound(2);
-        CombatManager.Instance.SetRedirect(user, target);
+        CombatManager.Instance.SetRedirect(original, target);
 
         Debug.Log($"{user.name} redirected to {target.name}");
 

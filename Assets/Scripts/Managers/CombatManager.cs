@@ -133,6 +133,7 @@ public class CombatManager : Singleton<CombatManager>
                 {
                     TryAiReaction(target);
                     aiHasReacted = true;
+                    break;
                 }
 
                 yield return null;

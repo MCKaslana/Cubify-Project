@@ -14,8 +14,8 @@ public class InterruptAIAbility : IAIAttackAction
 
     public bool CanExecute()
     {
-        return CombatManager.Instance.IsInReactionWindow &&
-            Random.value < 0.5f;
+        return CombatManager.Instance.IsInReactionWindow; /*&&
+            Random.value < 0.5f;*/
     }
 
     public IEnumerator Execute()

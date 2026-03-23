@@ -81,6 +81,30 @@ public class CubeSpawner : Singleton<CubeSpawner>
         return allCubes;
     }
 
+    public List<CubeControl> GetAllSpawnedCubes(Team team)
+    {
+        List<CubeControl> allCubes = new();
+
+        List<CubeControl> sortedPlayerCubes = new();
+        List<CubeControl> sortedAICubes = new();
+
+        allCubes.AddRange(_aiCubes);
+        allCubes.AddRange(_playerCubes);
+
+        foreach (var cube in allCubes)
+        {
+            if (cube.GetTeam() == Team.Player)
+                sortedPlayerCubes.Add(cube);
+            else if (cube.GetTeam() == Team.Enemy)
+                sortedAICubes.Add(cube);
+        }
+
+        if (team == Team.Player)
+            return sortedPlayerCubes;
+        else
+            return sortedAICubes;
+    }
+
     private CubeData GetDataForSize(CubeSize size)
     {
         return size switch

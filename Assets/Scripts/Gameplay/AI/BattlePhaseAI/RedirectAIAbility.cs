@@ -14,8 +14,8 @@ public class RedirectAIAbility : IAIAttackAction
     public bool CanExecute()
     {
         return CombatManager.Instance.IsInReactionWindow &&
-               CombatManager.Instance.CurrentIncomingTarget != null &&
-               Random.value < 0.5f;
+               CombatManager.Instance.CurrentIncomingTarget != null; /* &&
+               Random.value < 0.5f;*/
     }
 
     public IEnumerator Execute()

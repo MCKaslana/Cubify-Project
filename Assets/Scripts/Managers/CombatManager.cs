@@ -35,6 +35,9 @@ public class CombatManager : Singleton<CombatManager>
     public bool IsProcessingQueue => _isProcessingQueue;
     public bool AllowReactions { get; set; } = false;
 
+    //Needed for redirect system
+    public CubeControl CurrentIncomingTarget { get; private set; }
+
     public override void Awake()
     {
         base.Awake();
@@ -110,6 +113,8 @@ public class CombatManager : Singleton<CombatManager>
         isResolving = true;
         interruptRequested = false;
 
+        CurrentIncomingTarget = target;
+
         ability.OnExecute(user);
 
         if (AllowReactions)
@@ -149,6 +154,8 @@ public class CombatManager : Singleton<CombatManager>
         yield return ability.Execute(user, target);
 
         ClearRedirects();
+
+        CurrentIncomingTarget = null;
 
         isResolving = false;
     }

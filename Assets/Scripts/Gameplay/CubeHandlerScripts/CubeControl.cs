@@ -67,7 +67,6 @@ public class CubeControl : MonoBehaviour
         _cubeSmall.SetActive(_currentSize == CubeSize.Small);
         _cubeMedium.SetActive(_currentSize == CubeSize.Medium);
         _cubeLarge.SetActive(_currentSize == CubeSize.Large);
-        _cubeSuperLarge.SetActive(_currentSize == CubeSize.Large);
     }
 
     public void SetOriginalPosition(Vector3 position)

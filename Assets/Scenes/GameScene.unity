@@ -5661,7 +5661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb584b75557f62f4887e5edb7eab4ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  masterVolume: 0.12
+  masterVolume: 0.016
   sfxVolume: 1
   musicVolume: 1
   backgroundMusic: {fileID: 11400000, guid: f06cdd3206161a445a00a05d8954aaeb, type: 2}

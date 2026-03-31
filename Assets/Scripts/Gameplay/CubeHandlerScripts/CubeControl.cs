@@ -24,11 +24,13 @@ public class CubeControl : MonoBehaviour
 
     [Header("Visuals")]
     private HealthBar _healthBar;
-    [SerializeField] private Renderer _cubeRenderer;
-    [SerializeField] private Color _normalColor = Color.white;
-    [SerializeField] private Color _damagedColor = Color.red;
     [SerializeField] private GameObject _attackedHighlight;
     [SerializeField] private float _highlightDuration = 0.5f;
+
+    [SerializeField] private GameObject _cubeSmall;
+    [SerializeField] private GameObject _cubeMedium;
+    [SerializeField] private GameObject _cubeLarge;
+    [SerializeField] private GameObject _cubeSuperLarge;
 
     public bool IsSelectable { get; set; } = true;
 
@@ -46,7 +48,6 @@ public class CubeControl : MonoBehaviour
         _currentHealth = _maxHealth;
 
         _soundPlayer = GetComponent<SoundPlayer>();
-        _cubeRenderer = GetComponentInChildren<Renderer>();
         _healthBar = GetComponentInChildren<HealthBar>();
     }
 
@@ -57,16 +58,16 @@ public class CubeControl : MonoBehaviour
 
         _currentSize = data.cubeSize;
         _currentMultiplier = data.sizeMultiplier;
-        _normalColor = data.color;
 
         UpdateVisuals();
     }
 
     public void UpdateVisuals()
     {
-        transform.localScale = Vector3.one * _currentMultiplier;
-        if (_cubeRenderer != null)
-            _cubeRenderer.material.color = _normalColor;
+        _cubeSmall.SetActive(_currentSize == CubeSize.Small);
+        _cubeMedium.SetActive(_currentSize == CubeSize.Medium);
+        _cubeLarge.SetActive(_currentSize == CubeSize.Large);
+        _cubeSuperLarge.SetActive(_currentSize == CubeSize.Large);
     }
 
     public void SetOriginalPosition(Vector3 position)
@@ -222,13 +223,7 @@ public class CubeControl : MonoBehaviour
 
     private IEnumerator DamageFeedback()
     {
-        if (_cubeRenderer == null) yield break;
-
-        _cubeRenderer.material.color = _damagedColor;
-
         yield return new WaitForSeconds(0.2f);
-
-        _cubeRenderer.material.color = _normalColor;
     }
 
     public void PlaySound(int index)

@@ -73,7 +73,7 @@ public class AttackerState : ITurnState
     private IEnumerator AITurnRoutine()
     {
         yield return manager.StartCoroutine(
-            manager.AttackAIController.ExecuteTurn(4));
+            manager.AttackAIController.ExecuteTurn(3));
     }
 
     public void Exit() { }

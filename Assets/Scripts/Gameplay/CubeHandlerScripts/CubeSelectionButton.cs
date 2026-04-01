@@ -39,6 +39,7 @@ public class CubeSelectionButton : MonoBehaviour
             if (!redirectAbility.CanExecute(user, cube))
             {
                 Debug.Log("Cannot redirect to this cube");
+                AbilityManager.Instance.ClearRedirectMode();
                 return;
             }
 

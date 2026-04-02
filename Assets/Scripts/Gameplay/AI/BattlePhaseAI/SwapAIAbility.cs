@@ -20,13 +20,7 @@ public class SwapAIAbility : IAIAttackAction
 
     public IEnumerator Execute()
     {
-        var aiCubes = CubeSpawner.Instance.ReturnAICubes();
-        var playerCubes = CubeSpawner.Instance.ReturnPlayerCubes();
-
-        var allCubes = new List<CubeControl>();
-
-        allCubes.AddRange(aiCubes);
-        allCubes.AddRange(playerCubes);
+        var allCubes = CubeSpawner.Instance.GetAllCubes();
 
         if (allCubes.Count < 2)
             yield break;

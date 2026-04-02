@@ -6,6 +6,11 @@ public class PlaceCubeButton : MonoBehaviour
 {
     [SerializeField] private int _slotIndex;
     [SerializeField] private Button _button;
+    [SerializeField] private float _fontSize = 24f;
+    
+
+    [SerializeField] private float _confrimFontSize = 30f;
+
     private TextMeshProUGUI _buttonText;
     private Image _buttonImage;
 
@@ -18,6 +23,11 @@ public class PlaceCubeButton : MonoBehaviour
             _button = GetComponent<Button>();
             _buttonText = _button.GetComponentInChildren<TextMeshProUGUI>();
             _buttonImage = _button.GetComponent<Image>();
+        }
+
+        if (_buttonText != null)
+        {
+            _buttonText.fontSize = _fontSize;
         }
 
         _button.onClick.AddListener(OnClicked);
@@ -41,6 +51,9 @@ public class PlaceCubeButton : MonoBehaviour
 
         _buttonText.text = "Confirm Placement?";
         _buttonImage.color = Color.red;
+        _buttonText.fontSize = _confrimFontSize; 
+        _buttonText.color = Color.white;
+
 
         _hasConfirmed = true;
     }

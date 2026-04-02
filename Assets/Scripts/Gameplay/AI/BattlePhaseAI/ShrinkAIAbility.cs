@@ -19,8 +19,8 @@ public class ShrinkAIAbility : IAIAttackAction
 
     public IEnumerator Execute()
     {
-        var enemies = CubeSpawner.Instance.ReturnPlayerCubes();
-        var myCubes = CubeSpawner.Instance.ReturnAICubes();
+        var enemies = CubeSpawner.Instance.GetAllSpawnedCubes(Team.Player);
+        var myCubes = CubeSpawner.Instance.GetAllSpawnedCubes(Team.Enemy);
 
         if (enemies.Count == 0 || myCubes.Count == 0)
             yield break;

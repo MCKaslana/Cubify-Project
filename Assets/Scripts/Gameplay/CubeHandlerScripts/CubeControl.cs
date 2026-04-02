@@ -114,6 +114,7 @@ public class CubeControl : MonoBehaviour
     private void Die()
     {
         Debug.Log(name + " died.");
+        IsSelectable = false;
         gameObject.SetActive(false);
     }
 

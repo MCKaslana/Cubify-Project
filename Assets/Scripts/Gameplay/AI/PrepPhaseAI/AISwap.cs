@@ -11,7 +11,7 @@ public class AISwap : IAIPrepAction
 
     public bool TryExecute()
     {
-        var cubes = CubeSpawner.Instance.ReturnAICubes();
+        var cubes = CubeSpawner.Instance.GetAllSpawnedCubes(Team.Enemy);
 
         if (cubes.Count < 2) return false;
 

@@ -11,7 +11,7 @@ public class AIModify : IAIPrepAction
 
     public bool TryExecute()
     {
-        var cubes = CubeSpawner.Instance.ReturnAICubes();
+        var cubes = CubeSpawner.Instance.GetAllSpawnedCubes(Team.Enemy);
 
         if (cubes.Count == 0) return false;
 

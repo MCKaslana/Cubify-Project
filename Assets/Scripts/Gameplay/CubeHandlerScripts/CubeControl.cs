@@ -17,7 +17,6 @@ public class CubeControl : MonoBehaviour
     public CubeData GetCubeData() => _baseData;
 
     private CubeSize _currentSize;
-    private float _currentMultiplier = 1f;
 
     [SerializeField] private int _maxHealth = 5;
     private int _currentHealth;
@@ -57,7 +56,6 @@ public class CubeControl : MonoBehaviour
         _baseData = data;
 
         _currentSize = data.cubeSize;
-        _currentMultiplier = data.sizeMultiplier;
 
         UpdateVisuals();
     }
@@ -111,7 +109,6 @@ public class CubeControl : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log(name + " died.");
         PlaySound(6);
         IsAlive = false;
         gameObject.SetActive(false);
@@ -201,7 +198,6 @@ public class CubeControl : MonoBehaviour
         if (_currentSize == CubeSize.Large) return;
 
         _currentSize = (CubeSize)Mathf.Clamp((int)_currentSize + 1, 0, 2);
-        _currentMultiplier += 0.5f;
 
         UpdateVisuals();
     }
@@ -211,8 +207,7 @@ public class CubeControl : MonoBehaviour
         if (_currentSize == CubeSize.Small) return;
 
         _currentSize = (CubeSize)Mathf.Clamp((int)_currentSize - 1, 0, 2);
-        _currentMultiplier -= 0.5f;
-
+        
         UpdateVisuals();
     }
 

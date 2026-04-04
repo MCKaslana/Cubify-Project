@@ -46,7 +46,6 @@ public class AttackAIController : MonoBehaviour
 
             yield return action.Execute();
             TurnManager.Instance.UseAttackerAction();
-            Debug.Log("Enemy Did action " + action);
 
             actionsUsed++;
 

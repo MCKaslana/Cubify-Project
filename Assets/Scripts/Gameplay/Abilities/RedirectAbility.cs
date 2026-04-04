@@ -26,8 +26,6 @@ public class RedirectAbility : AbilityCard
         user.PlaySound(2);
         CombatManager.Instance.SetRedirect(original, target);
 
-        Debug.Log($"{user.name} redirected to {target.name}");
-
         yield return null;
     }
 }

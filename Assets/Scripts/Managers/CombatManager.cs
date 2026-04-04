@@ -287,11 +287,7 @@ public class CombatManager : Singleton<CombatManager>
     {
         if (IsProcessingQueue) return;
 
-        if (!ability.CanExecute(user, target))
-        {
-            Debug.Log("Ability cannot be used.");
-            return;
-        }
+        if (!ability.CanExecute(user, target)) return;
 
         _actionQueue.Enqueue(new QueuedAction(user, target, ability));
 

@@ -34,6 +34,7 @@ public class CombatManager : Singleton<CombatManager>
 
     public bool IsProcessingQueue => _isProcessingQueue;
     public bool AllowReactions { get; set; } = false;
+    public bool IsPlayerTurn { get; set; } = true;
 
     //Needed for redirect system
     public CubeControl CurrentIncomingTarget { get; private set; }
@@ -129,7 +130,7 @@ public class CombatManager : Singleton<CombatManager>
             {
                 timer += Time.deltaTime;
 
-                if (!aiHasReacted)
+                if (!aiHasReacted && IsPlayerTurn)
                 {
                     TryAiReaction(target);
                     aiHasReacted = true;
@@ -143,8 +144,6 @@ public class CombatManager : Singleton<CombatManager>
 
             if (interruptRequested)
             {
-                Debug.Log("Ability Interrupted!");
-
                 StartCoroutine(ShowInterruption());
 
                 isResolving = false;
@@ -155,7 +154,6 @@ public class CombatManager : Singleton<CombatManager>
             {
                 target = redirectMap[target];
                 StartCoroutine(ShowRedirect());
-                Debug.Log("Target Redirected!");
             }
         }
 
@@ -184,8 +182,6 @@ public class CombatManager : Singleton<CombatManager>
 
         if (roll < 0.3f)
         {
-            Debug.Log("AI attempts to interrupt!");
-
             RequestInterrupt();
             user.PlaySound(2);
             return;
@@ -200,8 +196,6 @@ public class CombatManager : Singleton<CombatManager>
                 newTarget = aiCubes[UnityEngine.Random.Range(0, aiCubes.Count)];
             }
             while (newTarget == target);
-
-            Debug.Log("AI attempts to redirect!");
 
             SetRedirect(target, newTarget);
             user.PlaySound(3);

@@ -16,8 +16,6 @@ public class SelectionManager : Singleton<SelectionManager>
 
         if (!_hasSelectedUser)
         {
-            Debug.Log("Select user");
-
             if (CurrentUser == cube)
                 CurrentUser = null;
             else
@@ -27,8 +25,6 @@ public class SelectionManager : Singleton<SelectionManager>
         }
         else
         {
-            Debug.Log("Select target");
-
             if (CurrentTarget == cube)
                 CurrentTarget = null;
             else

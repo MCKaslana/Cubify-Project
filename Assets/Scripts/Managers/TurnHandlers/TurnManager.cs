@@ -98,11 +98,13 @@ public class TurnManager : Singleton<TurnManager>
         {
             Attacker = Team.Player;
             Defender = Team.AI;
+            CombatManager.Instance.IsPlayerTurn = true;
         }
         else
         {
             Attacker = Team.AI;
             Defender = Team.Player;
+            CombatManager.Instance.IsPlayerTurn = false;
         }
 
         _hasRolledForRoles = true;
@@ -125,7 +127,7 @@ public class TurnManager : Singleton<TurnManager>
 
     public void SkipAction()
     {
-        AttackerActions--;
+        UseAttackerAction();
         CombatManager.Instance.RestorePlayerStamina(1);
         StartCoroutine(ShowSkipActionIndicator());
     }
@@ -146,6 +148,8 @@ public class TurnManager : Singleton<TurnManager>
     public void SwapRoles()
     {
         (Defender, Attacker) = (Attacker, Defender);
+        bool isPlayerAttacking = Attacker == Team.Player;
+        CombatManager.Instance.IsPlayerTurn = isPlayerAttacking;
     }
 
     public IEnumerator ShowRoleScreenIndicator(Team team)

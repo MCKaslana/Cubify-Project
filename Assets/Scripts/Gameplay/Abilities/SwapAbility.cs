@@ -7,8 +7,8 @@ public class SwapAbility : AbilityCard
     public override IEnumerator Execute(CubeControl user, CubeControl target)
     {
         if (target == null || 
-            !user.IsSelectable ||
-            !target.IsSelectable) yield break;
+            !user.IsAlive ||
+            !target.IsAlive) yield break;
 
         user.PlaySound(5);
         yield return user.SwapWith(target);

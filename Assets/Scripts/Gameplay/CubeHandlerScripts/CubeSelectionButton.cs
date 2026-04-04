@@ -49,7 +49,6 @@ public class CubeSelectionButton : MonoBehaviour
             return;
         }
 
-        Debug.Log("Selected Cube");
         SelectionManager.Instance.SelectCube(cube);
     }
 }

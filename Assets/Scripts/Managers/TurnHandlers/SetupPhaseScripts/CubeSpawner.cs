@@ -74,8 +74,19 @@ public class CubeSpawner : Singleton<CubeSpawner>
     public List<CubeControl> GetAllCubes()
     {
         List<CubeControl> allCubes = new();
-        allCubes.AddRange(_playerCubes);
-        allCubes.AddRange(_aiCubes);
+
+        foreach (var cube in _playerCubes)
+        {
+            if (cube != null && cube.IsAlive && cube.gameObject.activeInHierarchy)
+                allCubes.Add(cube);
+        }
+
+        foreach (var cube in _aiCubes)
+        {
+            if (cube != null && cube.IsAlive && cube.gameObject.activeInHierarchy)
+                allCubes.Add(cube);
+        }
+
         return allCubes;
     }
 
@@ -91,7 +102,9 @@ public class CubeSpawner : Singleton<CubeSpawner>
 
         foreach (var cube in allCubes)
         {
-            if (!cube.IsSelectable) continue;
+            if (cube == null || 
+                !cube.IsAlive ||
+                !cube.gameObject.activeInHierarchy) continue;
 
             if (cube.GetTeam() == Team.Player)
                 sortedPlayerCubes.Add(cube);

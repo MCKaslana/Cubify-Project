@@ -180,7 +180,7 @@ public class CombatManager : Singleton<CombatManager>
 
         float roll = UnityEngine.Random.value;
 
-        if (roll < 0.3f)
+        if (roll < 0.2f)
         {
             RequestInterrupt();
             user.PlaySound(2);

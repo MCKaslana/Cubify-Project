@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class CubeControl : MonoBehaviour
 {
@@ -32,7 +32,7 @@ public class CubeControl : MonoBehaviour
     [SerializeField] private GameObject _cubeLarge;
     [SerializeField] private GameObject _cubeSuperLarge;
 
-    public bool IsSelectable { get; set; } = true;
+    public bool IsAlive { get; set; } = true;
 
     [Header("Audio Feedback")]
     private SoundPlayer _soundPlayer;
@@ -93,8 +93,6 @@ public class CubeControl : MonoBehaviour
 
         UpdateCubeHealth();
 
-        Debug.Log($"{name} took {amount} damage. HP: {_currentHealth}");
-
         StartCoroutine(DamageFeedback());
 
         if (_currentHealth <= 0)
@@ -114,7 +112,8 @@ public class CubeControl : MonoBehaviour
     private void Die()
     {
         Debug.Log(name + " died.");
-        IsSelectable = false;
+        PlaySound(6);
+        IsAlive = false;
         gameObject.SetActive(false);
     }
 

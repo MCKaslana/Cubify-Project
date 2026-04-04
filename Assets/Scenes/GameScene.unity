@@ -5295,7 +5295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatManager
   _actionDelay: 2
-  _reactionWindowDuration: 10
+  _reactionWindowDuration: 5
   playerMaxStamina: 5
   aiMaxStamina: 5
   _staminaBar: {fileID: 701611080}
@@ -5484,6 +5484,7 @@ MonoBehaviour:
   _attackAbility: {fileID: 11400000, guid: 4f21fbaaaac269f42905f3cbf6799c2c, type: 2}
   _swapAbility: {fileID: 11400000, guid: 3743f0512698c7642bf8730dee06425a, type: 2}
   _shrinkAbility: {fileID: 11400000, guid: de04b8a6581a0bc4ab5acd2505405c1d, type: 2}
+  _actionDelay: 2
 --- !u!114 &1201643064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7548,7 +7549,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reset
+  m_text: 'Reset
+
+    Selection'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 958a1b706de20bf4ea83784b69c42dcd, type: 2}
   m_sharedMaterial: {fileID: 6574806958761849447, guid: 958a1b706de20bf4ea83784b69c42dcd, type: 2}
@@ -7575,13 +7578,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 95
-  m_fontSizeBase: 95
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

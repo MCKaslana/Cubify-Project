@@ -66,8 +66,6 @@ public class AttackerState : ITurnState
 
         _isAIRunning = true;
         manager.StartCoroutine(AITurnRoutine());
-
-        manager.UseAttackerAction();
     }
 
     private IEnumerator AITurnRoutine()

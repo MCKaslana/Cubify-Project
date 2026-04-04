@@ -8,6 +8,8 @@ public class AttackAIController : MonoBehaviour
     [SerializeField] private AbilityCard _swapAbility;
     [SerializeField] private AbilityCard _shrinkAbility;
 
+    [SerializeField] private float _actionDelay = 2f;
+
     private List<IAIAttackAction> _actions = new();
 
     private void Awake()
@@ -43,10 +45,12 @@ public class AttackAIController : MonoBehaviour
                 continue;
 
             yield return action.Execute();
+            TurnManager.Instance.UseAttackerAction();
+            Debug.Log("Enemy Did action " + action);
 
             actionsUsed++;
 
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(_actionDelay);
         }
     }
 }

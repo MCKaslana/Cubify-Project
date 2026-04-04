@@ -8,8 +8,6 @@ public class ModifyAbility : AbilityCard
     {
         CubeControl cubeToModify = user;
 
-        Debug.Log($"{user.name} modifies itself!");
-
         yield return cubeToModify.MoveTo(cubeToModify.transform.position + Vector3.forward * 0.5f);
 
         user.PlaySound(3);

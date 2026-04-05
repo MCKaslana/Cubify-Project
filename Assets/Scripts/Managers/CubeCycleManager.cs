@@ -117,7 +117,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
         }
 
         SelectionManager.Instance.ResetSelection();
-        Reset();
+        ResetCubeSelection();
     }
 
     private bool IsSelfTargeting()
@@ -143,7 +143,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     {
         ClearHover();
         SelectionManager.Instance.ResetSelection();
-        Reset();
+        ResetCubeSelection();
         Debug.Log("Ability selection cancelled.");
     }
 
@@ -162,7 +162,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
         }
     }
 
-    private void Reset()
+    private void ResetCubeSelection()
     {
         _phase = Phase.None;
         _pendingAbility = null;

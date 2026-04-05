@@ -24,6 +24,7 @@ public class CubeControl : MonoBehaviour
     [Header("Visuals")]
     private HealthBar _healthBar;
     [SerializeField] private GameObject _attackedHighlight;
+    [SerializeField] private GameObject _hoverHighlight;
     [SerializeField] private float _highlightDuration = 0.5f;
 
     [SerializeField] private GameObject _cubeSmall;
@@ -239,6 +240,12 @@ public class CubeControl : MonoBehaviour
 
         if (_attackedHighlight != null)
             _attackedHighlight.SetActive(false);
+    }
+
+    public void SetHoverHighlight(bool active)
+    {
+        if (_hoverHighlight != null)
+            _hoverHighlight.SetActive(active);
     }
 
     #endregion

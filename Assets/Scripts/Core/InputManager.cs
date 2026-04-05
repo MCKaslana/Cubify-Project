@@ -12,6 +12,11 @@ public class InputManager : Singleton<InputManager>
     public event Action OnCameraForward;
     public event Action OnCameraBack;
 
+    public event Action OnCycleLeft;
+    public event Action OnCycleRight;
+    public event Action OnConfirmed;
+    public event Action OnGoBack;
+
     #endregion
 
     public override void Awake()
@@ -27,6 +32,10 @@ public class InputManager : Singleton<InputManager>
 
         p.CameraForward.performed += CameraForwardPerformed;
         p.CameraBackward.performed += CameraBackPerformed;
+        p.CycleLeft.performed += CycleLeftPerformed;
+        p.CycleRight.performed += CycleRightPerformed;
+        p.Confirmed.performed += ConfirmedPerformed;
+        p.GoBack.performed += GoBackPerformed;
 
         _inputActions.Enable();
     }
@@ -37,17 +46,29 @@ public class InputManager : Singleton<InputManager>
 
         p.CameraForward.performed -= CameraForwardPerformed;
         p.CameraBackward.performed -= CameraBackPerformed;
+        p.CycleLeft.performed -= CycleLeftPerformed;
+        p.CycleRight.performed -= CycleRightPerformed;
+        p.Confirmed.performed -= ConfirmedPerformed;
+        p.GoBack.performed -= GoBackPerformed;
 
         _inputActions.Disable();
     }
     
     private void CameraForwardPerformed(InputAction.CallbackContext ctx)
-    {
-        OnCameraForward?.Invoke();
-    }
+        => OnCameraForward?.Invoke();
 
     private void CameraBackPerformed(InputAction.CallbackContext ctx)
-    {
-        OnCameraBack?.Invoke();
-    }
+        => OnCameraBack?.Invoke();
+
+    private void CycleLeftPerformed(InputAction.CallbackContext ctx)
+        => OnCycleLeft?.Invoke();
+
+    private void CycleRightPerformed(InputAction.CallbackContext ctx)
+        => OnCycleRight?.Invoke();
+
+    private void ConfirmedPerformed(InputAction.CallbackContext ctx)
+        => OnConfirmed?.Invoke();
+
+    private void GoBackPerformed(InputAction.CallbackContext ctx)
+        => OnGoBack?.Invoke();
 }

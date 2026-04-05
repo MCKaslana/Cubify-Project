@@ -127,6 +127,42 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CycleLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d8fa9ae-3083-4372-a7ca-2e6b11cbee3f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CycleRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""d69e1da1-e71b-4061-8fbd-8c60f3dc7516"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GoBack"",
+                    ""type"": ""Button"",
+                    ""id"": ""761b7cdc-a1e4-4af9-a927-7cf99cfcbc83"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Confirmed"",
+                    ""type"": ""Button"",
+                    ""id"": ""51d7946a-5ca5-4135-b388-fe7d374e8af2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -314,6 +350,61 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CameraBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cebd5696-3385-4942-93af-f5d66612d086"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad35bf1f-8d25-4029-9a95-5960fbc76038"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c9f8bec-a1d9-4196-8899-45eb1b185372"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GoBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a35a672a-f6d1-4f5c-9e83-37be9fbc7224"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GoBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b9d964d-595b-49aa-896c-9552d25115ba"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirmed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -905,6 +996,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_CameraForward = m_Player.FindAction("CameraForward", throwIfNotFound: true);
         m_Player_CameraBackward = m_Player.FindAction("CameraBackward", throwIfNotFound: true);
+        m_Player_CycleLeft = m_Player.FindAction("CycleLeft", throwIfNotFound: true);
+        m_Player_CycleRight = m_Player.FindAction("CycleRight", throwIfNotFound: true);
+        m_Player_GoBack = m_Player.FindAction("GoBack", throwIfNotFound: true);
+        m_Player_Confirmed = m_Player.FindAction("Confirmed", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1002,6 +1097,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_CameraForward;
     private readonly InputAction m_Player_CameraBackward;
+    private readonly InputAction m_Player_CycleLeft;
+    private readonly InputAction m_Player_CycleRight;
+    private readonly InputAction m_Player_GoBack;
+    private readonly InputAction m_Player_Confirmed;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1029,6 +1128,22 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/CameraBackward".
         /// </summary>
         public InputAction @CameraBackward => m_Wrapper.m_Player_CameraBackward;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/CycleLeft".
+        /// </summary>
+        public InputAction @CycleLeft => m_Wrapper.m_Player_CycleLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/CycleRight".
+        /// </summary>
+        public InputAction @CycleRight => m_Wrapper.m_Player_CycleRight;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/GoBack".
+        /// </summary>
+        public InputAction @GoBack => m_Wrapper.m_Player_GoBack;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Confirmed".
+        /// </summary>
+        public InputAction @Confirmed => m_Wrapper.m_Player_Confirmed;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1067,6 +1182,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CameraBackward.started += instance.OnCameraBackward;
             @CameraBackward.performed += instance.OnCameraBackward;
             @CameraBackward.canceled += instance.OnCameraBackward;
+            @CycleLeft.started += instance.OnCycleLeft;
+            @CycleLeft.performed += instance.OnCycleLeft;
+            @CycleLeft.canceled += instance.OnCycleLeft;
+            @CycleRight.started += instance.OnCycleRight;
+            @CycleRight.performed += instance.OnCycleRight;
+            @CycleRight.canceled += instance.OnCycleRight;
+            @GoBack.started += instance.OnGoBack;
+            @GoBack.performed += instance.OnGoBack;
+            @GoBack.canceled += instance.OnGoBack;
+            @Confirmed.started += instance.OnConfirmed;
+            @Confirmed.performed += instance.OnConfirmed;
+            @Confirmed.canceled += instance.OnConfirmed;
         }
 
         /// <summary>
@@ -1090,6 +1217,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CameraBackward.started -= instance.OnCameraBackward;
             @CameraBackward.performed -= instance.OnCameraBackward;
             @CameraBackward.canceled -= instance.OnCameraBackward;
+            @CycleLeft.started -= instance.OnCycleLeft;
+            @CycleLeft.performed -= instance.OnCycleLeft;
+            @CycleLeft.canceled -= instance.OnCycleLeft;
+            @CycleRight.started -= instance.OnCycleRight;
+            @CycleRight.performed -= instance.OnCycleRight;
+            @CycleRight.canceled -= instance.OnCycleRight;
+            @GoBack.started -= instance.OnGoBack;
+            @GoBack.performed -= instance.OnGoBack;
+            @GoBack.canceled -= instance.OnGoBack;
+            @Confirmed.started -= instance.OnConfirmed;
+            @Confirmed.performed -= instance.OnConfirmed;
+            @Confirmed.canceled -= instance.OnConfirmed;
         }
 
         /// <summary>
@@ -1418,6 +1557,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCameraBackward(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CycleLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCycleLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CycleRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCycleRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "GoBack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnGoBack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Confirmed" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnConfirmed(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

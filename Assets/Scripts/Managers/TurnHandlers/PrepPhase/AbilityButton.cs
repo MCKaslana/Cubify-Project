@@ -15,60 +15,26 @@ public class AbilityButton : MonoBehaviour
 
     private void OnClicked()
     {
-        var ability = _ability;
-        var user = SelectionManager.Instance.CurrentUser;
-        var target = SelectionManager.Instance.CurrentTarget;
-
-        if (ability is InterruptAbility)
+        if (_ability is InterruptAbility)
         {
             var playerCubes = CubeSpawner.Instance.GetAllCubes();
 
             if (playerCubes.Count == 0) return;
 
-            user = playerCubes[0];
+            var user = playerCubes[0];
 
-            if (!ability.CanExecute(user, null))
-            {
-                Debug.Log("Cannot use Interrupt");
-                return;
-            }
+            if (!_ability.CanExecute(user, null)) return;
 
-            StartCoroutine(ability.Execute(user, null));
-
+            StartCoroutine(_ability.Execute(user, null));
             SelectionManager.Instance.ResetSelection();
             return;
         }
 
-        if (ability is RedirectAbility)
+        if (_ability is RedirectAbility)
         {
-            AbilityManager.Instance.StartRedirectAbility(ability);
+            AbilityManager.Instance.StartRedirectAbility(_ability);
         }
 
-        if (user == null || target == null)
-        {
-            Debug.Log("Select both a user and a target cube.");
-            return;
-        }
-
-        if (!ability.CanExecute(user, target))
-        {
-            Debug.Log("Cannot use ability on this target.");
-            return;
-        }
-
-        bool isAttackingPhase = TurnManager.Instance.IsAttackPhase();
-
-        if (isAttackingPhase)
-        {
-            CombatManager.Instance.QueueAbility(user, target, ability);
-            TurnManager.Instance.UseAttackerAction();
-        }
-        else
-        {
-            CombatManager.Instance.ExecuteAbility(user, target, ability);
-            PrepPhaseUIManager.Instance.NotifyAbilityUsed();
-        }
-
-        SelectionManager.Instance.ResetSelection();
+        CubeCycleManager.Instance.StartAbilityFlow(_ability);
     }
 }

@@ -84,30 +84,45 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
             _confirmedUser = _hoveredCube;
             SelectionManager.Instance.ResetSelection();
             SelectionManager.Instance.SelectCube(_confirmedUser);
+
+            if (IsSelfTargeting())
+            {
+                FireAbility(_confirmedUser, _confirmedUser);
+                return;
+            }
+
             EnterPhase(Phase.SelectingTarget);
         }
         else if (_phase == Phase.SelectingTarget)
         {
-            var target = _hoveredCube;
-            ClearHover();
-
-            SelectionManager.Instance.SelectCube(target);
-
-            bool isAttackPhase = TurnManager.Instance.IsAttackPhase();
-            if (isAttackPhase)
-            {
-                CombatManager.Instance.QueueAbility(_confirmedUser, target, _pendingAbility);
-                TurnManager.Instance.UseAttackerAction();
-            }
-            else
-            {
-                CombatManager.Instance.ExecuteAbility(_confirmedUser, target, _pendingAbility);
-                PrepPhaseUIManager.Instance.NotifyAbilityUsed();
-            }
-
-            SelectionManager.Instance.ResetSelection();
-            Reset();
+            FireAbility(_confirmedUser, _hoveredCube);
         }
+    }
+
+    private void FireAbility(CubeControl user, CubeControl target)
+    {
+        ClearHover();
+        SelectionManager.Instance.SelectCube(target);
+
+        bool isAttackPhase = TurnManager.Instance.IsAttackPhase();
+        if (isAttackPhase)
+        {
+            CombatManager.Instance.QueueAbility(user, target, _pendingAbility);
+            TurnManager.Instance.UseAttackerAction();
+        }
+        else
+        {
+            CombatManager.Instance.ExecuteAbility(user, target, _pendingAbility);
+            PrepPhaseUIManager.Instance.NotifyAbilityUsed();
+        }
+
+        SelectionManager.Instance.ResetSelection();
+        Reset();
+    }
+
+    private bool IsSelfTargeting()
+    {
+        return _pendingAbility.GetTargetType() == TargetType.Self;
     }
 
     private void GoBack()

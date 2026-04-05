@@ -24,6 +24,7 @@ public abstract class AbilityCard : ScriptableObject
 
     [Header("Targeting")]
     [SerializeField] private TargetType targetType = TargetType.Enemy;
+    public TargetType GetTargetType() => targetType;
     [SerializeField] private TargetingShape targetingShape = TargetingShape.Any;
 
     public virtual bool CanExecute(CubeControl user, CubeControl target)

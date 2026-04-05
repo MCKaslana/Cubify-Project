@@ -5402,7 +5402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   masterVolume: 0
-  sfxVolume: 1
+  sfxVolume: 0.7
   musicVolume: 1
   backgroundMusic: {fileID: 11400000, guid: f06cdd3206161a445a00a05d8954aaeb, type: 2}
 --- !u!114 &1201643055

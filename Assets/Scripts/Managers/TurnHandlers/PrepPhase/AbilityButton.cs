@@ -26,7 +26,6 @@ public class AbilityButton : MonoBehaviour
             if (!_ability.CanExecute(user, null)) return;
 
             StartCoroutine(_ability.Execute(user, null));
-            SelectionManager.Instance.ResetSelection();
             return;
         }
 

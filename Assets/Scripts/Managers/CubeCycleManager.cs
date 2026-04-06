@@ -82,8 +82,6 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
         if (_phase == Phase.SelectingUser)
         {
             _confirmedUser = _hoveredCube;
-            SelectionManager.Instance.ResetSelection();
-            SelectionManager.Instance.SelectCube(_confirmedUser);
 
             if (IsSelfTargeting())
             {
@@ -102,7 +100,6 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     private void FireAbility(CubeControl user, CubeControl target)
     {
         ClearHover();
-        SelectionManager.Instance.SelectCube(target);
 
         bool isAttackPhase = TurnManager.Instance.IsAttackPhase();
         if (isAttackPhase)
@@ -116,7 +113,6 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
             PrepPhaseUIManager.Instance.NotifyAbilityUsed();
         }
 
-        SelectionManager.Instance.ResetSelection();
         ResetCubeSelection();
     }
 
@@ -129,7 +125,6 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     {
         if (_phase == Phase.SelectingTarget)
         {
-            SelectionManager.Instance.ResetSelection();
             _confirmedUser = null;
             EnterPhase(Phase.SelectingUser);
         }
@@ -142,7 +137,6 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     private void Cancel()
     {
         ClearHover();
-        SelectionManager.Instance.ResetSelection();
         ResetCubeSelection();
         Debug.Log("Ability selection cancelled.");
     }

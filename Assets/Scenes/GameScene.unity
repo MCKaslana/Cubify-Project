@@ -4559,7 +4559,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1201643061}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SelectionManager, Assembly-CSharp
         m_MethodName: ResetSelection
         m_Mode: 1
@@ -5315,7 +5315,6 @@ GameObject:
   - component: {fileID: 1201643057}
   - component: {fileID: 1201643056}
   - component: {fileID: 1201643060}
-  - component: {fileID: 1201643061}
   - component: {fileID: 1201643062}
   - component: {fileID: 1201643063}
   - component: {fileID: 1201643064}
@@ -5487,18 +5486,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9334082b0129b49b7588264a250f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PrepPhaseUIManager
---- !u!114 &1201643061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201643049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8bd25771775ca42aef7979e2db1360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SelectionManager
 --- !u!114 &1201643062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8042,7 +8029,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1201643061}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SelectionManager, Assembly-CSharp
         m_MethodName: ResetSelection
         m_Mode: 1

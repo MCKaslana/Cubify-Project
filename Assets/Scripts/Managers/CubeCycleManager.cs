@@ -40,12 +40,13 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
         InputManager.Instance.OnConfirmed -= Confirm;
         InputManager.Instance.OnGoBack -= GoBack;
 
-        _selectionInformation.SetActive(false);
+        if (_selectionInformation != null)
+            _selectionInformation.SetActive(false);
     }
 
     private void InitializeInformation()
     {
-        _selectionInformation.SetActive(true);
+        _selectionInformation.SetActive(false);
         _pendingAbilityName.text = "Ability In Use: None";
         _userConfirmed.SetActive(false);
         _targetConfirmed.SetActive(false);
@@ -141,6 +142,8 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
         }
 
         _selectionInformation.SetActive(false);
+        _userConfirmed.SetActive(false);
+        _targetConfirmed.SetActive(false);
         ResetCubeSelection();
     }
 

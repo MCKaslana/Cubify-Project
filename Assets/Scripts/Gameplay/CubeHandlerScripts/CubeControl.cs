@@ -176,9 +176,6 @@ public class CubeControl : MonoBehaviour
         {
             _team = otherTeam;
             other._team = myTeam;
-
-            Debug.Log($"{name} is now on {_team} team");
-            Debug.Log($"{other.name} is now on {other._team} team");
         }
 
         _isBusy = false;

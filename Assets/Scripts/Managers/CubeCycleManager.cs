@@ -1,8 +1,17 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CubeCycleManager : Singleton<CubeCycleManager>
 {
+    [Header("Visual Feedback Elements")]
+    [SerializeField] private GameObject _selectionInformation;
+    [SerializeField] private TextMeshProUGUI _pendingAbilityName;
+
+    [SerializeField] private GameObject _userConfirmed;
+    [SerializeField] private GameObject _targetConfirmed;
+
     private enum Phase { None, SelectingUser, SelectingTarget }
 
     private Phase _phase = Phase.None;
@@ -20,6 +29,8 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
         InputManager.Instance.OnCycleRight += () => Cycle(1);
         InputManager.Instance.OnConfirmed += Confirm;
         InputManager.Instance.OnGoBack += GoBack;
+
+        InitializeInformation();
     }
 
     private void OnDisable()
@@ -28,12 +39,27 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
         InputManager.Instance.OnCycleRight -= () => Cycle(1);
         InputManager.Instance.OnConfirmed -= Confirm;
         InputManager.Instance.OnGoBack -= GoBack;
+
+        if (_selectionInformation != null)
+            _selectionInformation.SetActive(false);
+    }
+
+    private void InitializeInformation()
+    {
+        _selectionInformation.SetActive(false);
+        _pendingAbilityName.text = "Ability In Use: None";
+        _userConfirmed.SetActive(false);
+        _targetConfirmed.SetActive(false);
     }
 
     public void StartAbilityFlow(AbilityCard ability)
     {
         _pendingAbility = ability;
+        _pendingAbilityName.text = "Ability In Use: " + ability.abilityName;
+        _selectionInformation.SetActive(true);
+        Debug.Log($"Starting ability flow for {ability.abilityName}");
         _confirmedUser = null;
+        EventSystem.current.SetSelectedGameObject(null);
         EnterPhase(Phase.SelectingUser);
     }
 
@@ -69,7 +95,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
 
     private void Cycle(int direction)
     {
-        if (_candidates.Count == 0) return;
+        if (_phase == Phase.None || _candidates.Count == 0) return;
         ClearHover();
         _index = (_index + direction + _candidates.Count) % _candidates.Count;
         HoverCube(_candidates[_index]);
@@ -77,17 +103,17 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
 
     private void Confirm()
     {
-        if (_hoveredCube == null) return;
+        if (_phase == Phase.None || _hoveredCube == null) return;
 
         if (_phase == Phase.SelectingUser)
         {
             _confirmedUser = _hoveredCube;
-            SelectionManager.Instance.ResetSelection();
-            SelectionManager.Instance.SelectCube(_confirmedUser);
+            _userConfirmed.SetActive(true);
 
             if (IsSelfTargeting())
             {
                 FireAbility(_confirmedUser, _confirmedUser);
+                _targetConfirmed.SetActive(true);
                 return;
             }
 
@@ -102,7 +128,6 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     private void FireAbility(CubeControl user, CubeControl target)
     {
         ClearHover();
-        SelectionManager.Instance.SelectCube(target);
 
         bool isAttackPhase = TurnManager.Instance.IsAttackPhase();
         if (isAttackPhase)
@@ -116,7 +141,9 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
             PrepPhaseUIManager.Instance.NotifyAbilityUsed();
         }
 
-        SelectionManager.Instance.ResetSelection();
+        _selectionInformation.SetActive(false);
+        _userConfirmed.SetActive(false);
+        _targetConfirmed.SetActive(false);
         ResetCubeSelection();
     }
 
@@ -127,14 +154,17 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
 
     private void GoBack()
     {
+        if (_phase == Phase.None) return;
+
         if (_phase == Phase.SelectingTarget)
         {
-            SelectionManager.Instance.ResetSelection();
+            _targetConfirmed.SetActive(false);
             _confirmedUser = null;
             EnterPhase(Phase.SelectingUser);
         }
         else if (_phase == Phase.SelectingUser)
         {
+            _userConfirmed.SetActive(false);
             Cancel();
         }
     }
@@ -142,7 +172,6 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     private void Cancel()
     {
         ClearHover();
-        SelectionManager.Instance.ResetSelection();
         ResetCubeSelection();
         Debug.Log("Ability selection cancelled.");
     }
@@ -165,6 +194,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     private void ResetCubeSelection()
     {
         _phase = Phase.None;
+        _selectionInformation.SetActive(false);
         _pendingAbility = null;
         _confirmedUser = null;
         _candidates.Clear();

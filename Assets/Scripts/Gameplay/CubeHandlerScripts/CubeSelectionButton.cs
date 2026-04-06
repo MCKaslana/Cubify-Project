@@ -48,7 +48,5 @@ public class CubeSelectionButton : MonoBehaviour
             AbilityManager.Instance.ClearRedirectMode();
             return;
         }
-
-        SelectionManager.Instance.SelectCube(cube);
     }
 }

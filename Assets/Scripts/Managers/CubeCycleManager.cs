@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CubeCycleManager : Singleton<CubeCycleManager>
 {
@@ -33,7 +34,9 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     public void StartAbilityFlow(AbilityCard ability)
     {
         _pendingAbility = ability;
+        Debug.Log($"Starting ability flow for {ability.abilityName}");
         _confirmedUser = null;
+        EventSystem.current.SetSelectedGameObject(null);
         EnterPhase(Phase.SelectingUser);
     }
 
@@ -69,7 +72,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
 
     private void Cycle(int direction)
     {
-        if (_candidates.Count == 0) return;
+        if (_phase == Phase.None || _candidates.Count == 0) return;
         ClearHover();
         _index = (_index + direction + _candidates.Count) % _candidates.Count;
         HoverCube(_candidates[_index]);
@@ -77,7 +80,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
 
     private void Confirm()
     {
-        if (_hoveredCube == null) return;
+        if (_phase == Phase.None || _hoveredCube == null) return;
 
         if (_phase == Phase.SelectingUser)
         {
@@ -123,6 +126,8 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
 
     private void GoBack()
     {
+        if (_phase == Phase.None) return;
+
         if (_phase == Phase.SelectingTarget)
         {
             _confirmedUser = null;

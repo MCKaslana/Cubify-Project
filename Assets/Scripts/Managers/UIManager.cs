@@ -1,13 +1,17 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using System;
 
 public class UIManager : Singleton<UIManager>
 {
+    public event Action OnNextRoundActivated;
+
     [Header("Phase UIs")]
     [SerializeField] private GameObject _setupUI;
     [SerializeField] private GameObject _prepUI;
     [SerializeField] private GameObject _attackUI;
+    [SerializeField] private GameObject _endUI;
 
     [Header("Phase transition indicatiors")]
     [SerializeField] private GameObject _setupIndicator;
@@ -32,6 +36,11 @@ public class UIManager : Singleton<UIManager>
         CombatManager.Instance.OnReactionWindowStart -= ShowReactionUI;
         CombatManager.Instance.OnReactionWindowEnd -= HideReactionUI;
         PointManager.Instance.OnPointsChanged -= UpdatePointAmount;
+    }
+
+    public void ActivateNextRound()
+    {
+        OnNextRoundActivated?.Invoke();
     }
 
     private void UpdatePointAmount(int amount)
@@ -84,6 +93,18 @@ public class UIManager : Singleton<UIManager>
         else
         {
             Debug.LogWarning("Attack UI GameObject is not assigned in the inspector.");
+        }
+    }
+
+    public void ShowEndUI(bool enable)
+    {
+        if (_endUI != null)
+        {
+            _endUI.SetActive(enable);
+        }
+        else
+        {
+            Debug.LogWarning("End UI GameObject is not assigned in the inspector.");
         }
     }
 

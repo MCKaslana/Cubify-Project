@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -14,6 +15,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _battleIndicator;
     [SerializeField] private GameObject _endIndicator;
 
+    [SerializeField] private TextMeshProUGUI _pointAmount;
+
     [Header("Reaction Window")]
     [SerializeField] private GameObject _reactionUI;
 
@@ -21,18 +24,23 @@ public class UIManager : Singleton<UIManager>
     {
         CombatManager.Instance.OnReactionWindowStart += ShowReactionUI;
         CombatManager.Instance.OnReactionWindowEnd += HideReactionUI;
+        PointManager.Instance.OnPointsChanged += UpdatePointAmount;
     }
 
     private void OnDisable()
     {
         CombatManager.Instance.OnReactionWindowStart -= ShowReactionUI;
         CombatManager.Instance.OnReactionWindowEnd -= HideReactionUI;
+        PointManager.Instance.OnPointsChanged -= UpdatePointAmount;
+    }
+
+    private void UpdatePointAmount(int amount)
+    {
+        _pointAmount.text = "Points: " + amount;
     }
 
     private void ShowReactionUI(CubeControl target)
     {
-        Debug.Log("REACTION WINDOW OPEN");
-
         target.Highlight();
 
         _reactionUI.SetActive(true);
@@ -40,8 +48,6 @@ public class UIManager : Singleton<UIManager>
 
     private void HideReactionUI()
     {
-        Debug.Log("REACTION WINDOW CLOSED");
-
         _reactionUI.SetActive(false);
     }
 

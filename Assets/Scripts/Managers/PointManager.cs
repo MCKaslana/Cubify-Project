@@ -1,18 +1,28 @@
+using System;
 using UnityEngine;
 
 public class PointManager : Singleton<PointManager>
 {
+    public event Action<int> OnPointsChanged;
+
     [Header("Point Settings")]
     [SerializeField] private int _basePointsPerAction = 10;
     [SerializeField] private float _pointMultiplier = 1.0f;
 
     private int _points;
 
+    public override void Awake()
+    {
+        base.Awake();
+
+        ResetPoints();
+    }
+
     public void AddPoints(int amount)
     {
         _points += amount;
 
-        //Update UI
+        OnPointsChanged?.Invoke(_points);
     }
 
     public void SpendPoints(int amount)
@@ -24,7 +34,14 @@ public class PointManager : Singleton<PointManager>
         }
 
         _points -= amount;
+        OnPointsChanged?.Invoke(_points);
         //Update UI
+    }
+
+    public void ResetPoints()
+    {
+        _points = 0;
+        OnPointsChanged?.Invoke(_points);
     }
 
     public int CalculatePointGain(CubeControl attacker, CubeControl defender)

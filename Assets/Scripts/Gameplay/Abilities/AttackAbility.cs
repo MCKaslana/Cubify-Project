@@ -14,6 +14,12 @@ public class AttackAbility : AbilityCard
         Debug.Log("used attack ability");
         target.TakeDamage(DamageCalculator.CalculateDamage(user, target));
 
+        if (user.GetTeam() == Team.Player)
+        {
+            int score = PointManager.Instance.CalculatePointGain(user, target);
+            PointManager.Instance.AddPoints(score);
+        }
+
         yield return new WaitForSeconds(0.5f); // Short delay after attack
         yield return user.ReturnToOriginalPosition();
     }

@@ -16,6 +16,12 @@ public class AbilityButton : MonoBehaviour
 
     private void OnClicked()
     {
+        //if (!PlayerAbilityInventory.Instance.HasAbility(_ability))
+        //{
+        //    Debug.Log("No ability to use");
+        //    return;
+        //}
+
         if (_ability is InterruptAbility)
         {
             var playerCubes = CubeSpawner.Instance.GetAllCubes();

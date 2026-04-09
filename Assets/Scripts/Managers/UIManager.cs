@@ -1,18 +1,25 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
+using System;
 
 public class UIManager : Singleton<UIManager>
 {
+    public event Action OnNextRoundActivated;
+
     [Header("Phase UIs")]
     [SerializeField] private GameObject _setupUI;
     [SerializeField] private GameObject _prepUI;
     [SerializeField] private GameObject _attackUI;
+    [SerializeField] private GameObject _endUI;
 
     [Header("Phase transition indicatiors")]
     [SerializeField] private GameObject _setupIndicator;
     [SerializeField] private GameObject _prepIndicator;
     [SerializeField] private GameObject _battleIndicator;
     [SerializeField] private GameObject _endIndicator;
+
+    [SerializeField] private TextMeshProUGUI _pointAmount;
 
     [Header("Reaction Window")]
     [SerializeField] private GameObject _reactionUI;
@@ -21,18 +28,28 @@ public class UIManager : Singleton<UIManager>
     {
         CombatManager.Instance.OnReactionWindowStart += ShowReactionUI;
         CombatManager.Instance.OnReactionWindowEnd += HideReactionUI;
+        PointManager.Instance.OnPointsChanged += UpdatePointAmount;
     }
 
     private void OnDisable()
     {
         CombatManager.Instance.OnReactionWindowStart -= ShowReactionUI;
         CombatManager.Instance.OnReactionWindowEnd -= HideReactionUI;
+        PointManager.Instance.OnPointsChanged -= UpdatePointAmount;
+    }
+
+    public void ActivateNextRound()
+    {
+        OnNextRoundActivated?.Invoke();
+    }
+
+    private void UpdatePointAmount(int amount)
+    {
+        _pointAmount.text = "Points: " + amount;
     }
 
     private void ShowReactionUI(CubeControl target)
     {
-        Debug.Log("REACTION WINDOW OPEN");
-
         target.Highlight();
 
         _reactionUI.SetActive(true);
@@ -40,8 +57,6 @@ public class UIManager : Singleton<UIManager>
 
     private void HideReactionUI()
     {
-        Debug.Log("REACTION WINDOW CLOSED");
-
         _reactionUI.SetActive(false);
     }
 
@@ -78,6 +93,18 @@ public class UIManager : Singleton<UIManager>
         else
         {
             Debug.LogWarning("Attack UI GameObject is not assigned in the inspector.");
+        }
+    }
+
+    public void ShowEndUI(bool enable)
+    {
+        if (_endUI != null)
+        {
+            _endUI.SetActive(enable);
+        }
+        else
+        {
+            Debug.LogWarning("End UI GameObject is not assigned in the inspector.");
         }
     }
 

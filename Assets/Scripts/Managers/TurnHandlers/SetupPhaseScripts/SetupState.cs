@@ -19,8 +19,6 @@ public class SetupState : ITurnState
 
         CubePlacement.Instance.OnCubesPlaced += HandlePlacementComplete;
         CubePlacement.Instance.StartPlacement();
-
-        CubePlacement.Instance.StartPlacement();
     }
 
     public void HandlePlacementComplete()

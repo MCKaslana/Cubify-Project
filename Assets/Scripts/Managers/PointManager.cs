@@ -10,6 +10,7 @@ public class PointManager : Singleton<PointManager>
     [SerializeField] private float _pointMultiplier = 1.0f;
 
     private int _points;
+    public int GetScore() => _points;
 
     public override void Awake()
     {
@@ -35,7 +36,6 @@ public class PointManager : Singleton<PointManager>
 
         _points -= amount;
         OnPointsChanged?.Invoke(_points);
-        //Update UI
     }
 
     public void ResetPoints()

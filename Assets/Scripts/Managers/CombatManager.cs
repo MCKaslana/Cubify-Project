@@ -11,6 +11,7 @@ public class CombatManager : Singleton<CombatManager>
 
     public Action<CubeControl> OnReactionWindowStart;
     public Action OnReactionWindowEnd;
+    private List<TemporaryEffectHandler> _activeEffects = new();
 
     [Header("Combat Settings")]
     [SerializeField] private float _actionDelay = 2f;
@@ -261,26 +262,6 @@ public class CombatManager : Singleton<CombatManager>
 
     #endregion
 
-    #region --- Temporary Effects ---
-
-    public void ApplyTemporaryScale(CubeControl target, float scale, int turns)
-    {
-        if (target == null) return;
-
-        target.IncreaseSize();
-        StartCoroutine(RemoveScaleAfterTurns(target, scale, turns));
-    }
-
-    private IEnumerator RemoveScaleAfterTurns(CubeControl target, float scale, int turns)
-    {
-        yield return new WaitForSeconds(turns * 2f);
-
-        if (target != null)
-            target.DecreaseSize();
-    }
-
-    #endregion
-
     #region --- Action Queue ---
 
     public void QueueAbility(CubeControl user, CubeControl target, AbilityCard ability)
@@ -311,6 +292,26 @@ public class CombatManager : Singleton<CombatManager>
         }
 
         _isProcessingQueue = false;
+    }
+
+    #endregion
+
+    #region --- Temporary Effects ---
+
+    public void RegisterTemporaryEffect(TemporaryEffectHandler effect)
+    {
+        _activeEffects.Add(effect);
+    }
+
+    public void TickEffects()
+    {
+        for (int i = _activeEffects.Count - 1; i >= 0; i--)
+        {
+            _activeEffects[i].TickDown();
+
+            if (_activeEffects[i].IsExpired())
+                _activeEffects.RemoveAt(i);
+        }
     }
 
     #endregion

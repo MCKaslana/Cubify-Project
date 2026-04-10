@@ -4,7 +4,8 @@ public enum CubeSize
 {
     Small = 0,
     Medium = 1,
-    Large = 2
+    Large = 2,
+    SuperLarge = 3
 }
 
 [CreateAssetMenu(fileName = "CubeData", menuName = "Scriptable Objects/CubeData")]

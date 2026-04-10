@@ -42,6 +42,7 @@ public class CubeControl : MonoBehaviour
     [SerializeField] private float _moveSpeed = 6f;
 
     private bool _isBusy = false;
+    private bool _hasTemporarySizeIncrease = false;
 
     private void Awake()
     {
@@ -206,6 +207,28 @@ public class CubeControl : MonoBehaviour
 
         _currentSize = (CubeSize)Mathf.Clamp((int)_currentSize - 1, 0, 2);
         
+        UpdateVisuals();
+    }
+
+    //Temporary Size Increase
+    public void TemporarySizeIncrease()
+    {
+        if (_hasTemporarySizeIncrease || _currentSize != CubeSize.Large) return;
+
+        _currentSize = CubeSize.SuperLarge;
+        _hasTemporarySizeIncrease = true;
+
+        _cubeSuperLarge.SetActive(true);
+
+        UpdateVisuals();
+    }
+
+    public void ResetTemporarySizeIncrease()
+    {
+        if (!_hasTemporarySizeIncrease) return;
+        _currentSize = CubeSize.Large;
+        _hasTemporarySizeIncrease = false;
+        _cubeSuperLarge.SetActive(false);
         UpdateVisuals();
     }
 

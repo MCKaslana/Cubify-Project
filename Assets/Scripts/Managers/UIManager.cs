@@ -24,7 +24,7 @@ public class UIManager : Singleton<UIManager>
     [Header("Reaction Window")]
     [SerializeField] private GameObject _reactionUI;
 
-    private void OnEnable()
+    private void Start()
     {
         CombatManager.Instance.OnReactionWindowStart += ShowReactionUI;
         CombatManager.Instance.OnReactionWindowEnd += HideReactionUI;

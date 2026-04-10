@@ -12,12 +12,7 @@ public class PointManager : Singleton<PointManager>
     private int _points;
     public int GetScore() => _points;
 
-    public override void Awake()
-    {
-        base.Awake();
-
-        ResetPoints();
-    }
+    private void Start() => ResetPoints();
 
     public void AddPoints(int amount)
     {

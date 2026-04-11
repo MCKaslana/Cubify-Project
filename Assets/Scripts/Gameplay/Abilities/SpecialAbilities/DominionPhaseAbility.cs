@@ -1,28 +1,22 @@
 using UnityEngine;
 using System.Collections;
 
-[CreateAssetMenu(menuName = "Combat/Abilities/Super Big Cube")]
-public class SuperBigCubeAbility : AbilityCard
+[CreateAssetMenu(menuName = "Combat/Abilities/DominionPhase")]
+public class DominionPhaseAbility : AbilityCard
 {
-    public int durationAmount = 3;
+    public int freeUses = 2;
 
     public override bool CanExecute(CubeControl user, CubeControl target)
     {
-        if (!base.CanExecute(user, target))
-            return false;
-        return target != null;
+        return base.CanExecute(user, target);
     }
 
     public override IEnumerator Execute(CubeControl user, CubeControl target)
     {
-        if (target == null) yield break;
-
         CombatManager.Instance.SpendStamina(user.GetTeam(), staminaCost);
 
-        //Play SuperBigCube sound effect
-
         CombatManager.Instance.AddTimedEffect(
-            new SuperBigCube(target, durationAmount)
+            new DominionPhase(user.GetTeam(), freeUses)
         );
 
         yield return null;

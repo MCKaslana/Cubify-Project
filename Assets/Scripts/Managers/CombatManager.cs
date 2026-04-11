@@ -11,7 +11,7 @@ public class CombatManager : Singleton<CombatManager>
 
     public Action<CubeControl> OnReactionWindowStart;
     public Action OnReactionWindowEnd;
-    private List<TemporaryEffectHandler> _activeEffects = new();
+    private List<TimedEffect> _activeEffects = new();
 
     [Header("Combat Settings")]
     [SerializeField] private float _actionDelay = 2f;
@@ -56,6 +56,20 @@ public class CombatManager : Singleton<CombatManager>
 
     public void SpendStamina(Team team, int cost)
     {
+        var dominion = GetEffect<DominionPhase>(team);
+
+        if (dominion != null)
+        {
+            bool finished = dominion.TryConsume();
+
+            if (finished)
+                RemoveEffect(dominion);
+
+            Debug.Log("No Stamina Used | dominion active");
+
+            return;
+        }
+
         if (team == Team.Player)
             _playerStamina -= cost;
         else
@@ -298,20 +312,43 @@ public class CombatManager : Singleton<CombatManager>
 
     #region --- Temporary Effects ---
 
-    public void RegisterTemporaryEffect(TemporaryEffectHandler effect)
+    public void AddTimedEffect(TimedEffect effect)
     {
+        if (effect == null) return;
+
         _activeEffects.Add(effect);
+        effect.ApplyEffect();
+    }
+
+    public void RemoveEffect(TimedEffect effect)
+    {
+        if (effect == null) return;
+
+        effect.OnExpire();
+        _activeEffects.Remove(effect);
     }
 
     public void TickEffects()
     {
         for (int i = _activeEffects.Count - 1; i >= 0; i--)
         {
-            _activeEffects[i].TickDown();
-
+            _activeEffects[i].Tick();
             if (_activeEffects[i].IsExpired())
-                _activeEffects.RemoveAt(i);
+            {
+                RemoveEffect(_activeEffects[i]);
+            }
         }
+    }
+
+    public T GetEffect<T>(Team team) where T : TimedEffect
+    {
+        foreach(var effect in _activeEffects)
+        {
+            if (effect is T typed && effect.Team == team)
+                return typed;
+        }
+
+        return null;
     }
 
     #endregion

@@ -16,6 +16,7 @@ public class EndState : ITurnState
 
         CombatManager.Instance.RestoreStamina(1);
         CombatManager.Instance.ClearRedirects();
+        CombatManager.Instance.TickEffects();
 
         UIManager.Instance.ShowEndUI(true);
 

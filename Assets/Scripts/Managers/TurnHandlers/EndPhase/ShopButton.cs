@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ShopButton : MonoBehaviour
+public class ShopButton : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] private ShopItem _shopItem;
 
@@ -20,6 +21,15 @@ public class ShopButton : MonoBehaviour
 
     private void OnButtonClicked()
     {
+        CardInfoDisplay.Instance.ShowCard(_shopItem);
+
         ShopManager.Instance.BuyAbility(_shopItem.AbilityCard, _shopItem.Cost);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        CardInfoDisplay.Instance.ShowCard(_shopItem);
+
+        CardDeckDisplay.Instance.ShowCard(_shopItem);
     }
 }

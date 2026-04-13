@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6255b59831bff43bca5db57c02028b, type: 3}
   m_Name: Shrink
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
-  AbilityCard: {fileID: 0}
+  AbilityCard: {fileID: 11400000, guid: de04b8a6581a0bc4ab5acd2505405c1d, type: 2}
   Cost: 0

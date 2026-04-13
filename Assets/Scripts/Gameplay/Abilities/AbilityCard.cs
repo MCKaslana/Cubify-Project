@@ -21,6 +21,7 @@ public abstract class AbilityCard : ScriptableObject
 {
     public string abilityName;
     public int staminaCost;
+    public Sprite Icon;
 
     [Header("Targeting")]
     [SerializeField] private TargetType targetType = TargetType.Enemy;

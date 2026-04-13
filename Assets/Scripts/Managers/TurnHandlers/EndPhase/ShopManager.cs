@@ -36,6 +36,13 @@ public class ShopManager : Singleton<ShopManager>
     public void EnterShop()
     {
         _shopUI.SetActive(true);
+
+        var cards = _shopUI.GetComponentsInChildren<ShopCardAnimation>();
+
+        foreach ( var card in cards)
+        {
+            card.AnimateIn();
+        }
     }
 
     public void ExitShop()

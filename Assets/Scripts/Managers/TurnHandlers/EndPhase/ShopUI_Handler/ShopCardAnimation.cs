@@ -7,14 +7,6 @@ public class ShopCardAnimation : MonoBehaviour
 
     private Vector3 _startPos;
 
-    private void Awake()
-    {
-        _startPos = transform.localPosition;
-
-        transform.localPosition += new Vector3(0, -200f, 0);
-        transform.localScale = Vector3.zero;
-    }
-
     private void OnEnable()
     {
         AnimateIn();
@@ -22,10 +14,14 @@ public class ShopCardAnimation : MonoBehaviour
 
     public void AnimateIn()
     {
-        transform.DOScale(1f, _duration).SetEase(Ease.OutBack).SetDelay(_delay);
-        
-        transform.DOLocalMoveY(_startPos.y, _duration)
-            .SetEase(Ease.OutCubic)
-            .SetDelay(_delay);
+        transform.DOKill();
+
+        _startPos = transform.localPosition;
+
+        transform.localPosition = _startPos + new Vector3(0, -200f, 0);
+
+        transform.DOLocalMoveY(_startPos.y, _duration).SetEase(Ease.OutCubic).SetDelay(_delay);
+
     }
+
 }

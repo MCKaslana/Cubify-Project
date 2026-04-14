@@ -883,6 +883,7 @@ GameObject:
   - component: {fileID: 121940059}
   - component: {fileID: 121940058}
   - component: {fileID: 121940057}
+  - component: {fileID: 121940060}
   m_Layer: 5
   m_Name: ModifyResize_Card
   m_TagString: Untagged
@@ -991,6 +992,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121940055}
   m_CullTransparentMesh: 1
+--- !u!114 &121940060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121940055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d3b4d534629e547bb3d1126d809755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopButton
+  _shopItem: {fileID: 11400000, guid: ee3c59bf22276854a8eb0dc301b1ca4e, type: 2}
 --- !u!1 &152659327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,6 +1229,7 @@ GameObject:
   - component: {fileID: 254806804}
   - component: {fileID: 254806803}
   - component: {fileID: 254806802}
+  - component: {fileID: 254806805}
   m_Layer: 5
   m_Name: ModifySwitch_Card
   m_TagString: Untagged
@@ -1323,6 +1338,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254806799}
   m_CullTransparentMesh: 1
+--- !u!114 &254806805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254806799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d3b4d534629e547bb3d1126d809755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopButton
+  _shopItem: {fileID: 11400000, guid: 02534af97d7cbd8448fcee81cea7d527, type: 2}
 --- !u!1 &264554679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,7 +1713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &322194127
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2197,6 +2225,7 @@ GameObject:
   - component: {fileID: 367238267}
   - component: {fileID: 367238266}
   - component: {fileID: 367238265}
+  - component: {fileID: 367238268}
   m_Layer: 5
   m_Name: Redirect_Card
   m_TagString: Untagged
@@ -2305,6 +2334,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367238263}
   m_CullTransparentMesh: 1
+--- !u!114 &367238268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367238263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d3b4d534629e547bb3d1126d809755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopButton
+  _shopItem: {fileID: 11400000, guid: 9f0dbedaf6cf8dc4599cfd117f3bfa6e, type: 2}
 --- !u!1 &375569016
 GameObject:
   m_ObjectHideFlags: 0
@@ -3986,6 +4028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopDeckSwitcher
   _prepDeck: {fileID: 874668645}
   _battleDeck: {fileID: 322194126}
+  _speciaDeck: {fileID: 0}
 --- !u!1 &556339335
 GameObject:
   m_ObjectHideFlags: 0
@@ -4134,6 +4177,7 @@ GameObject:
   - component: {fileID: 642729183}
   - component: {fileID: 642729182}
   - component: {fileID: 642729181}
+  - component: {fileID: 642729184}
   m_Layer: 5
   m_Name: Interrupt_Card
   m_TagString: Untagged
@@ -4242,6 +4286,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642729179}
   m_CullTransparentMesh: 1
+--- !u!114 &642729184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642729179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d3b4d534629e547bb3d1126d809755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopButton
+  _shopItem: {fileID: 11400000, guid: 85f4059420382a5499c054a372ea3c32, type: 2}
 --- !u!1 &684525494
 GameObject:
   m_ObjectHideFlags: 0
@@ -8298,6 +8355,7 @@ GameObject:
   - component: {fileID: 1333900925}
   - component: {fileID: 1333900924}
   - component: {fileID: 1333900923}
+  - component: {fileID: 1333900926}
   m_Layer: 5
   m_Name: Swap_Card
   m_TagString: Untagged
@@ -8406,6 +8464,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333900921}
   m_CullTransparentMesh: 1
+--- !u!114 &1333900926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333900921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d3b4d534629e547bb3d1126d809755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopButton
+  _shopItem: {fileID: 11400000, guid: ca71d2c57a6560346a9677051e0d1c5e, type: 2}
 --- !u!1 &1337814743
 GameObject:
   m_ObjectHideFlags: 0
@@ -10693,6 +10764,7 @@ GameObject:
   - component: {fileID: 1861148354}
   - component: {fileID: 1861148353}
   - component: {fileID: 1861148352}
+  - component: {fileID: 1861148355}
   m_Layer: 5
   m_Name: Shrink_Card
   m_TagString: Untagged
@@ -10801,6 +10873,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861148350}
   m_CullTransparentMesh: 1
+--- !u!114 &1861148355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861148350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d3b4d534629e547bb3d1126d809755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopButton
+  _shopItem: {fileID: 11400000, guid: 9b89d66209c1fca49be04785d3b1390c, type: 2}
 --- !u!4 &1863733382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8229943077064351175, guid: a1640e2f5d79a77438cdaf8c1c23062e, type: 3}

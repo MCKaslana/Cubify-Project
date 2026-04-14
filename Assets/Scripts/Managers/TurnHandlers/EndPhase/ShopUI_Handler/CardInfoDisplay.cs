@@ -12,29 +12,28 @@ public class CardInfoDisplay : Singleton<CardInfoDisplay>
 
     [Header("Animation")]
     [SerializeField] private CanvasGroup _canvasGroup;
-    [SerializeField] private RectTransform _panel;
+    
 
     public void ShowCard(ShopItem item)
     {
         _nameText.text = item.AbilityCard.name;
         _costText.text = "Cost: " + item.Cost;
-        _descriptionImage.sprite = item.AbilityCard.Icon;
+        _descriptionImage.sprite = item.CardBack;
 
         _canvasGroup.alpha = 0;
-        _panel.anchoredPosition += new Vector2(50f, 0);
+    
 
         _canvasGroup.DOFade(1, 0.3f);
-        _panel.DOAnchorPosX(_panel.anchoredPosition.x - 50f, 0.3f)
-            .SetEase(Ease.OutCubic);
+  
     }
 
     public void ShowCardSprite(ShopItem item)
     {
-        Image deckImage = item.CardBack;
-        deckImage.sprite = item.AbilityCard.Icon;
+        //Image deckImage = item.CardBack;
+        //deckImage.sprite = item.AbilityCard.Icon;
 
-        deckImage.DOFade(1, 0.3f);
-        deckImage.transform.DOScale(1f, 0.4f)
-            .SetEase(Ease.OutBack);
+        //deckImage.DOFade(1, 0.3f);
+        //deckImage.transform.DOScale(1f, 0.4f)
+        //    .SetEase(Ease.OutBack);
     }
 }

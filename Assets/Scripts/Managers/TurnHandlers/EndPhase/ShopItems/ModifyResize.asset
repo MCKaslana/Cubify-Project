@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ModifyResize
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   AbilityCard: {fileID: 11400000, guid: e886f871f1ce8bb409b48c59a3ac915b, type: 2}
+  CardBack: {fileID: 21300000, guid: e4bd83bd1fd82ea45a8c624627b2abf6, type: 3}
   Cost: 0

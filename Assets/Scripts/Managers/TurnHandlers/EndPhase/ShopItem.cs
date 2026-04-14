@@ -5,6 +5,6 @@ using UnityEngine.UI;
 public class ShopItem : ScriptableObject
 {
     public AbilityCard AbilityCard;
-    public Image CardBack;
+    public Sprite CardBack;
     public int Cost;
 }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Redirect
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   AbilityCard: {fileID: 11400000, guid: 401ba1a9a5a979d4dad63db9ffd5cc5d, type: 2}
+  CardBack: {fileID: 21300000, guid: 3a850bb2687162c4aba06ef6c89ef031, type: 3}
   Cost: 0

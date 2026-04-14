@@ -4028,7 +4028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopDeckSwitcher
   _prepDeck: {fileID: 874668645}
   _battleDeck: {fileID: 322194126}
-  _speciaDeck: {fileID: 0}
+  _speciaDeck: {fileID: 855149752}
 --- !u!1 &556339335
 GameObject:
   m_ObjectHideFlags: 0
@@ -5792,7 +5792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &855149753
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6051,7 +6051,6 @@ MonoBehaviour:
   _costText: {fileID: 1590194905}
   _descriptionImage: {fileID: 278546264}
   _canvasGroup: {fileID: 874668649}
-  _panel: {fileID: 0}
 --- !u!1 &878802433
 GameObject:
   m_ObjectHideFlags: 0

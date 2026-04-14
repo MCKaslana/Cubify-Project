@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Shrink
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   AbilityCard: {fileID: 11400000, guid: de04b8a6581a0bc4ab5acd2505405c1d, type: 2}
+  CardBack: {fileID: 21300000, guid: 2d0de7a5e324f564ba512ef0008c4bde, type: 3}
   Cost: 0

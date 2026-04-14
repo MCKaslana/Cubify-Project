@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Interrupt
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   AbilityCard: {fileID: 11400000, guid: 5d689cc7a914a4c40a4cc35e364af0db, type: 2}
+  CardBack: {fileID: 21300000, guid: 4058eea1511c13e41a40c969d72e3261, type: 3}
   Cost: 0

@@ -36,6 +36,7 @@ public class CombatManager : Singleton<CombatManager>
     public bool IsProcessingQueue => _isProcessingQueue;
     public bool AllowReactions { get; set; } = false;
     public bool IsPlayerTurn { get; set; } = true;
+    public bool IsDominionActive { get; set; } = false;
 
     //Needed for redirect system
     public CubeControl CurrentIncomingTarget { get; private set; }
@@ -63,9 +64,12 @@ public class CombatManager : Singleton<CombatManager>
             bool finished = dominion.TryConsume();
 
             if (finished)
+            {
                 RemoveEffect(dominion);
+                IsDominionActive = false;
+            }
 
-            Debug.Log("No Stamina Used | dominion active");
+            Debug.Log("No Stamina/Points Used | dominion active");
 
             return;
         }

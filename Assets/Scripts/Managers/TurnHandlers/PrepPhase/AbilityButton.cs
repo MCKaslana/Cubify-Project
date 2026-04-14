@@ -33,7 +33,10 @@ public class AbilityButton : MonoBehaviour
             return;
         }
 
-        PlayerAbilityInventory.Instance.UseAbility(_ability);
+        if (CombatManager.Instance.IsDominionActive)
+        {
+            PlayerAbilityInventory.Instance.UseAbility(_ability);
+        }
 
         if (_ability is InterruptAbility)
         {

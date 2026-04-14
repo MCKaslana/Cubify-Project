@@ -13,6 +13,7 @@ public class DominionPhaseAbility : AbilityCard
 
     public override IEnumerator Execute(CubeControl user, CubeControl target)
     {
+        CombatManager.Instance.IsDominionActive = true;
         CombatManager.Instance.SpendStamina(user.GetTeam(), staminaCost);
 
         CombatManager.Instance.AddTimedEffect(

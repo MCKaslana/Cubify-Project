@@ -4,7 +4,7 @@ public class ShopDeckSwitcher : MonoBehaviour
 {
     [SerializeField] private GameObject _prepDeck;
     [SerializeField] private GameObject _battleDeck;
-    [SerializeField] private GameObject _speciaDeck;
+
 
     public void ShowPrepDeck()
     {
@@ -16,16 +16,11 @@ public class ShopDeckSwitcher : MonoBehaviour
         SetActiveDeck(_battleDeck);
     }
 
-    public void ShowSpeicalDeck()
-    {
-        SetActiveDeck(_speciaDeck);
-    }
 
     private void SetActiveDeck(GameObject activeDeck)
     {
-        _prepDeck.SetActive(activeDeck);
-        _battleDeck.SetActive(activeDeck);
-        _speciaDeck.SetActive(activeDeck);
+        _prepDeck.SetActive(false);
+        _battleDeck.SetActive(false);
 
         activeDeck.SetActive(true);
     }

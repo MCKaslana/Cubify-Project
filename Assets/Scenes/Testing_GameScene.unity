@@ -1679,7 +1679,6 @@ GameObject:
   - component: {fileID: 322194131}
   - component: {fileID: 322194130}
   - component: {fileID: 322194129}
-  - component: {fileID: 322194128}
   m_Layer: 5
   m_Name: Battle_CardDeck
   m_TagString: Untagged
@@ -1710,19 +1709,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 238}
   m_SizeDelta: {x: 1800, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &322194128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322194126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4da1a31fea0a4aaa12e9f614c40a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardDeckDisplay
-  _deckImage: {fileID: 322194130}
 --- !u!225 &322194129
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3879,7 +3865,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopDeckSwitcher
   _prepDeck: {fileID: 874668645}
   _battleDeck: {fileID: 322194126}
-  _speciaDeck: {fileID: 0}
 --- !u!1 &556339335
 GameObject:
   m_ObjectHideFlags: 0
@@ -5503,7 +5488,6 @@ GameObject:
   - component: {fileID: 874668648}
   - component: {fileID: 874668647}
   - component: {fileID: 874668649}
-  - component: {fileID: 874668650}
   m_Layer: 5
   m_Name: Prep_CardDeck
   m_TagString: Untagged
@@ -5582,19 +5566,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &874668650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874668645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d4da1a31fea0a4aaa12e9f614c40a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardDeckDisplay
-  _deckImage: {fileID: 874668647}
 --- !u!1 &875650192
 GameObject:
   m_ObjectHideFlags: 0

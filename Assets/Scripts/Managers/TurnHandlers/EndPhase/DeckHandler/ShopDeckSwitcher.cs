@@ -16,17 +16,15 @@ public class ShopDeckSwitcher : MonoBehaviour
         SetActiveDeck(_battleDeck);
     }
 
-    public void ShowSpeicalDeck()
+    public void ShowSpecialDeck()
     {
         SetActiveDeck(_speciaDeck);
     }
 
     private void SetActiveDeck(GameObject activeDeck)
     {
-        _prepDeck.SetActive(activeDeck);
-        _battleDeck.SetActive(activeDeck);
-        _speciaDeck.SetActive(activeDeck);
-
-        activeDeck.SetActive(true);
+        _prepDeck.SetActive(activeDeck == _prepDeck);
+        _battleDeck.SetActive(activeDeck == _battleDeck);
+        _speciaDeck.SetActive(activeDeck == _speciaDeck);
     }
 }

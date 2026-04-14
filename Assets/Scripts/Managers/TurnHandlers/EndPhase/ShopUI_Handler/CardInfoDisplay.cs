@@ -6,7 +6,6 @@ using DG.Tweening;
 
 public class CardInfoDisplay : Singleton<CardInfoDisplay>
 {
-
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _costText;
     [SerializeField] private Image _descriptionImage;
@@ -27,8 +26,15 @@ public class CardInfoDisplay : Singleton<CardInfoDisplay>
         _canvasGroup.DOFade(1, 0.3f);
         _panel.DOAnchorPosX(_panel.anchoredPosition.x - 50f, 0.3f)
             .SetEase(Ease.OutCubic);
-
- 
     }
 
+    public void ShowCardSprite(ShopItem item)
+    {
+        Image deckImage = item.CardBack;
+        deckImage.sprite = item.AbilityCard.Icon;
+
+        deckImage.DOFade(1, 0.3f);
+        deckImage.transform.DOScale(1f, 0.4f)
+            .SetEase(Ease.OutBack);
+    }
 }

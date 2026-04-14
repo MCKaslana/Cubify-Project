@@ -1722,7 +1722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d4da1a31fea0a4aaa12e9f614c40a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardDeckDisplay
-  _deckImage: {fileID: 0}
+  _deckImage: {fileID: 322194130}
 --- !u!225 &322194129
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3877,9 +3877,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc64b472ce555a42abd8cd0925e32ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopDeckSwitcher
-  _prepDeck: {fileID: 475505457}
-  _battleDeck: {fileID: 2046836435}
-  _speciaDeck: {fileID: 75948854}
+  _prepDeck: {fileID: 874668645}
+  _battleDeck: {fileID: 322194126}
+  _speciaDeck: {fileID: 0}
 --- !u!1 &556339335
 GameObject:
   m_ObjectHideFlags: 0
@@ -5594,7 +5594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d4da1a31fea0a4aaa12e9f614c40a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardDeckDisplay
-  _deckImage: {fileID: 0}
+  _deckImage: {fileID: 874668647}
 --- !u!1 &875650192
 GameObject:
   m_ObjectHideFlags: 0

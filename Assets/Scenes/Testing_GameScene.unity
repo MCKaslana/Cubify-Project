@@ -3986,7 +3986,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopDeckSwitcher
   _prepDeck: {fileID: 874668645}
   _battleDeck: {fileID: 322194126}
-  _speciaDeck: {fileID: 0}
 --- !u!1 &556339335
 GameObject:
   m_ObjectHideFlags: 0

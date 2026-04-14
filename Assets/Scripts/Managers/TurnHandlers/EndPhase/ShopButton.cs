@@ -16,7 +16,7 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler
 
     private void Update()
     {
-        _button.interactable = PointManager.Instance.GetScore() >= _shopItem.Cost;
+        _button.interactable = PointManager.Instance.GetPointAmount() >= _shopItem.Cost;
     }
 
     private void OnButtonClicked()

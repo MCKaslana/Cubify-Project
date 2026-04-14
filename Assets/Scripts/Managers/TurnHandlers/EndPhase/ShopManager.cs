@@ -9,7 +9,7 @@ public class ShopManager : Singleton<ShopManager>
     {
         int finalCost = GetFinalCost(Team.Player, baseCost);
 
-        if (PointManager.Instance.GetScore() < finalCost)
+        if (PointManager.Instance.GetPointAmount() < finalCost)
         {
             Debug.Log("Not enough points");
             return;

@@ -10,7 +10,7 @@ public class PointManager : Singleton<PointManager>
     [SerializeField] private float _pointMultiplier = 1.0f;
 
     private int _points;
-    public int GetScore() => _points;
+    public int GetPointAmount() => _points;
 
     private void Start() => ResetPoints();
 

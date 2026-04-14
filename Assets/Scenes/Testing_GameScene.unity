@@ -2293,7 +2293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &385862753
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4940,7 +4940,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: 4f21fbaaaac269f42905f3cbf6799c2c, type: 2}
-  _abilityAmount: {fileID: 0}
 --- !u!1 &701611078
 GameObject:
   m_ObjectHideFlags: 0
@@ -5435,7 +5434,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: ba276e16957c7014ba50dcc31c26ab3a, type: 2}
-  _abilityAmount: {fileID: 463518229}
 --- !u!114 &814982016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12302,7 +12300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: 6462da0aeec48f745ab8e400d6d33f5a, type: 2}
-  _abilityAmount: {fileID: 1232467572}
 --- !u!114 &1919775396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13085,7 +13082,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: 0b2ac1757a7fc584385d7c03e81350d9, type: 2}
-  _abilityAmount: {fileID: 2056865059}
 --- !u!114 &2119277653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13793,7 +13789,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: 1810f21b92790a048a2f08cae169a470, type: 2}
-  _abilityAmount: {fileID: 1755456646}
 --- !u!114 &5350712260837576237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13807,7 +13802,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: e886f871f1ce8bb409b48c59a3ac915b, type: 2}
-  _abilityAmount: {fileID: 1325158319}
 --- !u!222 &5722475293281465795
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13912,7 +13906,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: de04b8a6581a0bc4ab5acd2505405c1d, type: 2}
-  _abilityAmount: {fileID: 993528421}
 --- !u!114 &6548791374924102625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13968,7 +13961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: 3743f0512698c7642bf8730dee06425a, type: 2}
-  _abilityAmount: {fileID: 1570288070}
 --- !u!1001 &7511012850313747245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14087,7 +14079,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: 401ba1a9a5a979d4dad63db9ffd5cc5d, type: 2}
-  _abilityAmount: {fileID: 634801975}
 --- !u!224 &7925460867236620241
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14193,7 +14184,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityButton
   _ability: {fileID: 11400000, guid: 5d689cc7a914a4c40a4cc35e364af0db, type: 2}
-  _abilityAmount: {fileID: 358004453}
 --- !u!114 &8688268804848326795
 MonoBehaviour:
   m_ObjectHideFlags: 0

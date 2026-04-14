@@ -39,7 +39,7 @@ public class ShopManager : Singleton<ShopManager>
 
         var cards = _shopUI.GetComponentsInChildren<ShopCardAnimation>();
 
-        foreach ( var card in cards)
+        foreach (var card in cards)
         {
             card.AnimateIn();
         }

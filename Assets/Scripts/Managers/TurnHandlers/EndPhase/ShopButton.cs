@@ -29,6 +29,5 @@ public class ShopButton : MonoBehaviour, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         CardInfoDisplay.Instance.ShowCard(_shopItem);
-        CardInfoDisplay.Instance.ShowCardSprite(_shopItem);
     }
 }

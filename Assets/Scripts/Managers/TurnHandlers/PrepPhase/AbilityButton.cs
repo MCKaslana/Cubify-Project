@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -5,22 +6,34 @@ using UnityEngine.UI;
 public class AbilityButton : MonoBehaviour
 {
     [SerializeField] private AbilityCard _ability;
+    private TextMeshProUGUI _abilityAmount;
 
     private Button _button;
 
     private void Awake()
     {
         _button = GetComponent<Button>();
+        _abilityAmount = GetComponentInChildren<TextMeshProUGUI>();
         _button.onClick.AddListener(OnClicked);
+    }
+
+    private void Update()
+    {
+        int amount = 
+            PlayerAbilityInventory.Instance.HasAbility(_ability) ? PlayerAbilityInventory.Instance.GetCount(_ability) : 0;
+        _abilityAmount.text = amount > 0 ? amount.ToString() : "< 0 >";
+        _button.interactable = amount > 0;
     }
 
     private void OnClicked()
     {
-        //if (!PlayerAbilityInventory.Instance.HasAbility(_ability))
-        //{
-        //    Debug.Log("No ability to use");
-        //    return;
-        //}
+        if (!PlayerAbilityInventory.Instance.HasAbility(_ability))
+        {
+            Debug.Log("No ability to use");
+            return;
+        }
+
+        PlayerAbilityInventory.Instance.UseAbility(_ability);
 
         if (_ability is InterruptAbility)
         {

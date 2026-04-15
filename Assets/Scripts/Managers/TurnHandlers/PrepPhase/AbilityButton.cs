@@ -36,11 +36,6 @@ public class AbilityButton : MonoBehaviour
             return;
         }
 
-        if (!CombatManager.Instance.IsDominionActive)
-        {
-            PlayerAbilityInventory.Instance.UseAbility(_ability);
-        }
-
         if (_ability is InterruptAbility)
         {
             var playerCubes = CubeSpawner.Instance.GetAllCubes();

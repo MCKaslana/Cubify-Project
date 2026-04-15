@@ -144,6 +144,11 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
             PrepPhaseUIManager.Instance.NotifyAbilityUsed();
         }
 
+        if (!CombatManager.Instance.IsDominionActive)
+        {
+            PlayerAbilityInventory.Instance.UseAbility(_pendingAbility);
+        }
+
         _selectionInformation.SetActive(false);
         _userConfirmed.SetActive(false);
         _targetConfirmed.SetActive(false);

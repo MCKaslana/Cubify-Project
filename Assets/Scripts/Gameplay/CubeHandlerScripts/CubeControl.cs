@@ -114,6 +114,8 @@ public class CubeControl : MonoBehaviour
         PlaySound(6);
         IsAlive = false;
         gameObject.SetActive(false);
+
+        CombatManager.Instance.CheckWinCondition();
     }
 
     #endregion

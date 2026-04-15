@@ -112,6 +112,43 @@ public class CombatManager : Singleton<CombatManager>
     public int GetPlayerStamina() => _playerStamina;
     public int GetAIStamina() => _opponentStamina;
 
+    #region --- Win Condition Check ---
+
+    public void CheckWinCondition()
+    {
+        var allCubes = CubeSpawner.Instance.GetAllCubes();
+
+        bool playerAlive = false;
+        bool enemyAlive = false;
+
+        foreach (var cube in allCubes)
+        {
+            if (cube == null || !cube.IsAlive) continue;
+
+            if (cube.GetTeam() == Team.Player)
+                playerAlive = true;
+            else if (cube.GetTeam() == Team.Enemy)
+                enemyAlive = true;
+
+            if (playerAlive && enemyAlive)
+                return;
+        }
+
+        if (!playerAlive)
+            EndGame(false);
+        else if (!enemyAlive)
+            EndGame(true);
+    }
+
+    private void EndGame(bool playerWon)
+    {
+        Debug.Log(playerWon ? "PLAYER WINS" : "PLAYER LOSES");
+
+        UIManager.Instance.ShowEndScreen(playerWon);
+    }
+
+    #endregion
+
     #region --- Ability Helpers ---
 
     private bool interruptRequested = false;

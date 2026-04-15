@@ -2,10 +2,15 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using System;
+using UnityEngine.UIElements;
 
 public class UIManager : Singleton<UIManager>
 {
     public event Action OnNextRoundActivated;
+
+    [Header("End Screen Panels")]
+    [SerializeField] private GameObject _winPanel;
+    [SerializeField] private GameObject _losePanel;
 
     [Header("Phase UIs")]
     [SerializeField] private GameObject _setupUI;
@@ -106,6 +111,12 @@ public class UIManager : Singleton<UIManager>
         {
             Debug.LogWarning("End UI GameObject is not assigned in the inspector.");
         }
+    }
+
+    public void ShowEndScreen(bool playerWon)
+    {
+        _winPanel.SetActive(playerWon);
+        _losePanel.SetActive(!playerWon);
     }
 
     public void ShowCurrentPhaseScreenIndicator(TurnPhase phase)

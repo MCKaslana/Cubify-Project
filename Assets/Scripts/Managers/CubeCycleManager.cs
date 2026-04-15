@@ -8,6 +8,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     [Header("Visual Feedback Elements")]
     [SerializeField] private GameObject _selectionInformation;
     [SerializeField] private TextMeshProUGUI _pendingAbilityName;
+    [SerializeField] private TextMeshProUGUI _staminaCostText;
 
     [SerializeField] private GameObject _userConfirmed;
     [SerializeField] private GameObject _targetConfirmed;
@@ -48,6 +49,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     {
         _selectionInformation.SetActive(false);
         _pendingAbilityName.text = "Ability In Use: None";
+        _staminaCostText.text = "Stamina Cost: 0";
         _userConfirmed.SetActive(false);
         _targetConfirmed.SetActive(false);
     }
@@ -56,6 +58,7 @@ public class CubeCycleManager : Singleton<CubeCycleManager>
     {
         _pendingAbility = ability;
         _pendingAbilityName.text = "Ability In Use: " + ability.abilityName;
+        _staminaCostText.text = "Stamina Cost: " + ability.staminaCost;
         _selectionInformation.SetActive(true);
         Debug.Log($"Starting ability flow for {ability.abilityName}");
         _confirmedUser = null;

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6255b59831bff43bca5db57c02028b, type: 3}
   m_Name: SwapUniversal
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
-  AbilityCard: {fileID: 11400000, guid: 1810f21b92790a048a2f08cae169a470, type: 2}
+  AbilityCard: {fileID: 11400000, guid: 3743f0512698c7642bf8730dee06425a, type: 2}
   CardBack: {fileID: 21300000, guid: 518270d4ebe47dc409819b02bbde6159, type: 3}
   Cost: 0

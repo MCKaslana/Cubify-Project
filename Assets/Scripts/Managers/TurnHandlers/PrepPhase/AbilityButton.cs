@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AbilityButton : MonoBehaviour
 {
     [SerializeField] private AbilityCard _ability;
+    [SerializeField] private bool _doesTakePoints = true;
     private TextMeshProUGUI _abilityAmount;
 
     private Button _button;
@@ -19,6 +20,8 @@ public class AbilityButton : MonoBehaviour
 
     private void Update()
     {
+        if (!_doesTakePoints) return;
+
         int amount = 
             PlayerAbilityInventory.Instance.HasAbility(_ability) ? PlayerAbilityInventory.Instance.GetCount(_ability) : 0;
         _abilityAmount.text = amount > 0 ? amount.ToString() : "< 0 >";
@@ -27,13 +30,13 @@ public class AbilityButton : MonoBehaviour
 
     private void OnClicked()
     {
-        if (!PlayerAbilityInventory.Instance.HasAbility(_ability))
+        if (_doesTakePoints && !PlayerAbilityInventory.Instance.HasAbility(_ability))
         {
             Debug.Log("No ability to use");
             return;
         }
 
-        if (CombatManager.Instance.IsDominionActive)
+        if (!CombatManager.Instance.IsDominionActive)
         {
             PlayerAbilityInventory.Instance.UseAbility(_ability);
         }

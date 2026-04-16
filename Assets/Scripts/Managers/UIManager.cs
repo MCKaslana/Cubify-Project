@@ -11,6 +11,11 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject _winPanel;
     [SerializeField] private GameObject _losePanel;
 
+    [Header("Round Statistics")]
+    [SerializeField] private TextMeshProUGUI _roundNumber;
+    [SerializeField] private TextMeshProUGUI _roundMultiplier;
+    [SerializeField] private TextMeshProUGUI _bonusActions;
+
     [Header("Phase UIs")]
     [SerializeField] private GameObject _setupUI;
     [SerializeField] private GameObject _prepUI;
@@ -45,6 +50,13 @@ public class UIManager : Singleton<UIManager>
     public void ActivateNextRound()
     {
         OnNextRoundActivated?.Invoke();
+    }
+
+    public void UpdateRoundStats(int roundNumber, float multiplier, int bonusActions)
+    {
+        _roundNumber.text = "Round: " + roundNumber;
+        _roundMultiplier.text = "Point Multiplier: x" + multiplier.ToString("F1");
+        _bonusActions.text = "Bonus Actions: " + bonusActions;
     }
 
     private void UpdatePointAmount(int amount)

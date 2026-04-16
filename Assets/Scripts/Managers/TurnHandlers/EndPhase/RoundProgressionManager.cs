@@ -26,6 +26,8 @@ public class RoundProgressionManager : Singleton<RoundProgressionManager>
         {
             _bonusActions = Mathf.Min(_bonusActions + _bonusActionIncrease, _maxBonusActions);
         }
+
+        UIManager.Instance.UpdateRoundStats(_currentRound, _pointMultiplier, _bonusActions);
     }
 
     public int GetScaledPoints(int basePoints)

@@ -8626,6 +8626,7 @@ GameObject:
   - component: {fileID: 1201643063}
   - component: {fileID: 1201643064}
   - component: {fileID: 1201643065}
+  - component: {fileID: 1201643066}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -8848,6 +8849,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541bb808a2e74824183b742b1a71876b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAbilityInventory
+--- !u!114 &1201643066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201643049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26dab46b438242b4894fa13694d716db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoundProgressionManager
+  _pointMultiplier: 1
+  _pointIncreaseMultiplier: 0.2
+  _roundsUntilBonusAction: 5
+  _bonusActionIncrease: 1
+  _maxBonusActions: 5
 --- !u!1 &1203236288
 GameObject:
   m_ObjectHideFlags: 0

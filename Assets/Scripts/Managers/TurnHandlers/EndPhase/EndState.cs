@@ -29,6 +29,9 @@ public class EndState : ITurnState
     {
         UIManager.Instance.OnNextRoundActivated -= ContinueToNextRound;
         UIManager.Instance.ShowEndUI(false);
+
+        RoundProgressionManager.Instance.OnNewRound();
+
         manager.ChangeState(new RoundState(manager));
     }
 

@@ -17,7 +17,9 @@ public class AttackAbility : AbilityCard
         if (user.GetTeam() == Team.Player)
         {
             int score = PointManager.Instance.CalculatePointGain(user, target);
-            PointManager.Instance.AddPoints(score);
+            int scaledPoints = RoundProgressionManager.Instance.GetScaledPoints(score);
+
+            PointManager.Instance.AddPoints(scaledPoints);
         }
 
         yield return new WaitForSeconds(0.5f); // Short delay after attack

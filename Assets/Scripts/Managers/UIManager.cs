@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using System;
-using UnityEngine.UIElements;
 
 public class UIManager : Singleton<UIManager>
 {

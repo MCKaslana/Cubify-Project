@@ -31,7 +31,7 @@ public class TurnManager : Singleton<TurnManager>
     public int AttackerActions { get; private set; }
     public int DefenderActions { get; private set; }
 
-    private const int MAX_ACTIONS = 3;
+    private readonly int _defaultMaxActions = 3;
 
     private bool _hasRolledForRoles = false;
 
@@ -112,8 +112,12 @@ public class TurnManager : Singleton<TurnManager>
 
     public void ResetActions()
     {
-        AttackerActions = MAX_ACTIONS;
-        DefenderActions = MAX_ACTIONS;
+        int baseActions = _defaultMaxActions;
+
+        int bonus = RoundProgressionManager.Instance.GetBonusActions();
+
+        AttackerActions = baseActions + bonus;
+        DefenderActions = baseActions + bonus;
     }
 
     #endregion

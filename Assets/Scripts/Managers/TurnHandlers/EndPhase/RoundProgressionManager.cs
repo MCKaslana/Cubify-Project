@@ -22,7 +22,7 @@ public class RoundProgressionManager : Singleton<RoundProgressionManager>
 
         _pointMultiplier += _pointIncreaseMultiplier;
 
-        if (_currentRound % _bonusActionIncrease == 0)
+        if (_currentRound >= _roundsUntilBonusAction)
         {
             _bonusActions = Mathf.Min(_bonusActions + _bonusActionIncrease, _maxBonusActions);
         }

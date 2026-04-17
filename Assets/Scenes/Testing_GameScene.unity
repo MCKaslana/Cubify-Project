@@ -9445,6 +9445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrepAIController
   _swapAbility: {fileID: 11400000, guid: 1810f21b92790a048a2f08cae169a470, type: 2}
   _modifyAbility: {fileID: 11400000, guid: e886f871f1ce8bb409b48c59a3ac915b, type: 2}
+  _actionAttempts: 3
 --- !u!114 &1201643063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10896,10 +10897,10 @@ RectTransform:
   - {fileID: 411081448}
   - {fileID: 1538866860}
   - {fileID: 1876599023}
-  - {fileID: 425809103}
   - {fileID: 545076023}
   - {fileID: 1965936723}
   - {fileID: 1684779972}
+  - {fileID: 425809103}
   - {fileID: 1772980991}
   - {fileID: 1188936744}
   m_Father: {fileID: 0}

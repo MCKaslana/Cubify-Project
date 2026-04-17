@@ -6,6 +6,7 @@ public class PrepAIController : MonoBehaviour
 {
     [SerializeField] private AbilityCard _swapAbility;
     [SerializeField] private AbilityCard _modifyAbility;
+    [SerializeField] private int _actionAttempts = 3;
 
     private List<IAIPrepAction> _actions = new();
 
@@ -24,7 +25,7 @@ public class PrepAIController : MonoBehaviour
 
     public IEnumerator ExecuteAITurn()
     {
-        int attempts = 3;
+        int attempts = _actionAttempts;
 
         while (attempts > 0)
         {

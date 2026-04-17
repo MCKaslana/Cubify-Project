@@ -45,6 +45,7 @@ public class AttackAIController : MonoBehaviour
                 continue;
 
             yield return action.Execute();
+            
             TurnManager.Instance.UseAttackerAction();
 
             actionsUsed++;
